@@ -37,14 +37,24 @@ async def get_platforms_from_tenderguru():
                 if resp.status == 200:
                     data = await resp.json(content_type=None)
                     logging.info(f"Platforms API response: {data}")
-                    for item in data.get("Items", []):
-                        platforms.append({
-                            "id": item.get("ID"),
-                            "name": item.get("Name"),
-                            "url": item.get("Url", "")
-                        })
+                    if isinstance(data, list):
+                        for item in data:
+                            platforms.append({
+                                "id": item.get("ID"),
+                                "name": item.get("EtpName") or item.get("Name"),
+                                "url": item.get("EtpLink") or item.get("Url", "")
+                            })
+                    elif isinstance(data, dict):
+                        for item in data.get("Items", []):
+                            platforms.append({
+                                "id": item.get("ID"),
+                                "name": item.get("EtpName") or item.get("Name"),
+                                "url": item.get("EtpLink") or item.get("Url", "")
+                            })
                 else:
                     logging.error(f"Failed to get platforms for mode {mode}: {resp.status}")
+    if not platforms:
+        logging.error("No platforms loaded from TenderGuru API!")
     platforms_cache = platforms
     return platforms
 
@@ -187,6 +197,18 @@ async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TY
     if message and message.text:
         url = message.text.strip()
         reg_number, platform = await extract_tender_info_from_url(url)
+        if not reg_number:
+            await message.reply_text(
+                "❗ Не удалось определить номер тендера из ссылки.\n"
+                "Проверьте корректность ссылки или попробуйте другую площадку."
+            )
+            return
+        if not platform:
+            await message.reply_text(
+                "❗ Не удалось определить площадку по ссылке.\n"
+                "Проверьте корректность ссылки или попробуйте другую площадку."
+            )
+            return
         data = await TenderGuruAPI.get_tender_by_number(reg_number)
         if data:
             keyboard = [
@@ -202,12 +224,19 @@ async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TY
                 f"💰 НМЦК: {data['price']}\n"
                 f"📅 Дедлайн: {data['deadline']}\n"
                 f"📍 Место поставки: {data['location']}\n"
+                f"🌐 Площадка: {platform}"
             )
-            if message:
-                await message.reply_text(text, reply_markup=reply_markup)
+            await message.reply_text(text, reply_markup=reply_markup)
         else:
-            if message:
-                await message.reply_text("Тендер не найден. Проверьте ссылку.")
+            await message.reply_text(
+                "❗ Не удалось найти тендер по номеру.\n"
+                "Возможно, он отсутствует в базе TenderGuru или ссылка некорректна."
+            )
+    else:
+        if message:
+            await message.reply_text(
+                "❗ Пожалуйста, отправьте ссылку на тендер текстом."
+            )
 
 async def download_all_files(reg_number):
     """
