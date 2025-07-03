@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Item>
+<unfairSupplier_fullName>ИП Фирагин А.И. </unfairSupplier_fullName>
+<unfairSupplier_INN>744607331439</unfairSupplier_INN>
+<contract_cancel_base></contract_cancel_base>
+<createReason>CANCEL_CONTRACT</createReason>
+<contract_price>0</contract_price>
+<publishDate>2022-03-22</publishDate>
+<publishOrg_fullName>УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ АНТИМОНОПОЛЬНОЙ СЛУЖБЫ ПО Г. МОСКВЕ</publishOrg_fullName>
+<purchaseNumber></purchaseNumber>
+<customer_fullName>ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ ГОРОДА МОСКВЫ - ЦЕНТР ОРГАНИЗАЦИИ ДОРОЖНОГО ДВИЖЕНИЯ ПРАВИТЕЛЬСТВА МОСКВЫ</customer_fullName>
+<customer_INN>7710350884</customer_INN>
+<autoExDate>0000-00-00</autoExDate>
+<unfairSupplier_founders_name>Фирагин А.И. </unfairSupplier_founders_name>
+<unfairSupplier_founders_INN>744607331439</unfairSupplier_founders_INN>
+<state>PUBLISHED</state>
+<SuppliersAPI>https://www.tenderguru.ru/api2.0/export?mode=contact&amp;inn=744607331439&amp;api_code=</SuppliersAPI>
+<SuppliersContactAPI>https://www.tenderguru.ru/api2.0/export?mode=postinfo&amp;&amp;inn=744607331439&amp;api_code=</SuppliersContactAPI></Item>
+<Item>
+<contract_cancel_base>Для возможности выгрузки большего количества полей Вам надо зарегистрироваться.</contract_cancel_base></Item>
+<Item>
+<contract_cancel_base>Для незарегистрированных ограничение выгрузки - 30 полей.</contract_cancel_base></Item>
+<Item>
+<contract_cancel_base>Для зарегистрированных ограничение выгрузки - 100 полей.</contract_cancel_base></Item>
+<Item>
+<contract_cancel_base>Для оформивших подписку - 500 полей.</contract_cancel_base></Item>
+</Items>

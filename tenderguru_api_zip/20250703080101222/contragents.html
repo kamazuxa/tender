@@ -1,0 +1,1164 @@
+<!DOCTYPE html><html class="no-js" lang="ru" data-scrapbook-source="https://www.tenderguru.ru/api/documentation/contragents"><head>
+    <meta charset="UTF-8">
+    <title>API данных по контрагентам и организациям России | Форматы выгрузки: json и xml. | Бесплатная и платная интеграция. | Бесплатная и платная выгрузка</title>
+    <meta name="description" content="API данных по контрагентам и организациям России | Форматы выгрузки: json и xml.">
+   
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <script src="fallback-core-origin.speedcdnjs.com.html"></script>
+    
+    
+     
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+	
+</head>
+
+<body>
+<div class="left-menu">
+    <div class="content-logo">
+        <div class="logo">
+            
+            <span>API TenderGuru.ru</span>
+        </div>
+        <button class="burger-menu-icon" id="button-menu-mobile">
+            <svg width="34" height="34" viewBox="0 0 100 100"><path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path><path class="line line2" d="M 20,50 H 80"></path><path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path></svg>
+        </button>
+    </div>
+    <div class="mobile-menu-closer"></div>
+    <div class="content-menu">
+        <div class="content-infos">
+            <div class="info"><b>Версия:</b> 2.3</div>
+            <div class="info"><b>Обновление:</b> 04 Июня, 2025</div>
+        </div>
+		<ul><li><a href="index.html">Начало работы</a></li><li><a href="tendery.html">Тендеры</a></li><li class="scroll-to-link active" data-target="content-get-started"><a>Контрагенты</a></li> <li class="scroll-to-link" data-target="content-get-post">
+										<a>Информация об организации - контрагенте</a>
+										</li> <li class="scroll-to-link" data-target="content-get-postlist">
+										<a>Поиск по организациям</a>
+										</li> <li class="scroll-to-link" data-target="content-get-contacts">
+										<a>Контакты контрагентов</a>
+										</li> <li class="scroll-to-link" data-target="content-get-customer_docs">
+										<a>Документы организаций</a>
+										</li> <li class="scroll-to-link" data-target="content-get-tenderdocs">
+										<a>Тендерная документация</a>
+										</li><li><a href="winners.html">Победители закупок</a></li><li><a href="torgi.html">Торги</a></li><li><a href="foreign-tenders.html">Иностранные закупки</a></li><li><a href="contracts.html">Контракты</a></li><li><a href="plans.html">Планы закупок</a></li><li><a href="contacts.html">Контакты организаций</a></li><li><a href="rnp.html">РНП</a></li><li><a href="fas.html">ФАС</a></li><li><a href="kad.html">Арбитражные дела</a></li><li><a href="fssp.html">Исполнительные дела</a></li><li><a href="info.html">Справочная информация</a></li><li><a href="index.html"></a></li></ul>		
+		
+		
+    </div>
+</div>
+<div class="content-page">
+    <div class="content-code"></div>
+    <div class="content">
+							 <div class="content-section" id="content-get-started">
+						<h1>
+						API информации о контрагенте по ИНН							</h1>
+														<pre>GET запросы к странице
+
+https://www.tenderguru.ru/api2.3/export/contragent/inn/{ИНН организации или ИП}							</pre>
+							
+						<p>
+						
+	</p><p>API предназначен для обеспечения программного доступа к базе данных организаций и индвидуальных предпринимателей и их информации. Он позволяет получить обширные данные о предприятиях, исходя из ИНН или ключевых слов, связанных с видом деятельности организации.<br><br>Например:
+	<br><a href="https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330">https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330</a><br>
+	<a href="https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330?dtype=json">https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330?dtype=json (в json)</a><br>
+	
+	</p>
+	<h2>Информация контрагентах по тематике</h2>
+	<p>По отраслям возможно посмотреть по ключевому слову или по кодам ОКВЭД2:<br>
+</p><p>Примеры запроса контрагетов по тематике <b>"строительство"</b>:</p>
+<p>
+<a href="https://www.tenderguru.ru/api2.3/export/contragent?kwords_tender=%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE">https://www.tenderguru.ru/api2.3/export/contragent?kwords_tender=%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE</a><br><br>
+
+
+Примеры запроса контрагентов по тематике <b>46.42.1 - Торговля оптовая одеждой</b>:</p>
+<p>
+<a href="https://www.tenderguru.ru/api2.3/export/contragent?d1=46&amp;d2=42&amp;d3=1">https://www.tenderguru.ru/api2.3/export/contragent?d1=46&amp;d2=42&amp;d3=1</a>
+</p>
+<h2>Информация о поставляемой продукции организации</h2>
+<p>API предоставляет детальную информацию о продукции, которую контрагент предоставляет на рынок. Это включает в себя характеристики товаров, их стоимость, наличие и другие параметры.<br><a href="https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330">https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330?mode</a></p>
+
+
+<h2>Информация о заказчиках контрагента</h2><pre>Ответ:
+
+Customer - Название организации заказчика
+INN - ИНН
+ContractSum – сумма контрактов, рубли
+KolvoKontracts  — кол-во контрактов
+ApiLink — ссылка на заказчика</pre>
+<p>С помощью этого API можно получить список заказчиков контрагента, а также детали сотрудничества, включая объемы поставок, частоту заказов и отзывы о качестве продукции или услуг (параметр mode=customers).
+<br><a href="https://www.tenderguru.ru/api2.3/export?mode=customers&amp;inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=customers&amp;inn=7716615618</a></p>
+
+<h2>Информация о поставщиках контрагента</h2>
+<pre>Ответ:
+
+Org — Название организации поставщика
+INN - ИНН
+SumContracts – сумма контрактов, рубли
+KolvoContracts — кол-во контрактов
+ApiLink — ссылка на поставщика</pre>
+<p>API позволяет изучить список поставщиков, с которыми контрагент сотрудничает, узнать условия партнерства, а также получить информацию о товарах или услугах, которые контрагент закупает у своих поставщиков (параметр mode=suppliers).<br><a href="https://www.tenderguru.ru/api2.3/export?mode=suppliers&amp;inn=9204576208">https://www.tenderguru.ru/api2.3/export?mode=suppliers&amp;inn=9204576208</a></p>
+
+<h2>Информация о документах контрагента</h2>
+<p>Этот API предоставляет доступ к документам контрагента, включая договоры, лицензии, сертификаты и другие официальные документы, подтверждающие легальность деятельности и соответствие стандартам.<br><a href="https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330">https://www.tenderguru.ru/api2.3/export/contragent/inn/5003093330</a></p>
+<h2>Информация о контактах организации</h2>
+<p>Выгрузка контактной информации организации. Включает в себя телефоны, адреса, адреса электронной почты и другую актуальную контактную информацию.<br><a href="https://www.tenderguru.ru/api2.3/export?mode=contact&amp;inn=5003093330&amp;api_code=&amp;dtype=json">https://www.tenderguru.ru/api2.3/export?mode=contact&amp;inn=5003093330&amp;api_code=&amp;dtype=json</a></p>
+
+<h2>Аффилированные юрлица</h2>
+<p>Информация о юридических лицах, связанных с основной организацией.<br>
+Ответ:<br>
+INN - ИНН<br>
+ApiOrgLink — Ссылка на организацию<br><br>
+Пример:<br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=affiliate&amp;inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=affiliate&amp;inn=7716615618</a>
+
+</p>
+
+
+<h2>Организация состоит в РНП (для поставщиков)</h2>
+<pre>Ответ по РНП:
+
+unfairSupplier_fullName - Поставщик
+unfairSupplier_INN — ИНН поставщика
+createReason — причина внесения
+publishDate — дата публикации
+publishOrg_fullName - Публикатор
+purchaseNumber — Номер закупки
+customer_fullName - Заказчик
+customer_INN — ИНН заказчика</pre>
+<p>Сведения о нахождении организации в РНП (параметр mode=rnp_post)
+Пример:<br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=rnp_post&amp;inn=744607331439">https://www.tenderguru.ru/api2.3/export?mode=rnp_post&amp;inn=744607331439</a>
+
+</p>
+
+<h2>Кого организация добавила в РНП</h2>
+<pre>Ответ по РНП:
+
+unfairSupplier_fullName - Поставщик
+unfairSupplier_INN — ИНН поставщика
+createReason — причина внесения
+publishDate — дата публикации
+publishOrg_fullName - Публикатор
+purchaseNumber — Номер закупки
+customer_fullName - Заказчик
+customer_INN — ИНН заказчика</pre>
+<p>Перечень поставщиков, которых организация включила в РНП (параметр mode=zakaz)<br><br>
+Пример <br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=rnp_zakaz&amp;inn=7710350884">https://www.tenderguru.ru/api2.3/export?mode=rnp_zakaz&amp;inn=7710350884</a></p>
+
+
+
+<h2>Планы закупок</h2>
+<p>Информация о планируемых закупках организацией на предстоящий период.
+(параметр mode=planzakup)<br>
+Ответ:<br>
+см. разделы про <a href="plans.html">Планы закупок</a><br><br>
+Пример:<br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=planzakup&amp;org_inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=planzakup&amp;org_inn=7716615618</a><br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=planzakup&amp;org_inn=7716615618&amp;dtype=json">https://www.tenderguru.ru/api2.3/export?mode=planzakup&amp;org_inn=7716615618&amp;dtype=json</a><br>
+</p>
+
+<h2>Закупаемая продукция по контрактам</h2>
+<p>Перечень товаров и услуг, которые организация планирует закупить на основе заключенных контрактов.
+Параметр организаций заказчиков (zorg_inn — ИНН заказчика) + параметр mode=contracts и переменная contract_products=1<br><br>
+<br>Ответ:<br>
+см. разделы про <a href="contracts.html">Контракты и продукцию по контрактам</a><br><br>
+Примеры:<br>
+<a href="https://www.tenderguru.ru/api2.3/export?zorg_inn=9901005378&amp;mode=contracts&amp;contract_products=1">https://www.tenderguru.ru/api2.3/export?zorg_inn=9901005378&amp;mode=contracts&amp;contract_products=1</a><br>
+<a href="https://www.tenderguru.ru/api2.3/export?zorg_inn=2312119460&amp;mode=contracts&amp;contract_products=1&amp;dtype=json">https://www.tenderguru.ru/api2.3/export?zorg_inn=2312119460&amp;mode=contracts&amp;contract_products=1&amp;dtype=json</a><br>
+
+</p>
+
+<h2>Поставляемая продукция по контрактам</h2>
+<p>Список товаров и услуг, которые организация поставляет своим клиентам по заключенным контрактам.
+Параметр организаций поставщиков (org_inn — ИНН заказчика, параметр mode=contracts и переменная contract_products=1).
+<br><br>
+
+Пример:<br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=contracts&amp;org_inn=7716615618&amp;contract_products=1">https://www.tenderguru.ru/api2.3/export?mode=contracts&amp;org_inn=7716615618&amp;contract_products=1</a>
+<a href="https://www.tenderguru.ru/api2.3/export?org_inn=9901005378&amp;mode=contracts&amp;contract_products=1">https://www.tenderguru.ru/api2.3/export?org_inn=9901005378&amp;mode=contracts&amp;contract_products=1</a><br><br>
+
+Ответ:<br>
+см. разделы про <a href="contracts.html">Контракты и продукцию по контрактам</a></p>
+
+<h2>Контракты заключенные в качестве заказчика</h2>
+<p>Информация о контрактах, где организация выступает в роли поставщика.
+Параметр организаций заказчиков (zorg_inn — ИНН заказчика, параметр mode=contracts и переменная contract_products=1).<br><br>
+
+
+Пример:<br><br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=contracts&amp;zorg_inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=contracts&amp;zorg_inn=7716615618</a>
+<a href="https://www.tenderguru.ru/api2.3/export?zorg_inn=2312119460&amp;mode=contracts">https://www.tenderguru.ru/api2.3/export?zorg_inn=2312119460&amp;mode=contracts</a>
+<a href="https://www.tenderguru.ru/api2.3/export?org_inn=9901005378&amp;mode=contracts">https://www.tenderguru.ru/api2.3/export?org_inn=9901005378&amp;mode=contracts</a>
+<br><br>
+Ответ:<br><br>
+см. разделы про <a href="contracts.html">Контракты и продукцию по контрактам</a></p>
+
+<h2>Контракты  заключенные в качестве поставщика</h2>
+<p>Данные о контрактах, где организация является заказчиком.
+Параметр организаций заказчиков (org_inn — ИНН заказчика, параметр mode=contracts).
+<br><br>
+
+Пример:<br><br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=contracts&amp;org_inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=contracts&amp;org_inn=7716615618</a>
+<a href="https://www.tenderguru.ru/api2.3/export?org_inn=6679137126&amp;mode=contracts">https://www.tenderguru.ru/api2.3/export?org_inn=6679137126&amp;mode=contracts</a>
+<br><br>
+Ответ:<br><br>
+см. разделы про Контракты и продукцию по контрактам</p>
+
+
+<h2>Договора в качестве поставщика</h2>
+<pre>Ответ:
+View — просмотр документа онлайн на портале
+Filename — название файла
+DocPath — путь к файлу на ЕИС
+SupplierInn — ИНН поставщика</pre>
+
+<p>Перечень договоров и документов, по которым организация предоставляет товары или услуги (параметр mode=supplierDocs, inn — ИНН заказчика).<br><br>
+
+
+Пример:<br><br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=supplierDocs&amp;inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=supplierDocs&amp;inn=7716615618</a>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=customerDocs&amp;inn=9403001613">https://www.tenderguru.ru/api2.3/export?mode=customerDocs&amp;inn=9403001613</a>
+</p>
+
+<h2>Тендеры, выставленные организацией</h2>
+<p>Информация о тендерах, которые были объявлены данной организацией.
+параметр mode=contracts (org_inn — ИНН заказчика).
+<a href="https://www.tenderguru.ru/api2.3/export?kwords=7716615618">https://www.tenderguru.ru/api2.3/export?kwords=7716615618</a>
+
+Ответ:
+см. разделы про <a href="tendery.html">Тендеры</a></p>
+
+<h2>Для обновления информации по организации</h2>
+<p>Обновленные данные о структуре, деятельности и основных показателях организации (параметр update=1).
+<br><br>
+<a href="https://www.tenderguru.ru/api2.3/export?kwords=7716615618&amp;mode=planzakup">https://www.tenderguru.ru/api2.3/export?kwords=7716615618&amp;mode=planzakup</a></p>
+
+
+<h2>Договора в качестве поставщика</h2>
+<pre>Ответ:
+View — просмотр документа онлайн на портале
+Filename — название файла
+DocPath — путь к файлу на ЕИС
+SupplierInn — ИНН поставщика
+</pre>
+<p>параметр mode=supplierDocs (inn — ИНН заказчика).<br><br>
+Пример:<br><br>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=supplierDocs&amp;inn=7716615618">https://www.tenderguru.ru/api2.3/export?mode=supplierDocs&amp;inn=7716615618</a>
+<a href="https://www.tenderguru.ru/api2.3/export?mode=customerDocs&amp;inn=9403001613">https://www.tenderguru.ru/api2.3/export?mode=customerDocs&amp;inn=9403001613</a></p>
+
+<h2>Арбитражные дела</h2>
+<pre>Ответ:
+date_publ - дата
+link — ссылка на kad.arbitr
+plaintiff - истец
+defendant - ответчик
+third_person — третье лицо
+another_person — участник процесса
+num — номер дела
+sum — сумма иска
+org_inn - ИНН</pre>
+<p>
+Получение данных о наличии арбитражных дел, в которых участвует данная организация. Включает детали о характере спора, участниках, решениях суда и текущем статусе дела.
+</p><p>параметр mode=kad (inn — ИНН заказчика).
+Пример:
+<a href="https://www.tenderguru.ru/api2.3/export?mode=kad&amp;inn=6671459435">https://www.tenderguru.ru/api2.3/export?mode=kad&amp;inn=6671459435</a></p>
+
+
+
+<h2>Исполнительные дела</h2>
+<pre>Ответ:
+date_publ - дата
+ogrn – ОГРН ответчика
+num  - Номер дела
+requisitesXML — Название дела
+item — Тип дел
+departmentXML — кто завел дело
+org_name - ответчик
+org_adr — адрес ответчика
+inn - ИНН</pre>
+<p>Выгрузка данных о наличии и характеристиках исполнительных производств, связанных с конкретной организацией или физическим лицом. Включает в себя информацию о дате начала, сумме долга, статусе и другие релевантные детали.
+
+параметр mode=fssp (inn — ИНН заказчика).
+
+Пример:
+<a href="https://www.tenderguru.ru/api2.3/export?mode=fssp&amp;inn=6639013131">https://www.tenderguru.ru/api2.3/export?mode=fssp&amp;inn=6639013131</a>
+
+</p>
+
+<ul style="color: #856404; background-color: #fff3cd; margin-top:0px; padding-top: 20px; padding-bottom: 20px;">
+Следующая информация о контрагенте доступна только для <a href="short.html">оплаченных тарифов</a>:<br>
+    <li>Финансовая информация</li>
+    <li>Данные контрагента</li>
+    <li>Статус контрагента</li>
+    <li>Организационно-правовая форма (ОПФ)</li>
+    <li>Сведения о регистрирующих органах</li>
+    <li>Отчетность по ФНС</li>
+    <li>Информация о пенсионном фонде</li>
+    <li>Информация о социальном страховании</li>
+    <li>Лицензии</li>
+    <li>Документы контрагента</li>
+    <li>Телефонные номера</li>
+    <li>Электронные адреса</li>
+    <li>Учредители</li>
+    <li>Руководители</li>
+    <li>Правопреемники</li>
+    <li>Предшественники</li>
+</ul>
+
+   
+   <p></p>
+						<br>
+					</div>
+										
+					<pre class="json" style=""></pre>
+					<div class="content-section" id="content-get-post">	
+						
+						<h2>Информация об организации - контрагенте</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export/contragent/inn/{ИНН организации или ИП}</code>
+						</p>
+						
+											<p>
+					
+										</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>inn</td>
+										<td>int</td>
+										<td>ИНН организации или ИП (запросом к странице https://www.tenderguru.ru/api2.3/export/contragent/inn/{id})</td>
+									</tr>
+									
+									<tr>
+										<td>ogrn</td>
+										<td>int</td>
+										<td>ИНН организации или ИП (запросом к странице https://www.tenderguru.ru/api2.3/export/contragent/ogrn/{ogrn})</td>
+									</tr>
+									
+									<tr>
+										<td>id</td>
+										<td>int</td>
+										<td>Id организации на портале (запросом к странице https://www.tenderguru.ru/api2.3/export/contragent/id/{id})</td>
+									</tr>
+									
+									<tr>
+										<td>kpp</td>
+										<td>int</td>
+										<td>КПП организации</td>
+									</tr>
+									
+									<tr>
+										<td>branch</td>
+										<td>int</td>
+										<td>1 если, выводить только головную организацию</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>Org</td>
+										<td>string</td>
+										<td>Организация</td>
+									</tr>
+									
+									<tr>
+										<td>INN</td>
+										<td>string</td>
+										<td>ИНН организации</td>
+									</tr>
+									
+									<tr>
+										<td>Region</td>
+										<td>string</td>
+										<td>Регион</td>
+									</tr>
+									
+									<tr>
+										<td>SuppliersSumContracts</td>
+										<td>int</td>
+										<td>Сумма контрактов поставщика</td>
+									</tr>
+									
+									<tr>
+										<td>SuppliersKolvoContracts</td>
+										<td>int</td>
+										<td>Количество контрактов поставщика</td>
+									</tr>
+									
+									<tr>
+										<td>CustomersSumContracts</td>
+										<td>int</td>
+										<td>Сумма контрактов клиентов</td>
+									</tr>
+									
+									<tr>
+										<td>CustomersKolvoContracts</td>
+										<td>int</td>
+										<td>Количество контрактов клиентов</td>
+									</tr>
+									
+									<tr>
+										<td>Email</td>
+										<td>string</td>
+										<td>URL API для получения электронной почты</td>
+									</tr>
+									
+									<tr>
+										<td>Phone</td>
+										<td>string</td>
+										<td>URL API для получения телефона</td>
+									</tr>
+									
+									<tr>
+										<td>Contact</td>
+										<td>string</td>
+										<td>URL API для контактов</td>
+									</tr>
+									
+									<tr>
+										<td>Director</td>
+										<td>string</td>
+										<td>Директор организации</td>
+									</tr>
+									
+									<tr>
+										<td>Dolgn</td>
+										<td>string</td>
+										<td>Должность</td>
+									</tr>
+									
+									<tr>
+										<td>RegDate</td>
+										<td>string</td>
+										<td>Дата регистрации</td>
+									</tr>
+									
+									<tr>
+										<td>Address</td>
+										<td>string</td>
+										<td>Адрес</td>
+									</tr>
+									
+									<tr>
+										<td>RnpLinkPost</td>
+										<td>string</td>
+										<td>URL API для получения данных о сообщениях RNP</td>
+									</tr>
+									
+									<tr>
+										<td>RnpLinkZakaz</td>
+										<td>string</td>
+										<td>URL API для получения данных о заказах RNP</td>
+									</tr>
+									
+									<tr>
+										<td>Fas</td>
+										<td>string</td>
+										<td>URL API для FAS</td>
+									</tr>
+									
+									<tr>
+										<td>ContactsALL</td>
+										<td>string</td>
+										<td>URL API для всех контактов</td>
+									</tr>
+									
+									<tr>
+										<td>Pred</td>
+										<td>string</td>
+										<td>URL API для предсказаний</td>
+									</tr>
+									
+									<tr>
+										<td>ContractsSupplies</td>
+										<td>string</td>
+										<td>URL API для контрактов поставок</td>
+									</tr>
+									
+									<tr>
+										<td>ProductsSupplies</td>
+										<td>string</td>
+										<td>URL API для поставок продукции</td>
+									</tr>
+									
+									<tr>
+										<td>contractsCustomers</td>
+										<td>string</td>
+										<td>URL API для контрактов клиентов</td>
+									</tr>
+									
+									<tr>
+										<td>productsCustomers</td>
+										<td>string</td>
+										<td>URL API для продуктов клиентов</td>
+									</tr>
+									
+									<tr>
+										<td>Wildberries</td>
+										<td>string</td>
+										<td>URL API для Wildberries</td>
+									</tr>
+									
+									<tr>
+										<td>HH</td>
+										<td>int</td>
+										<td>HH</td>
+									</tr>
+									
+									<tr>
+										<td>Rabota</td>
+										<td>string</td>
+										<td>Работа</td>
+									</tr>
+									
+									<tr>
+										<td>TendersZakaz</td>
+										<td>string</td>
+										<td>URL API для заказов на тендеры</td>
+									</tr>
+									
+									<tr>
+										<td>AffilateOrgs</td>
+										<td>string</td>
+										<td>URL API для аффилированных организаций</td>
+									</tr>
+									
+									<tr>
+										<td>CustomersAPI</td>
+										<td>string</td>
+										<td>URL API для клиентов</td>
+									</tr>
+									
+									<tr>
+										<td>SuppliersAPI</td>
+										<td>string</td>
+										<td>URL API для поставщиков</td>
+									</tr>
+									
+									<tr>
+										<td>DogovorApiPost</td>
+										<td>string</td>
+										<td>URL API для документов поставщика</td>
+									</tr>
+									
+									<tr>
+										<td>DogovorApiZakaz</td>
+										<td>string</td>
+										<td>URL API для документов заказчика</td>
+									</tr>
+									
+									<tr>
+										<td>planZakupApiLink</td>
+										<td>string</td>
+										<td>URL API для плана закупки</td>
+									</tr>
+									
+									<tr>
+										<td>updateLink</td>
+										<td>string</td>
+										<td>(только для подписанных клиентов) URL API для обновлений</td>
+									</tr>
+									
+									<tr>
+										<td>finance</td>
+										<td>Array</td>
+										<td>Финансовая информация  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>data</td>
+										<td>Array</td>
+										<td>Данные контрагента  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>state</td>
+										<td>Array</td>
+										<td>Состояние контрагента  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>opf</td>
+										<td>Array</td>
+										<td>Организационно-правовая форма  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>authorities</td>
+										<td>Array</td>
+										<td>Уполномоченные органы  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>fts_report</td>
+										<td>Array</td>
+										<td>Отчет ФНС  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>pf</td>
+										<td>Array</td>
+										<td>Пенсионный фонд  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>sif</td>
+										<td>Array</td>
+										<td>Социальный инсур. фонд  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>licenses</td>
+										<td>Array</td>
+										<td>Лицензии  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>documents</td>
+										<td>Array</td>
+										<td>Документы контрагента  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>phones</td>
+										<td>Array</td>
+										<td>Телефоны контрагента  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>emails</td>
+										<td>Array</td>
+										<td>Электронная почта контрагента  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>founders</td>
+										<td>Array</td>
+										<td>Основатели  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>managers</td>
+										<td>Array</td>
+										<td>Руководство  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>successors</td>
+										<td>Array</td>
+										<td>Правопреемники  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>predecessors</td>
+										<td>Array</td>
+										<td>Предшественники  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+										
+					<pre class="json" style="">
+
+</pre>
+					<div class="content-section" id="content-get-postlist">	
+						
+						<h2>Поиск по организациям</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export/contragent</code>
+						</p>
+						
+						<p>
+						</p>
+						<br>
+											<p>
+					
+					Вывод тендера по ID<br><a href="https://www.tenderguru.ru/api2.3/export?id=41156534" target="_blank">https://www.tenderguru.ru/api2.3/export?id=41156534</a><br>Вывод тендера по номеру тендера в ЕИС<br><a href="https://www.tenderguru.ru/api2.3/export?tend_num=0174500001123002772" target="_blank">https://www.tenderguru.ru/api2.3/export?tend_num=0174500001123002772</a><br>					</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>customerInn</td>
+										<td>int</td>
+										<td>ИНН заказчика</td>
+									</tr>
+									
+									<tr>
+										<td>supplierInn</td>
+										<td>int</td>
+										<td>ИНН поставщика</td>
+									</tr>
+									
+									<tr>
+										<td>purchaseNumber</td>
+										<td>int</td>
+										<td>Номер закупки</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>Org</td>
+										<td>string</td>
+										<td>Организация</td>
+									</tr>
+									
+									<tr>
+										<td>INN</td>
+										<td>string</td>
+										<td>ИНН организации</td>
+									</tr>
+									
+									<tr>
+										<td>Region</td>
+										<td>string</td>
+										<td>Регион</td>
+									</tr>
+									
+									<tr>
+										<td>Address</td>
+										<td>string</td>
+										<td>Адрес</td>
+									</tr>
+									
+									<tr>
+										<td>ApiLink</td>
+										<td></td>
+										<td></td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+										
+					<pre class="json" style=""></pre>
+					<div class="content-section" id="content-get-contacts">	
+						
+						<h2>Контакты контрагентов</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export/contragent/inn/{ИНН}/contact</code>
+						</p>
+						
+						<p>
+						
+</p><p>Все контакты юридических лиц взятые из открытых источников. Входят e-mail адреса, телефоны и контактные лица. Полная информация только для подписчиков портала.
+
+Примеры запроса:<br><br>
+
+<a href="https://www.tenderguru.ru/api2.3/export/contragent/inn/8620001915/contact" target="_blank">https://www.tenderguru.ru/api2.3/export/contragent/inn/8620001915/contact</a>
+
+</p><br><p></p>
+						<br>
+											<p>
+					
+										</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>inn</td>
+										<td>int</td>
+										<td>ИНН организации</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>inn</td>
+										<td>int</td>
+										<td>ИНН организации</td>
+									</tr>
+									
+									<tr>
+										<td>organization</td>
+										<td>string</td>
+										<td>Название организации</td>
+									</tr>
+									
+									<tr>
+										<td>phone</td>
+										<td>string</td>
+										<td>Контактный телефон организации  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>fio</td>
+										<td>string</td>
+										<td>ФИО контактного лица  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>email</td>
+										<td>string</td>
+										<td>Email организации  (Для пользователей по <a href="financeua.php.html" target="_blank">платным тарифам</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>region</td>
+										<td>int</td>
+										<td>Региональный код контакта</td>
+									</tr>
+									
+									<tr>
+										<td>act_address</td>
+										<td>string</td>
+										<td>Фактический адрес организации</td>
+									</tr>
+									
+									<tr>
+										<td>postal_address</td>
+										<td>string</td>
+										<td>Почтовый адрес организации</td>
+									</tr>
+									
+									<tr>
+										<td>apiOrgLink</td>
+										<td></td>
+										<td>API ссылка на организацию</td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+										
+					<pre class="json" style=""></pre>
+					<div class="content-section" id="content-get-customer_docs">	
+						
+						<h2>Документы организаций</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export?mode=contractDocs</code>
+						</p>
+						
+						<p>
+						
+</p><p>Документы заказчиков и поставщиков (подпадающие под действие 44-ФЗ, 223 ФЗ, 615 ФЗ). Договора, платежки, контракты и прочая контрактная документация</p><p></p>
+						<br>
+											<p>
+					
+										</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>customerInn</td>
+										<td>int</td>
+										<td>ИНН заказчика</td>
+									</tr>
+									
+									<tr>
+										<td>supplierInn</td>
+										<td>int</td>
+										<td>ИНН поставщика</td>
+									</tr>
+									
+									<tr>
+										<td>contractNumber</td>
+										<td>int</td>
+										<td>Номер контракта</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>View</td>
+										<td>string</td>
+										<td>Ссылка на просмотр документа онлайн</td>
+									</tr>
+									
+									<tr>
+										<td>Filename</td>
+										<td>string</td>
+										<td>Файл</td>
+									</tr>
+									
+									<tr>
+										<td>DocPath</td>
+										<td>string</td>
+										<td>Путь</td>
+									</tr>
+									
+									<tr>
+										<td>contractNumber</td>
+										<td>string</td>
+										<td>Номер контракта</td>
+									</tr>
+									
+									<tr>
+										<td>CustomerInn</td>
+										<td>int</td>
+										<td>ИНН заказчика</td>
+									</tr>
+									
+									<tr>
+										<td>SupplierInn</td>
+										<td>int</td>
+										<td>ИНН поставщика</td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+										
+					<pre class="json" style=""></pre>
+					<div class="content-section" id="content-get-tenderdocs">	
+						
+						<h2>Тендерная документация</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export?mode=customerTenderDocs</code>
+						</p>
+						
+						<p>
+						
+</p><p>Получение информации о тендерной документации по заказчикам и кодам ОКПД2</p><p></p>
+						<br>
+											<p>
+					
+										</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>customerInn</td>
+										<td>int</td>
+										<td>ИНН заказчика</td>
+									</tr>
+									
+									<tr>
+										<td>purchaseNumber</td>
+										<td>int</td>
+										<td>Номер закупки</td>
+									</tr>
+									
+									<tr>
+										<td>fz</td>
+										<td>string</td>
+										<td>fz223 если по 223, пустое - если по 44-ФЗ</td>
+									</tr>
+									
+									<tr>
+										<td>d1</td>
+										<td>Номер подраздела ОКПД2 (выводятся тендеры в разрезе продукции по 44ФЗ и 223ФЗ)</td>
+										<td>int</td>
+									</tr>
+									
+									<tr>
+										<td>d2</td>
+										<td>Номер группы ОКПД2 (выводятся тендеры в разрезе продукции по 44ФЗ и 223ФЗ)</td>
+										<td>int</td>
+									</tr>
+									
+									<tr>
+										<td>d3</td>
+										<td>Номер подгруппы ОКПД2 (выводятся тендеры в разрезе продукции по 44ФЗ и 223ФЗ)</td>
+										<td>int</td>
+									</tr>
+									
+									<tr>
+										<td>d4</td>
+										<td>Номер вида ОКПД2 (выводятся тендеры в разрезе продукции по 44ФЗ и 223ФЗ)</td>
+										<td>int</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>View</td>
+										<td>string</td>
+										<td>Ссылка на просмотр документа онлайн</td>
+									</tr>
+									
+									<tr>
+										<td>Filename</td>
+										<td>string</td>
+										<td>Файл</td>
+									</tr>
+									
+									<tr>
+										<td>DocPath</td>
+										<td>string</td>
+										<td>Путь</td>
+									</tr>
+									
+									<tr>
+										<td>CustomerInn</td>
+										<td>int</td>
+										<td>ИНН заказчика</td>
+									</tr>
+									
+									<tr>
+										<td>SupplierInn</td>
+										<td>int</td>
+										<td>ИНН поставщика</td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+					    
+    
+</div>
+
+<script src="script.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(14975503, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+		params:window.yaParams||{ }
+   });
+</script>
+<noscript><div></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click;tenderguru' "+
+"target=_blank><img src='//counter.yadro.ru/hit;tenderguru?t44.10;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='0' height='0'><\/a>")
+//--></script><!--/LiveInternet-->
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68916106-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</div></body></html>

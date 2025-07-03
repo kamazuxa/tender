@@ -1,0 +1,569 @@
+<!DOCTYPE html><html class="no-js" lang="ru" data-scrapbook-source="https://www.tenderguru.ru/api/documentation/foreign-tenders"><head>
+    <meta charset="UTF-8">
+    <title>API для выгрузки данных об иностранных закупках и тендерах | Поддерживаемые форматы: json и xml. | Бесплатная и платная интеграция. | Бесплатная и платная выгрузка</title>
+    <meta name="description" content="API для выгрузки данных об иностранных закупках и тендерах | Поддерживаемые форматы: json и xml.">
+   
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <script src="fallback-core-origin.speedcdnjs.com.html"></script>
+    
+    
+     
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+	
+</head>
+
+<body>
+<div class="left-menu">
+    <div class="content-logo">
+        <div class="logo">
+            
+            <span>API TenderGuru.ru</span>
+        </div>
+        <button class="burger-menu-icon" id="button-menu-mobile">
+            <svg width="34" height="34" viewBox="0 0 100 100"><path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path><path class="line line2" d="M 20,50 H 80"></path><path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path></svg>
+        </button>
+    </div>
+    <div class="mobile-menu-closer"></div>
+    <div class="content-menu">
+        <div class="content-infos">
+            <div class="info"><b>Версия:</b> 2.3</div>
+            <div class="info"><b>Обновление:</b> 04 Июня, 2025</div>
+        </div>
+		<ul><li><a href="index.html">Начало работы</a></li><li><a href="tendery.html">Тендеры</a></li><li><a href="contragents.html">Контрагенты</a></li><li><a href="winners.html">Победители закупок</a></li><li><a href="torgi.html">Торги</a></li><li class="scroll-to-link active" data-target="content-get-started"><a>Иностранные закупки</a></li> <li class="scroll-to-link" data-target="content-get-tenderlist_ac">
+										<a>Выборка зарубежных тендеров</a>
+										</li> <li class="scroll-to-link" data-target="content-get-tenderinfo_ac">
+										<a>Карточка зарубежного тендера</a>
+										</li><li><a href="contracts.html">Контракты</a></li><li><a href="plans.html">Планы закупок</a></li><li><a href="contacts.html">Контакты организаций</a></li><li><a href="rnp.html">РНП</a></li><li><a href="fas.html">ФАС</a></li><li><a href="kad.html">Арбитражные дела</a></li><li><a href="fssp.html">Исполнительные дела</a></li><li><a href="info.html">Справочная информация</a></li><li><a href="index.html"></a></li></ul>		
+		
+		
+    </div>
+</div>
+<div class="content-page">
+    <div class="content-code"></div>
+    <div class="content">
+							 <div class="content-section" id="content-get-started">
+						<h1>
+						Раздел API о иностранных закупках							</h1>
+														<pre>GET запросы к странице
+
+https://www.tenderguru.ru/api2.3/export/world							</pre>
+							
+						<p>
+						
+</p><p>API обеспечивает доступ к базе данных иностранных закупок со всего мира. Позволяет просматривать актуальные тендеры, сортировать и фильтровать их по различным параметрам, таким как страна, дата и т.д.</p><p></p>
+						<br>
+					</div>
+										
+					<pre class="json" style=""></pre>
+					<div class="content-section" id="content-get-tenderlist_ac">	
+						
+						<h2>Выборка зарубежных тендеров</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export/world</code>
+						</p>
+						
+											<p>
+					
+										</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>kwords</td>
+										<td>string</td>
+										<td>Ключевые слова для поиска</td>
+									</tr>
+									
+									<tr>
+										<td>api_code</td>
+										<td>string</td>
+										<td>Токен пользователя</td>
+									</tr>
+									
+									<tr>
+										<td>dtype</td>
+										<td>string</td>
+										<td>xml по умолчанию, json</td>
+									</tr>
+									
+									<tr>
+										<td>kwords_minus</td>
+										<td>string</td>
+										<td>Ключевые слова для исключения из поиска</td>
+									</tr>
+									
+									<tr>
+										<td>irazd</td>
+										<td>int</td>
+										<td>Режим поиска (везде - 0, в заговках - 1, по номеру - 3)</td>
+									</tr>
+									
+									<tr>
+										<td>page</td>
+										<td>int</td>
+										<td>Номер страницы</td>
+									</tr>
+									
+									<tr>
+										<td>price1</td>
+										<td>int</td>
+										<td>Минимальная цена</td>
+									</tr>
+									
+									<tr>
+										<td>price2</td>
+										<td>int</td>
+										<td>Максимальная цена</td>
+									</tr>
+									
+									<tr>
+										<td>date_start</td>
+										<td>string</td>
+										<td>Дата начала публикации тендера</td>
+									</tr>
+									
+									<tr>
+										<td>date_end</td>
+										<td>string</td>
+										<td>Дата окончания публикации тендера</td>
+									</tr>
+									
+									<tr>
+										<td>sort_by</td>
+										<td>string</td>
+										<td>Параметр для сортировки результатов<br>По дате - by_date (по умолчанию)<br>По кол-ву дней до конца подачи заявок - by_date_end<br>По стоимости - by_price</td>
+									</tr>
+									
+									<tr>
+										<td>sort_dest</td>
+										<td>string</td>
+										<td>Направление сортировки<br>desc по убыванию<br>asc по возрастанию</td>
+									</tr>
+									
+									<tr>
+										<td>r{номер страны}</td>
+										<td></td>
+										<td>r{номер}=1 — страна закупки (например, Казахстан, r113=1 - <a href="https://www.tenderguru.ru/api2.3/export?mode=countries">справочник стран</a>)</td>
+									</tr>
+									
+									<tr>
+										<td>e{номер площадки}</td>
+										<td>int</td>
+										<td>e{номер}=1 — площадка (например, Государственные закупки Китая, e515=1)</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>ID</td>
+										<td>int</td>
+										<td>Идентификатор</td>
+									</tr>
+									
+									<tr>
+										<td>Date</td>
+										<td>string</td>
+										<td>Дата</td>
+									</tr>
+									
+									<tr>
+										<td>TenderName</td>
+										<td>string</td>
+										<td>Название тендера</td>
+									</tr>
+									
+									<tr>
+										<td>TenderNameRu</td>
+										<td>string</td>
+										<td>Название тендера на русском</td>
+									</tr>
+									
+									<tr>
+										<td>Customer</td>
+										<td>string</td>
+										<td>Заказчик</td>
+									</tr>
+									
+									<tr>
+										<td>Country</td>
+										<td>string</td>
+										<td>Страна</td>
+									</tr>
+									
+									<tr>
+										<td>Country_ID</td>
+										<td>int</td>
+										<td>Идентификатор страны</td>
+									</tr>
+									
+									<tr>
+										<td>Price</td>
+										<td>int</td>
+										<td>Цена</td>
+									</tr>
+									
+									<tr>
+										<td>Currency</td>
+										<td>string</td>
+										<td>Валюта</td>
+									</tr>
+									
+									<tr>
+										<td>Currency_ID</td>
+										<td>int</td>
+										<td>Идентификатор валюты</td>
+									</tr>
+									
+									<tr>
+										<td>Lang</td>
+										<td>string</td>
+										<td>Язык</td>
+									</tr>
+									
+									<tr>
+										<td>LangOrig</td>
+										<td>string</td>
+										<td>Оригинальный язык</td>
+									</tr>
+									
+									<tr>
+										<td>EndTime</td>
+										<td>string</td>
+										<td>Дата окончания</td>
+									</tr>
+									
+									<tr>
+										<td>Source</td>
+										<td>string</td>
+										<td>Источник</td>
+									</tr>
+									
+									<tr>
+										<td>TenderLink</td>
+										<td>string</td>
+										<td>Ссылка на тендер </td>
+									</tr>
+									
+									<tr>
+										<td>TenderLinkInner</td>
+										<td>string</td>
+										<td>Внутренняя ссылка на тендер</td>
+									</tr>
+									
+									<tr>
+										<td>TenderLinkApi</td>
+										<td></td>
+										<td></td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+										
+					<pre class="json" style="">
+
+
+[{
+    "ID": "46562499",
+    "Date": "30-09-2023",
+    "TenderName": "ÖA-23-WE250-03-Außenanlagen",
+    "TenderNameRu": "",
+    "Customer": "iTWO tender",
+    "Country": "Германия",
+    "Country_ID": "83",
+    "Price": "",
+    "Currency": "Евро",
+    "Currency_ID": "978",
+    "Lang": "DE",
+    "LangOrig": "",
+    "EndTime": "31-10-2023",
+    "Source": "iTWO tender",
+    "TenderLink": "https://www.meinauftrag.rib.de/public/publications/460832",
+    "TenderLinkInner": "https://tendery-stran-mira.tenderguru.ru/tendery-germany/46562499",
+    "Info": "![CDATA[&lt;div class=tenderinfo_open&gt;\n    &lt;div &gt;&lt;/div&gt;\n    &lt;div&gt;\n      &lt;span&gt;Vergabeplattform Berlin&lt;/span&gt;\n    &lt;/div&gt;\n    &lt;div&gt;\n      &lt;div &gt;\n        &lt;legend&gt;Awarded&lt;/legend&gt;\n        &lt;table&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Number\n            &lt;/td&gt;\n            &lt;td&gt;\n              ÖA-23-WE250-03-Außenanlagen\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Name\n            &lt;/td&gt;\n            &lt;td&gt;\n              ÖA-23-WE250-03-Außenanlagen\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Regulation\n            &lt;/td&gt;\n            &lt;td&gt;\n              VOB/A\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Tender Procedures\n            &lt;/td&gt;\n            &lt;td&gt;\n              Öffentliche Ausschreibung\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Execution place\n            &lt;/td&gt;\n            &lt;td&gt;\n              Berlin\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Period\n            &lt;/td&gt;\n            &lt;td&gt;\n              02.02.2024 until 26.06.2026\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Expiration time\n            &lt;/td&gt;\n            &lt;td&gt;\n              Oct 31, 2023, 11:00 AM\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Opening Date\n            &lt;/td&gt;\n            &lt;td&gt;\n              Oct 31, 2023, 11:00 AM\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Award period\n            &lt;/td&gt;\n            &lt;td&gt;\n              Nov 30, 2023\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Bidders requests\n            &lt;/td&gt;\n            &lt;td&gt;\n              Oct 24, 2023, 11:00 AM\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Subdivision into lots\n            &lt;/td&gt;\n            &lt;td&gt;\n              No\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Side-offers allowed\n            &lt;/td&gt;\n            &lt;td&gt;\n              No\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Several main offers allowed\n            &lt;/td&gt;\n            &lt;td&gt;\n              No\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              CPV Codes\n            &lt;/td&gt;\n            &lt;td&gt;\n              45211000-9 Construction work for multi-dwelling buildings and individual houses&lt;br /&gt;\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Delivery form\n            &lt;/td&gt;\n            &lt;td&gt;\n              elektronisch in Textform\n            &lt;/td&gt;\n          &lt;/tr&gt;\n        &lt;/table&gt;\n      &lt;/div&gt;\n      &lt;div &gt;\n        &lt;legend&gt;Execution place&lt;/legend&gt;\n        &lt;div  &gt;&lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/div&gt;\n    &lt;div&gt;\n      &lt;div &gt;\n        &lt;legend&gt;Action&lt;/legend&gt;\n        &lt;table&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Number\n            &lt;/td&gt;\n            &lt;td&gt;\n              WE 250 KbSMdD\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Name\n            &lt;/td&gt;\n            &lt;td&gt;\n              WE 250 KbSMdD\n            &lt;/td&gt;\n          &lt;/tr&gt;\n        &lt;/table&gt;\n      &lt;/div&gt;\n      &lt;div &gt;\n        &lt;legend&gt;Contracting Authority&lt;/legend&gt;\n        &lt;table&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Name\n            &lt;/td&gt;\n            &lt;td&gt;\n              STADT UND LAND Wohnbauten-Gesellschaft mbH\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Address\n            &lt;/td&gt;\n            &lt;td&gt;\n              Werbellinstraße 12&lt;br /&gt;\n              12053 Berlin\n            &lt;/td&gt;\n          &lt;/tr&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              Email\n            &lt;/td&gt;\n            &lt;td&gt;\n              ausschreibung@stadtundland.de\n            &lt;/td&gt;\n          &lt;/tr&gt;\n        &lt;/table&gt;\n      &lt;/div&gt;\n    &lt;/div&gt;\n    &lt;div&gt;\n      &lt;div &gt;\n        &lt;legend&gt;Brief Description&lt;/legend&gt;\n        &lt;table&gt;\n          &lt;tr&gt;\n            &lt;td&gt;\n              GALA-Bauarbeiten in Bauvorbereitung und Baufertigstellung; Rückschnitt Vegetation an Metall-Glasfassaden und hausnahen Bereichen, Erdarbeiten, Pflasterarbeiten an\n              Feuerwehraufstellflächen, Herstellen von Versickerungsanlagen für RW, Wiederherstellung Vegetationsflächen\n            &lt;/td&gt;\n          &lt;/tr&gt;\n        &lt;/table&gt;\n      &lt;/div&gt;\n    &lt;/div&gt;\n    &lt;div &gt;&lt;/div&gt;\n    &lt;div &gt;\n      &lt;h5&gt;\n        Information on ongoing tenders\n      &lt;/h5&gt;\n      &lt;p&gt;\n        If you would like to receive information on ongoing procurement procedures electronically, please register here.\n      &lt;/p&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;]]",
+    "countryLinkAPI": "https://www.tenderguru.ru/api2.3/export/world/?r83=1&amp;api_code=&amp;dtype=json",
+    "etpLinkAPI": "https://www.tenderguru.ru/api2.3/export/world/?e171428=1&amp;api_code=&amp;dtype=json"
+}]
+
+
+
+
+&lt;Items&gt;
+	&lt;Item&gt;
+	&lt;ID&gt;46562499&lt;/ID&gt;
+	&lt;Date&gt;30-09-2023&lt;/Date&gt;
+	&lt;TenderName&gt;ÖA-23-WE250-03-Außenanlagen&lt;/TenderName&gt;
+	&lt;TenderNameRu/&gt;
+	&lt;Customer&gt;iTWO tender&lt;/Customer&gt;
+	&lt;Country&gt;Германия&lt;/Country&gt;
+	&lt;Country_ID&gt;83&lt;/Country_ID&gt;
+	&lt;Price/&gt;
+	&lt;Currency&gt;Евро&lt;/Currency&gt;
+	&lt;Currency_ID&gt;978&lt;/Currency_ID&gt;
+	&lt;Lang&gt;DE&lt;/Lang&gt;
+	&lt;LangOrig/&gt;
+	&lt;EndTime&gt;31-10-2023&lt;/EndTime&gt;
+	&lt;Source&gt;iTWO tender&lt;/Source&gt;
+	&lt;TenderLink&gt;
+	https://www.meinauftrag.rib.de/public/publications/460832
+	&lt;/TenderLink&gt;
+	&lt;TenderLinkInner&gt;
+	https://tendery-stran-mira.tenderguru.ru/tendery-germany/46562499
+	&lt;/TenderLinkInner&gt;
+	&lt;Info&gt;
+	![CDATA[&lt;div class=tenderinfo_open&gt; &lt;div &gt;&lt;/div&gt; &lt;div&gt; &lt;span&gt;Vergabeplattform Berlin&lt;/span&gt; &lt;/div&gt; &lt;div&gt; &lt;div &gt; &lt;legend&gt;Awarded&lt;/legend&gt; &lt;table&gt; &lt;tr&gt; &lt;td&gt; Number &lt;/td&gt; &lt;td&gt; ÖA-23-WE250-03-Außenanlagen &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Name &lt;/td&gt; &lt;td&gt; ÖA-23-WE250-03-Außenanlagen &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Regulation &lt;/td&gt; &lt;td&gt; VOB/A &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Tender Procedures &lt;/td&gt; &lt;td&gt; Öffentliche Ausschreibung &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Execution place &lt;/td&gt; &lt;td&gt; Berlin &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Period &lt;/td&gt; &lt;td&gt; 02.02.2024 until 26.06.2026 &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Expiration time &lt;/td&gt; &lt;td&gt; Oct 31, 2023, 11:00 AM &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Opening Date &lt;/td&gt; &lt;td&gt; Oct 31, 2023, 11:00 AM &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Award period &lt;/td&gt; &lt;td&gt; Nov 30, 2023 &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Bidders requests &lt;/td&gt; &lt;td&gt; Oct 24, 2023, 11:00 AM &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Subdivision into lots &lt;/td&gt; &lt;td&gt; No &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Side-offers allowed &lt;/td&gt; &lt;td&gt; No &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Several main offers allowed &lt;/td&gt; &lt;td&gt; No &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; CPV Codes &lt;/td&gt; &lt;td&gt; 45211000-9 Construction work for multi-dwelling buildings and individual houses&lt;br /&gt; &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Delivery form &lt;/td&gt; &lt;td&gt; elektronisch in Textform &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/div&gt; &lt;div &gt; &lt;legend&gt;Execution place&lt;/legend&gt; &lt;div &gt;&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div &gt; &lt;legend&gt;Action&lt;/legend&gt; &lt;table&gt; &lt;tr&gt; &lt;td&gt; Number &lt;/td&gt; &lt;td&gt; WE 250 KbSMdD &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Name &lt;/td&gt; &lt;td&gt; WE 250 KbSMdD &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/div&gt; &lt;div &gt; &lt;legend&gt;Contracting Authority&lt;/legend&gt; &lt;table&gt; &lt;tr&gt; &lt;td&gt; Name &lt;/td&gt; &lt;td&gt; STADT UND LAND Wohnbauten-Gesellschaft mbH &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Address &lt;/td&gt; &lt;td&gt; Werbellinstraße 12&lt;br /&gt; 12053 Berlin &lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt; Email &lt;/td&gt; &lt;td&gt; ausschreibung@stadtundland.de &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div &gt; &lt;legend&gt;Brief Description&lt;/legend&gt; &lt;table&gt; &lt;tr&gt; &lt;td&gt; GALA-Bauarbeiten in Bauvorbereitung und Baufertigstellung; Rückschnitt Vegetation an Metall-Glasfassaden und hausnahen Bereichen, Erdarbeiten, Pflasterarbeiten an Feuerwehraufstellflächen, Herstellen von Versickerungsanlagen für RW, Wiederherstellung Vegetationsflächen &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/div&gt; &lt;/div&gt; &lt;div &gt;&lt;/div&gt; &lt;div &gt; &lt;h5&gt; Information on ongoing tenders &lt;/h5&gt; &lt;p&gt; If you would like to receive information on ongoing procurement procedures electronically, please register here. &lt;/p&gt; &lt;/div&gt; &lt;/div&gt;]]
+	&lt;/Info&gt;
+	&lt;countryLinkAPI&gt;
+	https://www.tenderguru.ru/api2.3/export/world/?r83=1&amp;api_code=
+	&lt;/countryLinkAPI&gt;
+	&lt;etpLinkAPI&gt;
+	https://www.tenderguru.ru/api2.3/export/world/?e171428=1&amp;api_code=
+	&lt;/etpLinkAPI&gt;
+	&lt;/Item&gt;
+&lt;/Items&gt;</pre>
+					<div class="content-section" id="content-get-tenderinfo_ac">	
+						
+						<h2>Карточка зарубежного тендера</h2>
+						<p>GET запросы должны идти к странице:<br>
+						<code class="higlighted break-word">https://www.tenderguru.ru/api2.3/export/world</code>
+						</p>
+						
+						<p>
+						
+Данный раздел API предоставляет подробную информацию о иностранных тендерах мира
+https://www.tenderguru.ru/api2.3/export/world?id=46562499
+https://www.tenderguru.ru/api2.3/export/world?id=46562499&amp;dtype=json
+
+</p>
+						<br>
+											<p>
+					
+										</p>
+					<br>
+					<h4>Поля в запросе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>id</td>
+										<td></td>
+										<td>id тендера на портале</td>
+									</tr>
+														</tbody>
+					</table>
+					
+					<br>
+					<h4>Поля в ответе</h4>
+						<table class="central-overflow-x">
+							<thead>
+							<tr>
+								<th>Поле</th>
+								<th>Тип</th>
+								<th>Описание</th>
+							</tr>
+							</thead>
+							<tbody>
+							
+									<tr>
+										<td>ID</td>
+										<td>int</td>
+										<td>Идентификатор</td>
+									</tr>
+									
+									<tr>
+										<td>Date</td>
+										<td>string</td>
+										<td>Дата</td>
+									</tr>
+									
+									<tr>
+										<td>TenderName</td>
+										<td>string</td>
+										<td>Название тендера</td>
+									</tr>
+									
+									<tr>
+										<td>TenderNameRu</td>
+										<td>string</td>
+										<td>Название тендера на русском</td>
+									</tr>
+									
+									<tr>
+										<td>Customer</td>
+										<td>string</td>
+										<td>Заказчик</td>
+									</tr>
+									
+									<tr>
+										<td>Country</td>
+										<td>string</td>
+										<td>Страна</td>
+									</tr>
+									
+									<tr>
+										<td>Country_ID</td>
+										<td>int</td>
+										<td>Идентификатор страны</td>
+									</tr>
+									
+									<tr>
+										<td>Price</td>
+										<td>int</td>
+										<td>Цена</td>
+									</tr>
+									
+									<tr>
+										<td>Currency</td>
+										<td>string</td>
+										<td>Валюта</td>
+									</tr>
+									
+									<tr>
+										<td>Currency_ID</td>
+										<td>int</td>
+										<td>Идентификатор валюты</td>
+									</tr>
+									
+									<tr>
+										<td>Lang</td>
+										<td>string</td>
+										<td>Язык</td>
+									</tr>
+									
+									<tr>
+										<td>LangOrig</td>
+										<td>string</td>
+										<td>Оригинальный язык</td>
+									</tr>
+									
+									<tr>
+										<td>EndTime</td>
+										<td>string</td>
+										<td>Дата окончания</td>
+									</tr>
+									
+									<tr>
+										<td>Source</td>
+										<td>string</td>
+										<td>Источник</td>
+									</tr>
+									
+									<tr>
+										<td>TenderLink</td>
+										<td>string</td>
+										<td>Ссылка на тендер </td>
+									</tr>
+									
+									<tr>
+										<td>TenderLinkInner</td>
+										<td>string</td>
+										<td>Внутренняя ссылка на тендер</td>
+									</tr>
+									
+									<tr>
+										<td>Info</td>
+										<td>text</td>
+										<td>Описание </td>
+									</tr>
+									
+									<tr>
+										<td>countryLinkAPI</td>
+										<td>string</td>
+										<td>API ссылка на тендеры страны</td>
+									</tr>
+									
+									<tr>
+										<td>etpLinkAPI</td>
+										<td>string</td>
+										<td>API ссылка на тендеры организатора</td>
+									</tr>
+																
+							</tbody>
+						</table>
+					</div>
+					
+					    
+    
+</div>
+
+<script src="script.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(14975503, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+		params:window.yaParams||{ }
+   });
+</script>
+<noscript><div></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click;tenderguru' "+
+"target=_blank><img src='//counter.yadro.ru/hit;tenderguru?t44.10;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='0' height='0'><\/a>")
+//--></script><!--/LiveInternet-->
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68916106-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</div></body></html>

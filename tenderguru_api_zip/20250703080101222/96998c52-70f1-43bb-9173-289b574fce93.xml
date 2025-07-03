@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Total>404475</Total>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1018828502</ID>
+<planID>17238495</planID>
+<lotID>7</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000010</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Проведение государственной экспертизы проектной документации в части проверки достоверности определения сметной стоимости по объекту: "Капитальный ремонт автомобильной дороги ул. 8-й Проезд от дома №324 до дома №400 в СНТ "Буровик" города Майкопа Республики Адыгея. Устройство недостающих тротуаров и искусственного освещения"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>89 888 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>71.20.19.111</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000010&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1019297949</ID>
+<planID>17238495</planID>
+<lotID>9</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000012</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Осуществление технологического присоединения энергопринимающих устройств заявителя по объекту: "Капитальный ремонт автомобильной дороги по улице Советская на территории МО "Город Майкоп" Республике Адыгея. Устройство светофорного объекта на пересечении с ул. Кубанская</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>41 534 рублей</Price>
+<Year>2024</Year>
+<Category>Энергия и ГСМ</Category>
+<Okpd2>35.12.10.120</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000012&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1020044541</ID>
+<planID>17238495</planID>
+<lotID>14</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000017</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Выполнение работ по объекту: "Текущий ремонт системы водоотведения по ул. Титова (между улицами Советская и Набережная), ул. Пионерская (между улицами Титова и переулком Пионерский), пер. Пионерский (между улицами Пионерская и Набережная), ул. Гагарина (между улицами Титова и переулком Клубный), перекрестки ул. Пионерская/ул. Титова и ул. Гагарина/ул. Титова в х.Гавердовском на территории МО "Город Майкоп"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>3 944 024 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>42.11.10.129</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000017&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1020994602</ID>
+<planID>17238495</planID>
+<lotID>15</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000018</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Проведение государственной экспертизы проектной документации в части проверки достоверности определения сметной стоимости по объекту: "Капитальный ремонт (благоустройство) уникальной лесопарковой зоны "МЭЗДАХ" (Красивый лес "МЭЗДАХ"). Первый этап реализации"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>172 686 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>71.20.19.111</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000018&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1020994603</ID>
+<planID>17238495</planID>
+<lotID>16</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000019</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Выполнение работ по объекту: "Капитальный ремонт (благоустройство) уникальной лесопарковой зоны "МЭЗДАХ" (Красивый лес "МЭЗДАХ"). Первый этап реализации"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>200 193 564 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>42.99.22.120</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000019&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1021651504</ID>
+<planID>17238495</planID>
+<lotID>17</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000020</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Проведение государственной экспертизы проектной документации в части проверки достоверности определения сметной стоимости по объекту: "Капитальный ремонт автомобильной дороги по ул. Советская на территории МО "Город Майкоп" Республики Адыгея. Устройство светофорного объекта на пересечении с ул. Кубанская"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>33 854 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>71.20.19.111</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000020&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1025427644</ID>
+<planID>17238495</planID>
+<lotID>24</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000027</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Проведение государственной экспертизы проектной документации в части проверки достоверности определения сметной стоимости по объекту: "Капитальный ремонт автомобильной дороги к строящейся врачебной амбулатории в х. Гавердовский, г. Майкоп, Республики Адыгея" </PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>53 173 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>71.20.19.111</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000027&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1026570670</ID>
+<planID>17238495</planID>
+<lotID>35</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000038</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Выполнение работ по объекту: "Капитальный ремонт автомобильной дороги по ул. Советская на территории МО "Город Майкоп" Республики Адыгея. Устройство светофорного объекта на пересечении с ул. Кубанская"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>3 747 986 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>42.11.10.129</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000038&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1028416779</ID>
+<planID>17238495</planID>
+<lotID>36</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000039</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Проведение государственной экспертизы проектной документации в части проверки достоверности определения сметной стоимости по объекту: "Капитальный ремонт (благоустройство) территории, прилегающей к зданию Майкопской городской поликлиники №1 (ул. Чкалова,77) на территории МО "Город Майкоп" Республики Адыгея"</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>80 078 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>71.20.19.111</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000039&amp;api_code=</ApiLotLink></Item>
+<Item>
+<Date>2024-12-28</Date>
+<ID>1029113125</ID>
+<planID>17238495</planID>
+<lotID>37</lotID>
+<ReestrNumber>202403763000005002</ReestrNumber>
+<planNumber>202403763000005002000040</planNumber>
+<Customer>МКУ &amp;quot;Благоустройство МО &amp;quot;Город Майкоп&amp;quot;</Customer>
+<CustomerInn>105048850</CustomerInn>
+<SPZ>3763000005</SPZ>
+<CustomerLink>https://www.tenderguru.ru/api2.0/export/contragent/inn/105048850?api_code=</CustomerLink>
+<CustomerPlanLink>https://www.tenderguru.ru/api2.3/export/planzakup?org_inn=105048850&amp;api_code=</CustomerPlanLink>
+<PlanName>Проведение государственной экспертизы проектной документации в части проверки достоверности определения сметной стоимости по объекту: "Капитальный ремонт дворовых территорий многоквартирных жилых домов на территории муниципального образования "Город Майкоп" Республики Адыгея, ул. 2-я Короткая ж.д. №3</PlanName>
+<Version>179</Version>
+<Law>ФЗ-44</Law>
+<Region>Адыгея</Region>
+<Price>59 468 рублей</Price>
+<Year>2024</Year>
+<Category>Строительство</Category>
+<Okpd2>71.20.19.111</Okpd2>
+<Format>Лот</Format>
+<EdIzm>-</EdIzm>
+<Kolvo>-</Kolvo>
+<SrokIspKontracta>-</SrokIspKontracta>
+<SrokRazmZakaza>-</SrokRazmZakaza>
+<Fragment></Fragment>
+<DateStart>-</DateStart>
+<DateEnd>-</DateEnd>
+<OrgMail>maykop.blago@mail.ru</OrgMail>
+<OrgPhone>7-8772-560371</OrgPhone>
+<ApiLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;api_code=</ApiLink>
+<ApiLotLink>https://www.tenderguru.ru/api2.3/export/plans?reestr_number=202403763000005002&amp;lot_number=202403763000005002000040&amp;api_code=</ApiLotLink></Item>
+</Items>

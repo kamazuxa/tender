@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Total>305</Total>
+<Item>
+<ID>81414026</ID>
+<Date>11-09-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АВТОЗАПЧАСТИКРАСНОДАР"</Org>
+<INN>2312202824</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>СЛУЖБА В ГОРОДЕ СОЧИ ПОГРАНИЧНОГО УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>750000</Price>
+<NMCprice>750000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/81414026</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000587230000120001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=81414026</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312202824?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=2312202824</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312202824/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100058723000012</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100058723000012&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100058723000012</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000587230000120001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>81319015</ID>
+<Date>06-09-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "КАМЦЕНТР СОЧИ"</Org>
+<INN>2366001810</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>СЛУЖБА В ГОРОДЕ СОЧИ ПОГРАНИЧНОГО УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>970000</Price>
+<NMCprice>970000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/81319015</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000587230000130001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=81319015</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2366001810?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=2366001810</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2366001810/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100058723000013</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100058723000013&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100058723000013</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000587230000130001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>81229347</ID>
+<Date>01-09-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>РУМЯНЦЕВ ДЕНИС АЛЕКСАНДРОВИЧ</Org>
+<INN>233009227800</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>СЛУЖБА В ГОРОДЕ ТЕМРЮКЕ ПОГРАНИЧНОГО УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>152500</Price>
+<NMCprice>152500</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/81229347</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>08181000048230000170002</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=81229347</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/233009227800?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=233009227800</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/233009227800/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0818100004823000017</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0818100004823000017&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0818100004823000017</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=08181000048230000170002</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80949763</ID>
+<Date>21-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ  НАУЧНО-ПРОИЗВОДСТВЕННОЕ КОММЕРЧЕСКОЕ ОБЩЕСТВО "ЭЛЕКТ"</Org>
+<INN>5402105933</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>737000</Price>
+<NMCprice>737000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80949763</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000610001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80949763</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/5402105933?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=5402105933</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/5402105933/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000061</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000061&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000061</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000610001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80903085</ID>
+<Date>18-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>СТРАХОВОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО "ВСК"</Org>
+<INN>7710026574</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>98329</Price>
+<NMCprice>98329</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80903085</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000620001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80903085</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/7710026574?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=7710026574</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/7710026574/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000062</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000062&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000062</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000620001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80803768</ID>
+<Date>15-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "МОРСКОЙ СЕРВИС - ИНТЕРПЛЮС"</Org>
+<INN>7806197002</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>807015</Price>
+<NMCprice>807015</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80803768</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000630001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80803768</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/7806197002?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=7806197002</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/7806197002/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000063</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000063&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000063</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000630001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80803775</ID>
+<Date>15-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОТКРЫТОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО " МОРЯК"</Org>
+<INN>6162002919</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>15000000</Price>
+<NMCprice>15000000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80803775</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000640001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80803775</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6162002919?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6162002919</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6162002919/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000064</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000064&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000064</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000640001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80725189</ID>
+<Date>11-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "БАЗА ОБСЛУЖИВАНИЯ ФЛОТА"</Org>
+<INN>2315058907</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>СЛУЖБА В ГОРОДЕ НОВОРОССИЙСКЕ ПОГРАНИЧНОГО УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>1057861</Price>
+<NMCprice>1057861</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80725189</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000577230000330001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80725189</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2315058907?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=2315058907</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2315058907/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100057723000033</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100057723000033&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100057723000033</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000577230000330001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80487359</ID>
+<Date>02-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "СОЛНЕЧНАЯ КУБАНЬ"</Org>
+<INN>2308252501</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>186519</Price>
+<NMCprice>186519</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80487359</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000580001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80487359</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2308252501?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=2308252501</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2308252501/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000058</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000058&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000058</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000580001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>80487362</ID>
+<Date>02-08-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "СОЛНЕЧНАЯ КУБАНЬ"</Org>
+<INN>2308252501</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>348247</Price>
+<NMCprice>348247</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/80487362</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000570001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=80487362</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2308252501?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=2308252501</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2308252501/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000057</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000057&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000057</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000570001</ApiCharLinkTenderVcontract></Item>
+</Items>

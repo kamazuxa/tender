@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Item>
+<ID>3</ID>
+<RegionName>Центральный округ</RegionName></Item>
+<Item>
+<ID>22</ID>
+<RegionName>Северо-Западный округ</RegionName></Item>
+<Item>
+<ID>34</ID>
+<RegionName>Южный округ</RegionName></Item>
+<Item>
+<ID>48</ID>
+<RegionName>Приволжский округ</RegionName></Item>
+<Item>
+<ID>64</ID>
+<RegionName>Уральский округ</RegionName></Item>
+<Item>
+<ID>71</ID>
+<RegionName>Сибирский округ</RegionName></Item>
+<Item>
+<ID>88</ID>
+<RegionName>Дальневосточный округ</RegionName></Item>
+<Item>
+<ID>100</ID>
+<RegionName>Электронные торги</RegionName></Item>
+<Item>
+<ID>108</ID>
+<RegionName>Севастополь</RegionName></Item>
+<Item>
+<ID>107</ID>
+<RegionName>Крым</RegionName></Item>
+<Item>
+<ID>109</ID>
+<RegionName>Байконур</RegionName></Item>
+</Items>

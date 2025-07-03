@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Total>157</Total>
+<Item>
+<ID>89727058</ID>
+<Date>29-01-2025</Date>
+<ContractName>Оказание медицинской помощи сотрудникам</ContractName>
+<Region>Московская область</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact>  </Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГЛАВНОЕ УПРАВЛЕНИЕ МИНИСТЕРСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ ПО ДЕЛАМ ГРАЖДАНСКОЙ ОБОРОНЫ, ЧРЕЗВЫЧАЙНЫМ СИТУАЦИЯМ И ЛИКВИДАЦИИ ПОСЛЕДСТВИЙ СТИХИЙНЫХ БЕДСТВИЙ ПО МОСКОВСКОЙ ОБЛАСТИ</Customer>
+<CustomerINN>5036062440</CustomerINN>
+<Price>2000000</Price>
+<NMCprice>0</NMCprice>
+<SignDate>29-01-2025</SignDate>
+<IspDate>31-12-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/89727058</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1503606244025000005</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=89727058</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/5036062440?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1503606244025000005</ApiCharLinkContract></Item>
+<Item>
+<ID>88376531</ID>
+<Date>19-12-2024</Date>
+<ContractName>Оказание услуг по проведению диспансеризации муниципальных служащих Управления финансов администрации города Байконур</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>dogfmba@yandex.ru</Email>
+<Phone>7-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>УПРАВЛЕНИЕ ФИНАНСОВ АДМИНИСТРАЦИИ ГОРОДА БАЙКОНУР</Customer>
+<CustomerINN>9901000027</CustomerINN>
+<Price>163844</Price>
+<NMCprice>0</NMCprice>
+<SignDate>01-10-2024</SignDate>
+<IspDate>28-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88376531</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100002724000005</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88376531</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901000027?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100002724000005</ApiCharLinkContract></Item>
+<Item>
+<ID>88334457</ID>
+<Date>12-12-2024</Date>
+<ContractName>Проведение периодического медицинского осмотра</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>cmsch1@fmbamail.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Александрович</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ДОПОЛНИТЕЛЬНОГО ОБРАЗОВАНИЯ "СПОРТИВНАЯ ШКОЛА"</Customer>
+<CustomerINN>9901006935</CustomerINN>
+<Price>253244</Price>
+<NMCprice>0</NMCprice>
+<SignDate>16-01-2024</SignDate>
+<IspDate>22-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88334457</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100693524000005</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88334457</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901006935?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100693524000005</ApiCharLinkContract></Item>
+<Item>
+<ID>88334434</ID>
+<Date>10-12-2024</Date>
+<ContractName>Оказание услуг по периодическим медицинским осмотрам</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>cmsch1@fmbamail.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБЩЕОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ СРЕДНЯЯ ШКОЛА № 10 ИМ. В.П. БАРМИНА</Customer>
+<CustomerINN>9901006861</CustomerINN>
+<Price>890810</Price>
+<NMCprice>0</NMCprice>
+<SignDate>28-03-2024</SignDate>
+<IspDate>25-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88334434</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100686124000008</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88334434</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901006861?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100686124000008</ApiCharLinkContract></Item>
+<Item>
+<ID>88139136</ID>
+<Date>21-11-2024</Date>
+<ContractName>Оказание услуг по диспансеризации муниципальных служащих и переодическому медицинскому осмотру работников с вредными и опасными условиями труда</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>dogfmba@yandex.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>УПРАВЛЕНИЕ ОБРАЗОВАНИЕМ ГОРОДА БАЙКОНУР</Customer>
+<CustomerINN>9901000210</CustomerINN>
+<Price>109654</Price>
+<NMCprice>0</NMCprice>
+<SignDate>21-11-2024</SignDate>
+<IspDate>31-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88139136</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100021024000023</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88139136</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901000210?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100021024000023</ApiCharLinkContract></Item>
+<Item>
+<ID>88139122</ID>
+<Date>19-11-2024</Date>
+<ContractName>Проведение периодического медицинского осмотра</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>cmsch1@fmbamail.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Александрович</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ДОПОЛНИТЕЛЬНОГО ОБРАЗОВАНИЯ "СПОРТИВНАЯ ШКОЛА"</Customer>
+<CustomerINN>9901006935</CustomerINN>
+<Price>412892</Price>
+<NMCprice>0</NMCprice>
+<SignDate>16-01-2024</SignDate>
+<IspDate>22-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88139122</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100693524000005</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88139122</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901006935?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100693524000005</ApiCharLinkContract></Item>
+<Item>
+<ID>88139127</ID>
+<Date>19-11-2024</Date>
+<ContractName>Рефрактометрия</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>cmsch1@fmbamail.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБЩЕОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ СРЕДНЯЯ ШКОЛА № 1 ИМ. Г.М. ШУБНИКОВА</Customer>
+<CustomerINN>9901006854</CustomerINN>
+<Price>442697</Price>
+<NMCprice>0</NMCprice>
+<SignDate>10-04-2024</SignDate>
+<IspDate>25-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88139127</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100685424000008</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88139127</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901006854?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100685424000008</ApiCharLinkContract></Item>
+<Item>
+<ID>88139100</ID>
+<Date>18-11-2024</Date>
+<ContractName>Оказание услуг по проведению обязательных периодических медицинских осмотров работников управления образованием города Байконур</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>dogfmba@yandex.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>УПРАВЛЕНИЕ ОБРАЗОВАНИЕМ ГОРОДА БАЙКОНУР</Customer>
+<CustomerINN>9901000210</CustomerINN>
+<Price>31849</Price>
+<NMCprice>0</NMCprice>
+<SignDate>13-11-2024</SignDate>
+<IspDate>31-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88139100</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100021024000022</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88139100</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901000210?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100021024000022</ApiCharLinkContract></Item>
+<Item>
+<ID>88139103</ID>
+<Date>18-11-2024</Date>
+<ContractName>об организации и оказании медицинских услуг</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>cmsch1@fmbamail.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ "КОМПЛЕКСНЫЙ ЦЕНТР СОЦИАЛЬНОГО ОБСЛУЖИВАНИЯ НАСЕЛЕНИЯ"</Customer>
+<CustomerINN>9901006406</CustomerINN>
+<Price>42347</Price>
+<NMCprice>0</NMCprice>
+<SignDate>15-05-2024</SignDate>
+<IspDate>10-10-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88139103</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100640624000017</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88139103</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901006406?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100640624000017</ApiCharLinkContract></Item>
+<Item>
+<ID>88139097</ID>
+<Date>15-11-2024</Date>
+<ContractName>об организации и оказания медицинских услуг</ContractName>
+<Region>Байконур</Region>
+<Category>Медицина</Category>
+<Org>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ЗДРАВООХРАНЕНИЯ "ЦЕНТРАЛЬНАЯ МЕДИКО-САНИТАРНАЯ ЧАСТЬ № 1 ФЕДЕРАЛЬНОГО МЕДИКО-БИОЛОГИЧЕСКОГО АГЕНТСТВА"</Org>
+<INN>9901005378</INN>
+<Email>cmsch1@fmbamail.ru</Email>
+<Phone>8-33622-75442</Phone>
+<Contact>Чепрасов Дмитрий Чепрасов</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ "КОМПЛЕКСНЫЙ ЦЕНТР СОЦИАЛЬНОГО ОБСЛУЖИВАНИЯ НАСЕЛЕНИЯ"</Customer>
+<CustomerINN>9901006406</CustomerINN>
+<Price>52677</Price>
+<NMCprice>0</NMCprice>
+<SignDate>08-04-2024</SignDate>
+<IspDate>14-10-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/88139097</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1990100640624000016</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=88139097</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=9901005378</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901005378/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/9901006406?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink></ApiTenderLink>
+<ApiCharLinkTender></ApiCharLinkTender>
+<ApiCharLinkTenderVcontract></ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1990100640624000016</ApiCharLinkContract></Item>
+</Items>

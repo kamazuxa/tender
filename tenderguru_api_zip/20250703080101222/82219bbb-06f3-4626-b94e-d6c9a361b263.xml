@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Total>28</Total>
+<Item>
+<ID>82012741</ID>
+<Date>23-10-2023</Date>
+<ContractName>Оказание услуг по техническому обслуживанию контейнерной автозаправочной станции (КАЗС) с проведением сервисных работ</ContractName>
+<Region>Свердловская область</Region>
+<Category>Оборудование</Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email>alfa-rk@mail.ru</Email>
+<Phone>7-904-3818478</Phone>
+<Contact>Каракулов Евгений Сергеевич</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ОПТОВО-РАСПРЕДЕЛИТЕЛЬНЫЙ ЦЕНТР № 13"</Customer>
+<CustomerINN>6659016660</CustomerINN>
+<Price>60000</Price>
+<NMCprice>60000</NMCprice>
+<SignDate>20-10-2023</SignDate>
+<IspDate>31-12-2024</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/82012741</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1665901666023000116</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=82012741</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6659016660?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0362100030423000102</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0362100030423000102&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0362100030423000102</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1665901666023000116</ApiCharLinkContract></Item>
+<Item>
+<ID>79666830</ID>
+<Date>04-07-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "АВИАЦИОННАЯ БАЗА"</Customer>
+<CustomerINN>1200001370</CustomerINN>
+<Price>172014</Price>
+<NMCprice>172014</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/79666830</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03081000002230000430001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=79666830</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1200001370?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0308100000223000043</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0308100000223000043&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0308100000223000043</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03081000002230000430001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>79059008</ID>
+<Date>16-06-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>916756</Price>
+<NMCprice>916756</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/79059008</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000340001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=79059008</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000034</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000034&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000034</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000340001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>79056872</ID>
+<Date>06-06-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ВОЙСКОВАЯ ЧАСТЬ 44231"</Customer>
+<CustomerINN>6440005593</CustomerINN>
+<Price>371153</Price>
+<NMCprice>371153</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/79056872</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03601000399230000310001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=79056872</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6440005593?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0360100039923000031</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0360100039923000031&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0360100039923000031</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03601000399230000310001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>77807875</ID>
+<Date>10-05-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ДЕСЯТЫЙ ОТДЕЛЬНЫЙ АВИАЦИОННЫЙ ОТРЯД"</Customer>
+<CustomerINN>571004786</CustomerINN>
+<Price>252500</Price>
+<NMCprice>252500</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/77807875</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>08031000014230000150001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=77807875</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/571004786?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0803100001423000015</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0803100001423000015&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0803100001423000015</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=08031000014230000150001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>77587801</ID>
+<Date>02-05-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ  РОССИЙСКОЙ ФЕДЕРАЦИИ ПО РЕСПУБЛИКЕ КАРЕЛИЯ</Customer>
+<CustomerINN>1001049339</CustomerINN>
+<Price>458019</Price>
+<NMCprice>458019</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/77587801</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03061000002230000560001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=77587801</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1001049339?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0306100000223000056</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0306100000223000056&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0306100000223000056</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03061000002230000560001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>77587808</ID>
+<Date>02-05-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ  РОССИЙСКОЙ ФЕДЕРАЦИИ ПО РЕСПУБЛИКЕ КАРЕЛИЯ</Customer>
+<CustomerINN>1001049339</CustomerINN>
+<Price>548627</Price>
+<NMCprice>548627</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/77587808</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03061000002230000550001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=77587808</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1001049339?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0306100000223000055</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0306100000223000055&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0306100000223000055</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03061000002230000550001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>77325369</ID>
+<Date>24-04-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "АВИАЦИОННАЯ БАЗА"</Customer>
+<CustomerINN>1200001370</CustomerINN>
+<Price>365000</Price>
+<NMCprice>365000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/77325369</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03081000002230000230001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=77325369</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1200001370?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0308100000223000023</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0308100000223000023&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0308100000223000023</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03081000002230000230001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>77059704</ID>
+<Date>17-04-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ПОГРАНИЧНОЕ УПРАВЛЕНИЕ ФЕДЕРАЛЬНОЙ СЛУЖБЫ БЕЗОПАСНОСТИ РОССИЙСКОЙ ФЕДЕРАЦИИ ПО КРАСНОДАРСКОМУ КРАЮ</Customer>
+<CustomerINN>2312119460</CustomerINN>
+<Price>300000</Price>
+<NMCprice>300000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/77059704</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>03181000116230000190001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=77059704</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/2312119460?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0318100011623000019</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000019&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0318100011623000019</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=03181000116230000190001</ApiCharLinkTenderVcontract></Item>
+<Item>
+<ID>76615354</ID>
+<Date>03-04-2023</Date>
+<ContractName></ContractName>
+<Region>Ульяновская область</Region>
+<Category></Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛЬФА-РК"</Org>
+<INN>6679137126</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-94</Law>
+<Customer>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ВОЙСКОВАЯ ЧАСТЬ 35690"</Customer>
+<CustomerINN>5001082291</CustomerINN>
+<Price>150000</Price>
+<NMCprice>150000</NMCprice>
+<SignDate></SignDate>
+<IspDate>https://www.tenderguru.ru/contract_na_zakupku/76615354</IspDate>
+<ContractLink></ContractLink>
+<ContractProductLink>08481000001230000130001</ContractProductLink>
+<ContractId></ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=76615354</EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126?api_code=</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6679137126</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6679137126/contacts?api_code=</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/5001082291?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export?tend_num=0848100000123000013</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0848100000123000013&amp;act=tenderView</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0848100000123000013</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=08481000001230000130001</ApiCharLinkTenderVcontract></Item>
+</Items>

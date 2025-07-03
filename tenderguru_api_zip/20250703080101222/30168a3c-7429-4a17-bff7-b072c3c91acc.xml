@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Item>
+<ID>41156534</ID>
+<Date>03-07-2019</Date>
+<TenderName>Поддержка вендора на продукты Check Point</TenderName>
+<Customer>Торговая Система «ТЭК-Торг»</Customer>
+<Category>Бумага, издательство</Category>
+<Region>Тюменская область</Region>
+<RegionId>72</RegionId>
+<Price></Price>
+<EndTime>27-06-2019</EndTime>
+<Etp>Торговая Система «ТЭК-Торг»</Etp>
+<TenderLink></TenderLink>
+<TenderLinkInner>https://www.tenderguru.ru/tender/41156534</TenderLinkInner>
+<TenderLinkEtp>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</TenderLinkEtp>
+<EisLink>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</EisLink>
+<EisLinkPrint>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</EisLinkPrint>
+<Fz></Fz>
+<Info>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</Info>
+<User_id>70751</User_id>
+<TenderNumOuter></TenderNumOuter>
+<TenderType></TenderType>
+<ObPriceZ></ObPriceZ>
+<ObPrice></ObPrice>
+<deliveryPlace></deliveryPlace>
+<biddingDate></biddingDate>
+<contactName>Гульянц Ольга Николаевна</contactName>
+<contactPhone>8-3452-380000 7176</contactPhone>
+<contactEmail>ongulyants@rosneft.ru</contactEmail>
+<zakazLink></zakazLink>
+<zakazTendersLink></zakazTendersLink>
+<CustomerINN></CustomerINN>
+<EtpLink>https://www.tenderguru.ru/api2.0/export?mode=&amp;e60=1&amp;api_code=</EtpLink>
+<PlanZakupNumber></PlanZakupNumber>
+<PlanZakupApiInfo></PlanZakupApiInfo>
+<ApiProtokolInfo></ApiProtokolInfo>
+<ApiPredInfo></ApiPredInfo>
+<ApiContractInfo></ApiContractInfo>
+<ApiIzmInfo></ApiIzmInfo>
+<productsXML></productsXML>
+<docsXML><document><link>http://ws-rn.tektorg.ru/documents/document/3434223</link><name>Извещение_Check_Point_по_27.06.19.docx</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367884</link><name>2._Форма_ТКП_для_предоставления_ценовой_информации[1].xlsx</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367882</link><name>Enterprise_Support_Summary_Renewal_Quote_Number_1013134262[1].pdf</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367881</link><name>1._Техническое_задание[1].docx</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367879</link><name>1._Техническое_задание.docx</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367878</link><name>Enterprise_Support_Summary_Renewal_Quote_Number_1013134262.pdf</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367877</link><name>2._Форма_ТКП_для_предоставления_ценовой_информации.xlsx</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367879</link><name>1._Техническое_задание.docx</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367878</link><name>Enterprise_Support_Summary_Renewal_Quote_Number_1013134262.pdf</name></document><document><link>http://ws-rn.tektorg.ru/documents/document/3367877</link><name>2._Форма_ТКП_для_предоставления_ценовой_информации.xlsx</name></document></docsXML>
+<smp></smp>
+<request_receiving_date></request_receiving_date>
+<request_examination_date></request_examination_date>
+<request_receiving_end_date></request_receiving_end_date>
+<delivery_place></delivery_place></Item>
+</Items>

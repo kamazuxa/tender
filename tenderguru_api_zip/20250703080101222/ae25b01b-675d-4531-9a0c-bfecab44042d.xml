@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Item>
+<ID>71124677</ID>
+<Date>03-06-2023</Date>
+<TenderName>На оказание услуг по проведению государственной историко-культурной экспертизы выявленных объектов культурного наследия, расположенных на территории города Севастополя</TenderName>
+<Customer>ДЕПАРТАМЕНТ УПРАВЛЕНИЯ ДЕЛАМИ ГУБЕРНАТОРА И ПРАВИТЕЛЬСТВА СЕВАСТОПОЛЯ</Customer>
+<Category>Услуги</Category>
+<Region>Севастополь</Region>
+<RegionId>91</RegionId>
+<Price>1668333</Price>
+<EndTime>19-06-2023</EndTime>
+<Etp>Торговая Система «ТЭК-Торг»</Etp>
+<TenderLink></TenderLink>
+<TenderLinkInner>https://www.tenderguru.ru/tender/71124677</TenderLinkInner>
+<TenderLinkEtp>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</TenderLinkEtp>
+<EisLink>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</EisLink>
+<EisLinkPrint>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</EisLinkPrint>
+<Fz>44</Fz>
+<Info>Только для подписчиков портала: https://www.tenderguru.ru/tariffs/short</Info>
+<User_id>1745000011</User_id>
+<TenderNumOuter>0174500001123002772</TenderNumOuter>
+<TenderType>Открытый конкурс в электронной форме</TenderType>
+<ObPriceZ></ObPriceZ>
+<ObPrice>166833</ObPrice>
+<deliveryPlace> город Севастополь; </deliveryPlace>
+<biddingDate>--</biddingDate>
+<contactName>Бурый Аркадий Петрович</contactName>
+<contactPhone>542624-302</contactPhone>
+<contactEmail>a.buriy@gs.sev.gov.ru</contactEmail>
+<zakazLink>https://www.tenderguru.ru/api2.0/export?mode=postinfo&amp;inn=9204576208&amp;api_code=</zakazLink>
+<zakazTendersLink>https://www.tenderguru.ru/api2.0/export?user_id=1745000011&amp;api_code=</zakazTendersLink>
+<CustomerINN>9204576208</CustomerINN>
+<EtpLink>https://www.tenderguru.ru/api2.0/export?mode=&amp;e60=1&amp;api_code=</EtpLink>
+<PlanZakupNumber></PlanZakupNumber>
+<PlanZakupApiInfo></PlanZakupApiInfo>
+<ApiProtokolInfo>https://www.tenderguru.ru/api2.0/export?mode=protokolresult&amp;tend_num=0174500001123002772&amp;api_code=</ApiProtokolInfo>
+<ApiPredInfo>https://www.tenderguru.ru/api2.0/export?mode=predresult&amp;tend_num=0174500001123002772&amp;api_code=</ApiPredInfo>
+<ApiContractInfo>https://www.tenderguru.ru/api2.0/export?mode=contracts&amp;tend_num=0174500001123002772&amp;api_code=</ApiContractInfo>
+<ApiIzmInfo>https://www.tenderguru.ru/api2.0/export?mode=izm&amp;tend_num=0174500001123002772&amp;api_code=</ApiIzmInfo>
+<productsXML><product><ProductName>услуги по поведению государственной историко-культурной экспертизой</ProductName><ProductCode>Услуги по проведению государственной историко-культурной экспертизы, связанной с сохранением и воссозданием объектов культурного наследия</ProductCode><Izm>Условная единица</Izm><Kolvo>1</Kolvo><edPrice>1668333.33</edPrice><ProductPrice>1668333.33</ProductPrice></product></productsXML>
+<docsXML><document><link>https://zakupki.gov.ru/44fz/filestore/public/1.0/download/priz/file.html?uid=CE4F0BC8054743829A1D4BC468E8F283</link><name>Обоснование_НМЦК ГИКЭ 10.docx</name></document><document><link>https://zakupki.gov.ru/44fz/filestore/public/1.0/download/priz/file.html?uid=CC37A921AABA4251BE60F50F9734EB7D</link><name>Проект Контракта ГИКЭ 10 ОКН.docx</name></document><document><link>https://zakupki.gov.ru/44fz/filestore/public/1.0/download/priz/file.html?uid=494663C4C80E4F2EA637D0A67B4363EA</link><name>ТЗ 10 выявленных ОКН.docx</name></document><document><link>https://zakupki.gov.ru/44fz/filestore/public/1.0/download/priz/file.html?uid=0C39C45B9F7747128AE7E9ADC8843CDE</link><name>Требования к заявке на участие в закупке и инструкция по её заполнению.docx</name></document><document><link>https://zakupki.gov.ru/44fz/filestore/public/1.0/download/priz/file.html?uid=AA5D217769F84CAAB17976B8F07D2F40</link><name>Порядок 1 рассмотрения и оценки заявок на участие в конкурсе.docx</name></document></docsXML>
+<smp></smp>
+<request_receiving_date>2023-06-02 09:13:00</request_receiving_date>
+<request_examination_date></request_examination_date>
+<request_receiving_end_date>2023-06-19 08:00:00</request_receiving_end_date>
+<delivery_place> город Севастополь; </delivery_place>
+<delivery_term></delivery_term>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0174500001123002772&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0174500001123002772</ApiCharLinkTenderVcontract></Item>
+</Items>

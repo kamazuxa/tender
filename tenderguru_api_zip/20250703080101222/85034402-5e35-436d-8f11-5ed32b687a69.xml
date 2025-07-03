@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Items>
+<Total>1456</Total>
+<Item>
+<ID>91456264</ID>
+<Date>26-06-2025</Date>
+<ContractName>Поставка кирпича</ContractName>
+<Region>Коми</Region>
+<Category>Строительство</Category>
+<Org></Org>
+<INN>0</INN>
+<Email></Email>
+<Phone></Phone>
+<Contact></Contact>
+<Law>ФЗ-223</Law>
+<Customer>АКЦИОНЕРНОЕ ОБЩЕСТВО "КОМИ ТЕПЛОВАЯ КОМПАНИЯ"</Customer>
+<CustomerINN>1101205461</CustomerINN>
+<Price>281480</Price>
+<NMCprice>222021</NMCprice>
+<SignDate></SignDate>
+<IspDate>26-06-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91456264</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>51101205461250001820003</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91456264</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=0</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1101205461?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=32514748963</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=32514748963&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=32514748963</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=51101205461250001820003</ApiCharLinkContract></Item>
+<Item>
+<ID>91538065</ID>
+<Date>18-06-2025</Date>
+<ContractName>Кирпич керамический</ContractName>
+<Region>Мурманская область</Region>
+<Category>Строительство</Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ОБЛТЕХСНАБ"</Org>
+<INN>5190018637</INN>
+<Email>ts.nilova@armada-m.com</Email>
+<Phone>7 9211716383</Phone>
+<Contact>  </Contact>
+<Law>ФЗ-44</Law>
+<Customer>ФЕДЕРАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ИСПРАВИТЕЛЬНАЯ КОЛОНИЯ № 16 УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ ИСПОЛНЕНИЯ НАКАЗАНИЙ ПО МУРМАНСКОЙ ОБЛАСТИ"</Customer>
+<CustomerINN>0</CustomerINN>
+<Price>114000</Price>
+<NMCprice>128000</NMCprice>
+<SignDate>17-06-2025</SignDate>
+<IspDate>28-07-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91538065</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1510502083925000026</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91538065</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/5190018637?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=5190018637</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/5190018637/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0349100005225000021</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0349100005225000021&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0349100005225000021</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1510502083925000026</ApiCharLinkContract></Item>
+<Item>
+<ID>91543696</ID>
+<Date>18-06-2025</Date>
+<ContractName>Кирпич шамотный ШБ-5 (энергохозяйство)</ContractName>
+<Region>Коми</Region>
+<Category>Строительство</Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АТС"</Org>
+<INN>1101009964</INN>
+<Email>ooo-a-t-s@mail.ru</Email>
+<Phone>7 8212218877</Phone>
+<Contact>  </Contact>
+<Law>ФЗ-44</Law>
+<Customer>ФЕДЕРАЛЬНОЕ КАЗЕННОЕ ЛЕЧЕБНО-ПРОФИЛАКТИЧЕСКОЕ УЧРЕЖДЕНИЕ "БОЛЬНИЦА № 18 УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ ИСПОЛНЕНИЯ НАКАЗАНИЙ ПО РЕСПУБЛИКЕ КОМИ"</Customer>
+<CustomerINN>0</CustomerINN>
+<Price>130450</Price>
+<NMCprice>190000</NMCprice>
+<SignDate>16-06-2025</SignDate>
+<IspDate>31-07-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91543696</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1110201758025000028</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91543696</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1101009964?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=1101009964</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/1101009964/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0307100019025000029</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0307100019025000029&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0307100019025000029</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1110201758025000028</ApiCharLinkContract></Item>
+<Item>
+<ID>91544262</ID>
+<Date>18-06-2025</Date>
+<ContractName>Приобретение огнеупорного кирпича (энергохоз)</ContractName>
+<Region>Ханты-Мансийский АО</Region>
+<Category>Строительство</Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АТЛАНТ"</Org>
+<INN>8603233793</INN>
+<Email>lavrikova18@inbox.ru</Email>
+<Phone>7 9822160882</Phone>
+<Contact>  </Contact>
+<Law>ФЗ-44</Law>
+<Customer>ФЕДЕРАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "СЛЕДСТВЕННЫЙ ИЗОЛЯТОР № 1 УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ ИСПОЛНЕНИЯ НАКАЗАНИЙ ПО ХАНТЫ-МАНСИЙСКОМУ АВТОНОМНОМУ ОКРУГУ - ЮГРЕ"</Customer>
+<CustomerINN>0</CustomerINN>
+<Price>18140</Price>
+<NMCprice>18142</NMCprice>
+<SignDate>18-06-2025</SignDate>
+<IspDate>22-12-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91544262</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1860307380725000043</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91544262</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/8603233793?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=8603233793</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/8603233793/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0387100008025000049</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0387100008025000049&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0387100008025000049</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1860307380725000043</ApiCharLinkContract></Item>
+<Item>
+<ID>91551742</ID>
+<Date>17-06-2025</Date>
+<ContractName>Кирпич керамический. Товарный знак: Кирпич керамический пустотелый одинарный «Лицевой» объемного окрашивания «Светлый Шоколад», гладкая поверхность, ГОСТ 530-2012</ContractName>
+<Region>Удмуртия</Region>
+<Category>Строительство</Category>
+<Org>ВАХРУШЕВ АНДРЕЙ ОЛЕГОВИЧ</Org>
+<INN>182402502382</INN>
+<Email>andro.03@inbox.ru</Email>
+<Phone>7 9829982299</Phone>
+<Contact>ВАХРУШЕВ АНДРЕЙ ОЛЕГОВИЧ</Contact>
+<Law>ФЗ-44</Law>
+<Customer>БЮДЖЕТНОЕ ПРОФЕССИОНАЛЬНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ УДМУРТСКОЙ РЕСПУБЛИКИ  "САРАПУЛЬСКИЙ МНОГОПРОФИЛЬНЫЙ КОЛЛЕДЖ"</Customer>
+<CustomerINN>0</CustomerINN>
+<Price>249900</Price>
+<NMCprice>0</NMCprice>
+<SignDate>06-06-2025</SignDate>
+<IspDate>19-08-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91551742</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>2182700814225000007</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91551742</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/182402502382?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=182402502382</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/182402502382/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0813500000125010139</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0813500000125010139&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0813500000125010139</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=2182700814225000007</ApiCharLinkContract></Item>
+<Item>
+<ID>91419203</ID>
+<Date>11-06-2025</Date>
+<ContractName>Услуги по сбору и транспортированию боя силикатного кирпича, боя строительного кирпича, бетона в кусковой форме, образовавшихся в процессе сноса объектов капитального строительства.</ContractName>
+<Region>Саратовская область</Region>
+<Category>Транспорт</Category>
+<Org>ЗАХАРОВ РОМАН КОНСТАНТИНОВИЧ</Org>
+<INN>645112924932</INN>
+<Email>zrk73@mail.ru</Email>
+<Phone>7 9272234390</Phone>
+<Contact>ЗАХАРОВ РОМАН КОНСТАНТИНОВИЧ</Contact>
+<Law>ФЗ-44</Law>
+<Customer>МУНИЦИПАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ЭНГЕЛЬССКАЯ НЕДВИЖИМОСТЬ"</Customer>
+<CustomerINN>6449032746</CustomerINN>
+<Price>1700000</Price>
+<NMCprice>0</NMCprice>
+<SignDate>09-06-2025</SignDate>
+<IspDate>01-09-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91419203</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>3644903274625000049</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91419203</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/645112924932?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=645112924932</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/645112924932/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6449032746?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0860200000825004044</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0860200000825004044&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0860200000825004044</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=3644903274625000049</ApiCharLinkContract></Item>
+<Item>
+<ID>91423803</ID>
+<Date>11-06-2025</Date>
+<ContractName>Поставка кирпича керамического для нужд ГБУ "Жилищник района Бирюлево Восточное"</ContractName>
+<Region>Москва</Region>
+<Category>Строительство</Category>
+<Org>ФЕТИСОВ АНАТОЛИЙ АНАТОЛЬЕВИЧ</Org>
+<INN>505014221404</INN>
+<Email>fetisov_a_a@list.ru</Email>
+<Phone>7 9162613001</Phone>
+<Contact>ФЕТИСОВ АНАТОЛИЙ АНАТОЛЬЕВИЧ</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ГОРОДА МОСКВЫ "ЖИЛИЩНИК РАЙОНА БИРЮЛЕВО ВОСТОЧНОЕ"</Customer>
+<CustomerINN>7724941541</CustomerINN>
+<Price>343000</Price>
+<NMCprice>434280</NMCprice>
+<SignDate>10-06-2025</SignDate>
+<IspDate>28-07-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91423803</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>2772494154125000052</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91423803</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/505014221404?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=505014221404</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/505014221404/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/7724941541?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0373200645325000004</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0373200645325000004&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0373200645325000004</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=2772494154125000052</ApiCharLinkContract></Item>
+<Item>
+<ID>91467361</ID>
+<Date>09-06-2025</Date>
+<ContractName>Услуги по сбору и транспортированию боя силикатного кирпича, боя строительного кирпича, бетона в кусковой форме, образовавшихся в процессе сноса объектов капитального строительства.</ContractName>
+<Region>Саратовская область</Region>
+<Category>Транспорт</Category>
+<Org>ЗАХАРОВ РОМАН КОНСТАНТИНОВИЧ</Org>
+<INN>645112924932</INN>
+<Email>zrk73@mail.ru</Email>
+<Phone>7 9272234390</Phone>
+<Contact>ЗАХАРОВ РОМАН КОНСТАНТИНОВИЧ</Contact>
+<Law>ФЗ-44</Law>
+<Customer>МУНИЦИПАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ЭНГЕЛЬССКАЯ НЕДВИЖИМОСТЬ"</Customer>
+<CustomerINN>0</CustomerINN>
+<Price>1700000</Price>
+<NMCprice>0</NMCprice>
+<SignDate>09-06-2025</SignDate>
+<IspDate>31-12-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91467361</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>3644903274625000049</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91467361</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/645112924932?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=645112924932</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/645112924932/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/0?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0860200000825004044</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0860200000825004044&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0860200000825004044</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=3644903274625000049</ApiCharLinkContract></Item>
+<Item>
+<ID>91316568</ID>
+<Date>04-06-2025</Date>
+<ContractName>Блоки и кирпичи для питомника</ContractName>
+<Region>Калининградская область</Region>
+<Category>Строительство</Category>
+<Org>ПРОТАСОВА ЕЛЕНА ВАСИЛЬЕВНА</Org>
+<INN>390404985180</INN>
+<Email>mail@region-snab.com</Email>
+<Phone>7 4012910910</Phone>
+<Contact>ПРОТАСОВА ЕЛЕНА ВАСИЛЬЕВНА</Contact>
+<Law>ФЗ-44</Law>
+<Customer>ФЕДЕРАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ИСПРАВИТЕЛЬНАЯ КОЛОНИЯ № 4 УПРАВЛЕНИЯ ФЕДЕРАЛЬНОЙ СЛУЖБЫ ИСПОЛНЕНИЯ НАКАЗАНИЙ ПО КАЛИНИНГРАДСКОЙ ОБЛАСТИ"</Customer>
+<CustomerINN>3918008707</CustomerINN>
+<Price>69997</Price>
+<NMCprice>73951</NMCprice>
+<SignDate>03-06-2025</SignDate>
+<IspDate>02-08-2025</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91316568</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>1391800870725000021</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91316568</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/390404985180?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=390404985180</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/390404985180/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/3918008707?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0335100001725000020</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0335100001725000020&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0335100001725000020</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=1391800870725000021</ApiCharLinkContract></Item>
+<Item>
+<ID>91354009</ID>
+<Date>02-06-2025</Date>
+<ContractName>Поставка кирпича для нужд ГБУ "Жилищник района Чертаново Центральное"</ContractName>
+<Region>Москва</Region>
+<Category>Строительство</Category>
+<Org>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ВЗАИМОПОМОЩЬ"</Org>
+<INN>6676006189</INN>
+<Email>o.vzaimopomosh@yandex.ru</Email>
+<Phone>7 9222923927</Phone>
+<Contact>  </Contact>
+<Law>ФЗ-44</Law>
+<Customer>ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ ГОРОДА МОСКВЫ "ЖИЛИЩНИК РАЙОНА ЧЕРТАНОВО ЦЕНТРАЛЬНОЕ"</Customer>
+<CustomerINN>7726760660</CustomerINN>
+<Price>353280</Price>
+<NMCprice>480000</NMCprice>
+<SignDate>02-06-2025</SignDate>
+<IspDate>04-04-2028</IspDate>
+<ContractLink>https://www.tenderguru.ru/contract_na_zakupku/91354009</ContractLink>
+<ContractProductLink></ContractProductLink>
+<ContractId>2772676066025000045</ContractId>
+<ApiProductsLink></ApiProductsLink>
+<EisContractLink></EisContractLink>
+<ApiContractLink>https://www.tenderguru.ru/api2.3/export/contracts?id=91354009</ApiContractLink>
+<ApiSupplierLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6676006189?api_code=</ApiSupplierLink>
+<ApiSupplierContractsLink>https://www.tenderguru.ru/api2.3/export/contracts?org_inn=6676006189</ApiSupplierContractsLink>
+<ApiCustomerLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/6676006189/contacts?api_code=</ApiCustomerLink>
+<ApiCustomerContractsLink>https://www.tenderguru.ru/api2.3/export/contragent/inn/7726760660?api_code=</ApiCustomerContractsLink>
+<ApiTenderLink>https://www.tenderguru.ru/api2.3/export?tend_num=0373200086725000540</ApiTenderLink>
+<ApiCharLinkTender>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0373200086725000540&amp;act=tenderView</ApiCharLinkTender>
+<ApiCharLinkTenderVcontract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;tend_num=0373200086725000540</ApiCharLinkTenderVcontract>
+<ApiCharLinkContract>https://www.tenderguru.ru/api2.3/export?mode=haracteristics&amp;contract_num=2772676066025000045</ApiCharLinkContract></Item>
+</Items>
