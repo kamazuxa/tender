@@ -196,6 +196,17 @@ async def analyze_tender_command(update: Update, context: ContextTypes.DEFAULT_T
         reply_markup=reply_markup
     )
 
+async def get_tender_documents(api_tender_info_url):
+    docs = []
+    async with aiohttp.ClientSession() as session:
+        async with session.get(api_tender_info_url) as resp:
+            if resp.status == 200:
+                data = await resp.json(content_type=None)
+                for key in ['files', 'attachments', 'docs', 'documents', 'download_links', 'documentation']:
+                    if key in data and isinstance(data[key], list):
+                        docs.extend(data[key])
+    return docs
+
 async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message = update.message
     if message and message.text:
@@ -215,8 +226,17 @@ async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TY
             return
         data = await TenderGuruAPI.get_tender_by_number(reg_number)
         if data:
+            api_tender_info_url = None
+            # Пытаемся найти ссылку на подробный JSON
+            if hasattr(data, 'get'):
+                api_tender_info_url = data.get('ApiTenderInfo')
+            if not api_tender_info_url:
+                # Иногда это поле может быть в item
+                api_tender_info_url = None
+                # (оставляем None, если не найдено)
             keyboard = [
                 [InlineKeyboardButton("🧠 Анализ документации", callback_data=f"analyze_docs_{reg_number}")],
+                [InlineKeyboardButton("📎 Документы", callback_data=f"show_docs_{reg_number}")],
                 [InlineKeyboardButton("📥 Скачать документацию", callback_data=f"download_docs_{reg_number}")],
                 [InlineKeyboardButton("📊 Похожие закупки", callback_data="similar_tenders")]
             ]
@@ -230,6 +250,9 @@ async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TY
                 f"📍 Место поставки: {data['location']}\n"
                 f"🌐 Площадка: {platform}"
             )
+            # Сохраняем ссылку на подробный JSON в context.user_data
+            if api_tender_info_url:
+                context.user_data[f'api_tender_info_url_{reg_number}'] = api_tender_info_url
             await message.reply_text(text, reply_markup=reply_markup)
         else:
             await message.reply_text(
@@ -303,6 +326,24 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if data:
             if data.startswith("analyze_docs_"):
                 await query.edit_message_text("🧠 Анализ документации (будет реализовано)")
+            elif data.startswith("show_docs_"):
+                reg_number = data.split('_')[-1]
+                api_tender_info_url = context.user_data.get(f'api_tender_info_url_{reg_number}')
+                if not api_tender_info_url:
+                    await query.edit_message_text("❗ Не удалось найти ссылку на подробную информацию о тендере.")
+                    return
+                docs = await get_tender_documents(api_tender_info_url)
+                buttons = []
+                for doc in docs:
+                    url = doc.get('url') or doc.get('Url')
+                    name = doc.get('name') or doc.get('Name') or url
+                    if url and name:
+                        buttons.append([InlineKeyboardButton(text=name, url=url)])
+                if buttons:
+                    reply_markup = InlineKeyboardMarkup(buttons)
+                    await query.edit_message_text("📎 Документы по тендеру:", reply_markup=reply_markup)
+                else:
+                    await query.edit_message_text("Документация по тендеру не найдена.")
             elif data.startswith("download_docs_"):
                 reg_number = data.split('_')[-1]
                 await query.edit_message_text("⏳ Скачиваем документацию...")
