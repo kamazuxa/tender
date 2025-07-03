@@ -144,9 +144,6 @@ async def extract_tender_info_from_url(url):
 class TenderGuruAPI:
     @staticmethod
     async def get_tender_by_number(reg_number):
-        """
-        Делает запрос к TenderGuru API по reg_number и возвращает данные о тендере.
-        """
         if not reg_number:
             logging.error("No reg_number provided to get_tender_by_number")
             return None
@@ -162,17 +159,24 @@ class TenderGuruAPI:
                 if resp.status == 200:
                     data = await resp.json(content_type=None)
                     logging.info(f"Tender API response: {data}")
-                    items = data.get("Items")
+                    items = None
+                    if isinstance(data, dict):
+                        items = data.get("Items")
+                    elif isinstance(data, list):
+                        # TenderGuru иногда возвращает список, где первый элемент — Total, остальные — тендеры
+                        items = [d for d in data if isinstance(d, dict) and (d.get("ID") or d.get("TenderName") or d.get("TenderNumOuter"))]
                     if items and isinstance(items, list) and len(items) > 0:
                         item = items[0]
                         return {
                             "reg_number": reg_number,
                             "customer_name": item.get("Customer", "-"),
-                            "purchase_subject": item.get("Name", "-"),
+                            "purchase_subject": item.get("Name") or item.get("TenderName", "-"),
                             "price": item.get("Price", "-"),
-                            "deadline": item.get("DateEnd", "-"),
-                            "location": item.get("RegionName", "-")
+                            "deadline": item.get("DateEnd") or item.get("EndTime", "-"),
+                            "location": item.get("RegionName") or item.get("Region", "-")
                         }
+                    else:
+                        logging.warning(f"No tender found for reg_number {reg_number}")
                 else:
                     logging.error(f"Failed to get tender by number {reg_number}: {resp.status}")
         return None
