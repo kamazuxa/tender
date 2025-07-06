@@ -76,7 +76,15 @@ async def get_platforms_from_tenderguru():
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message:
-        await update.message.reply_text("Привет! Я TenderBot. Введите /help для справки.")
+        keyboard = [
+            [InlineKeyboardButton("🔍 TenderGuru", callback_data="wait_for_link_tenderguru")],
+            [InlineKeyboardButton("🔍 Damia API", callback_data="wait_for_link_damia")]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.message.reply_text(
+            "Привет! Я TenderBot. Выберите источник для анализа тендеров:",
+            reply_markup=reply_markup
+        )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message:
@@ -201,10 +209,14 @@ class TenderGuruAPI:
 
 async def analyze_tender_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message:
-        keyboard = [[InlineKeyboardButton("Отправить ссылку на тендер", callback_data="wait_for_link")]]
+        keyboard = [
+            [InlineKeyboardButton("🔍 TenderGuru", callback_data="wait_for_link_tenderguru")],
+            [InlineKeyboardButton("🔍 Damia API", callback_data="wait_for_link_damia")]
+        ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text(
-            "Отправь ссылку на тендер с любой площадки:\n"
+            "Выберите источник для анализа тендеров:\n\n"
+            "📋 **Поддерживаемые площадки:**\n"
             "✅ zakupki.gov.ru\n"
             "✅ sberbank-ast.ru\n"
             "✅ b2b-center.ru\n"
@@ -569,6 +581,10 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
     elif data == "wait_for_link":
         await query.edit_message_text("Отправьте ссылку на тендер сообщением.")
+    elif data == "wait_for_link_tenderguru":
+        await query.edit_message_text("🔍 **TenderGuru**\n\nОтправьте ссылку на тендер для анализа через TenderGuru API.")
+    elif data == "wait_for_link_damia":
+        await query.edit_message_text("🔍 **Damia API**\n\nОтправьте ссылку на тендер для анализа через Damia API.")
 
 async def get_tender_info(tender_number):
     """
