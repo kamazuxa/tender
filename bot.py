@@ -395,26 +395,31 @@ async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TY
             await update.message.reply_text("❌ Не удалось извлечь номер тендера из ссылки. Проверьте формат ссылки.")
             return
         
-        # Пробуем получить данные из TenderGuru
-        logging.info("Trying TenderGuru API first...")
-        tender_data = await get_tender_info(tender_number)
-        
-        if tender_data:
-            logging.info("TenderGuru API returned data, parsing...")
-            tender_info = parse_tender_info(tender_data)
-            await send_tender_card(update, context, tender_info, tender_number)
-        else:
-            logging.info("TenderGuru API returned no data, trying Damia API...")
-            # Если TenderGuru не дал данных, пробуем Damia API
-            damia_data = await DamiaAPI.get_tender_by_number(tender_number)
+        try:
+            # Пробуем получить данные из TenderGuru
+            logging.info("Trying TenderGuru API first...")
+            tender_data = await get_tender_info(tender_number)
             
-            if damia_data:
-                logging.info("Damia API returned data, parsing...")
-                tender_info = parse_damia_tender_info(damia_data)
+            if tender_data:
+                logging.info("TenderGuru API returned data, parsing...")
+                tender_info = parse_tender_info(tender_data)
                 await send_tender_card(update, context, tender_info, tender_number)
             else:
-                logging.warning("Both APIs returned no data")
-                await update.message.reply_text("❌ Не удалось найти информацию о тендере в доступных источниках.")
+                logging.info("TenderGuru API returned no data, trying Damia API...")
+                # Если TenderGuru не дал данных, пробуем Damia API
+                damia_data = await DamiaAPI.get_tender_by_number(tender_number)
+                
+                if damia_data:
+                    logging.info("Damia API returned data, parsing...")
+                    tender_info = parse_damia_tender_info(damia_data)
+                    await send_tender_card(update, context, tender_info, tender_number)
+                else:
+                    logging.warning("Both APIs returned no data")
+                    await update.message.reply_text("❌ Не удалось найти информацию о тендере в доступных источниках.")
+                    
+        except Exception as e:
+            logging.error(f"Error in wait_for_link_handler: {e}")
+            await update.message.reply_text("❌ Произошла ошибка при анализе тендера. Попробуйте позже.")
 
 async def download_all_files(reg_number):
     """
@@ -590,31 +595,79 @@ async def get_tender_info(tender_number):
     """
     Получает информацию о тендере из TenderGuru API.
     """
-    params = {
-        "key": TENDER_GURU_API_KEY,
-        "tender": tender_number
-    }
+    # Пробуем разные варианты параметров
+    params_variants = [
+        {
+            "key": TENDER_GURU_API_KEY,
+            "tender": tender_number
+        },
+        {
+            "key": TENDER_GURU_API_KEY,
+            "regNumber": tender_number
+        },
+        {
+            "key": TENDER_GURU_API_KEY,
+            "tender": tender_number,
+            "dtype": "json"
+        },
+        {
+            "key": TENDER_GURU_API_KEY,
+            "regNumber": tender_number,
+            "dtype": "json"
+        }
+    ]
     
-    logging.info(f"Requesting tender from TenderGuru API: {params}")
-    
-    async with aiohttp.ClientSession() as session:
-        async with session.get(TENDERGURU_API_URL, params=params) as resp:
-            logging.info(f"TenderGuru API response status: {resp.status}")
-            if resp.status == 200:
-                data = await resp.json(content_type=None)
-                
-                # Логируем полный ответ
-                log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
-                
-                if isinstance(data, dict) and tender_number in data:
-                    return data[tender_number]
-                elif isinstance(data, list) and len(data) > 0:
-                    # Если API вернул список, берем первый элемент
-                    return data[0]
+    for i, params in enumerate(params_variants):
+        logging.info(f"Trying TenderGuru API variant {i+1}: {params}")
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(TENDERGURU_API_URL, params=params) as resp:
+                logging.info(f"TenderGuru API response status: {resp.status}")
+                if resp.status == 200:
+                    try:
+                        # Получаем текст ответа для логирования
+                        response_text = await resp.text()
+                        logging.info(f"TenderGuru API raw response: {response_text}")
+                        
+                        # Проверяем, что ответ не пустой
+                        if not response_text.strip():
+                            logging.warning(f"Empty response from TenderGuru API for tender_number {tender_number}")
+                            continue
+                        
+                        # Пытаемся парсить JSON
+                        data = await resp.json(content_type=None)
+                        
+                        # Логируем полный ответ
+                        log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
+                        
+                        if isinstance(data, dict):
+                            # Ищем тендер в разных возможных ключах
+                            for key in [tender_number, "Items", "items", "data", "result"]:
+                                if key in data:
+                                    if key == tender_number:
+                                        return data[key]
+                                    elif isinstance(data[key], list) and len(data[key]) > 0:
+                                        return data[key][0]
+                                    elif isinstance(data[key], dict):
+                                        return data[key]
+                        
+                        elif isinstance(data, list) and len(data) > 0:
+                            # Если API вернул список, берем первый элемент
+                            return data[0]
+                        
+                        logging.warning(f"No tender found in TenderGuru API response for tender_number {tender_number}")
+                        
+                    except json.JSONDecodeError as e:
+                        logging.error(f"JSON decode error from TenderGuru API variant {i+1}: {e}")
+                        logging.error(f"Response text: {response_text}")
+                        continue
+                    except Exception as e:
+                        logging.error(f"Error processing TenderGuru API response variant {i+1}: {e}")
+                        continue
                 else:
-                    logging.warning(f"No tender found in TenderGuru API for tender_number {tender_number}")
-            else:
-                logging.error(f"Failed to get tender from TenderGuru API {tender_number}: {resp.status}")
+                    logging.error(f"Failed to get tender from TenderGuru API variant {i+1}: {resp.status}")
+    
+    logging.warning(f"All TenderGuru API variants failed for tender_number {tender_number}")
     return None
 
 def log_api_response(api_name, endpoint, params, response_data, status_code=200):
@@ -711,16 +764,35 @@ class DamiaAPI:
             async with session.get(f"{DAMIA_API_URL}/zakupka", params=params) as resp:
                 logging.info(f"Damia API response status: {resp.status}")
                 if resp.status == 200:
-                    data = await resp.json(content_type=None)
-                    
-                    # Логируем полный ответ
-                    log_api_response("Damia", f"{DAMIA_API_URL}/zakupka", params, data, resp.status)
-                    
-                    if reg_number in data:
-                        tender_data = data[reg_number]
-                        return tender_data
-                    else:
-                        logging.warning(f"No tender found in Damia API for reg_number {reg_number}")
+                    try:
+                        # Получаем текст ответа для логирования
+                        response_text = await resp.text()
+                        logging.info(f"Damia API raw response: {response_text}")
+                        
+                        # Проверяем, что ответ не пустой
+                        if not response_text.strip():
+                            logging.warning(f"Empty response from Damia API for reg_number {reg_number}")
+                            return None
+                        
+                        # Пытаемся парсить JSON
+                        data = await resp.json(content_type=None)
+                        
+                        # Логируем полный ответ
+                        log_api_response("Damia", f"{DAMIA_API_URL}/zakupka", params, data, resp.status)
+                        
+                        if reg_number in data:
+                            tender_data = data[reg_number]
+                            return tender_data
+                        else:
+                            logging.warning(f"No tender found in Damia API for reg_number {reg_number}")
+                            
+                    except json.JSONDecodeError as e:
+                        logging.error(f"JSON decode error from Damia API: {e}")
+                        logging.error(f"Response text: {response_text}")
+                        return None
+                    except Exception as e:
+                        logging.error(f"Error processing Damia API response: {e}")
+                        return None
                 else:
                     logging.error(f"Failed to get tender from Damia API {reg_number}: {resp.status}")
         return None
