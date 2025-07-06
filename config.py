@@ -1,6 +1,7 @@
 # config.py
 
-TELEGRAM_BOT_TOKEN = "your-telegram-bot-token-here"
+# Получите токен у @BotFather в Telegram
+TELEGRAM_BOT_TOKEN = "your-telegram-bot-token-here"  # ЗАМЕНИТЕ НА РЕАЛЬНЫЙ ТОКЕН!
 TENDER_GURU_API_KEY = "your-tenderguru-api-key-here"
 EXPORTBASE_API_KEY = "your-exportbase-api-key-here"
 FSSP_API_KEY = "your-fssp-api-key-here"
