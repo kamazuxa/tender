@@ -595,6 +595,16 @@ async def get_tender_info(tender_number):
     """
     Получает информацию о тендере из TenderGuru API.
     """
+    # Проверяем API ключ
+    if not TENDER_GURU_API_KEY or TENDER_GURU_API_KEY == "your-tenderguru-api-key-here":
+        error_msg = "API ключ TenderGuru не настроен. Установите TENDER_GURU_API_KEY в config.py"
+        print(f"\n❌ {error_msg}", flush=True)
+        logging.error(error_msg)
+        return None
+    
+    print(f"\n🔑 TenderGuru API Key: {TENDER_GURU_API_KEY[:10]}...", flush=True)
+    logging.info(f"TenderGuru API Key: {TENDER_GURU_API_KEY[:10]}...")
+    
     # Пробуем разные варианты параметров
     params_variants = [
         {
@@ -614,6 +624,33 @@ async def get_tender_info(tender_number):
             "key": TENDER_GURU_API_KEY,
             "regNumber": tender_number,
             "dtype": "json"
+        },
+        {
+            "api_code": TENDER_GURU_API_KEY,
+            "tender": tender_number
+        },
+        {
+            "api_code": TENDER_GURU_API_KEY,
+            "regNumber": tender_number
+        },
+        {
+            "api_code": TENDER_GURU_API_KEY,
+            "tender": tender_number,
+            "dtype": "json"
+        },
+        {
+            "api_code": TENDER_GURU_API_KEY,
+            "regNumber": tender_number,
+            "dtype": "json"
+        },
+        {
+            "api_code": TENDER_GURU_API_KEY,
+            "id": tender_number
+        },
+        {
+            "api_code": TENDER_GURU_API_KEY,
+            "id": tender_number,
+            "dtype": "json"
         }
     ]
     
@@ -627,10 +664,12 @@ async def get_tender_info(tender_number):
                     try:
                         # Получаем текст ответа для логирования
                         response_text = await resp.text()
+                        print(f"\n🔍 TenderGuru API Raw Response: {response_text}", flush=True)
                         logging.info(f"TenderGuru API raw response: {response_text}")
                         
                         # Проверяем, что ответ не пустой
                         if not response_text.strip():
+                            print(f"⚠️ Empty response from TenderGuru API for tender_number {tender_number}", flush=True)
                             logging.warning(f"Empty response from TenderGuru API for tender_number {tender_number}")
                             continue
                         
@@ -641,30 +680,54 @@ async def get_tender_info(tender_number):
                         log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
                         
                         if isinstance(data, dict):
+                            print(f"\n📋 TenderGuru API response keys: {list(data.keys())}", flush=True)
+                            logging.info(f"TenderGuru API response keys: {list(data.keys())}")
+                            
                             # Ищем тендер в разных возможных ключах
-                            for key in [tender_number, "Items", "items", "data", "result"]:
+                            for key in [tender_number, "Items", "items", "data", "result", "tender", "tenders"]:
                                 if key in data:
+                                    print(f"\n✅ Found data in key: {key}", flush=True)
+                                    logging.info(f"Found data in key: {key}")
                                     if key == tender_number:
                                         return data[key]
                                     elif isinstance(data[key], list) and len(data[key]) > 0:
                                         return data[key][0]
                                     elif isinstance(data[key], dict):
                                         return data[key]
+                            
+                            # Если не нашли в стандартных ключах, проверяем все ключи
+                            for key, value in data.items():
+                                if isinstance(value, dict) and any(field in value for field in ['TenderName', 'Name', 'ID', 'id']):
+                                    print(f"\n✅ Found tender data in key: {key}", flush=True)
+                                    logging.info(f"Found tender data in key: {key}")
+                                    return value
+                                elif isinstance(value, list) and len(value) > 0 and isinstance(value[0], dict):
+                                    if any(field in value[0] for field in ['TenderName', 'Name', 'ID', 'id']):
+                                        print(f"\n✅ Found tender data in list key: {key}", flush=True)
+                                        logging.info(f"Found tender data in list key: {key}")
+                                        return value[0]
                         
                         elif isinstance(data, list) and len(data) > 0:
+                            print(f"\n✅ TenderGuru API returned list with {len(data)} items", flush=True)
+                            logging.info(f"TenderGuru API returned list with {len(data)} items")
                             # Если API вернул список, берем первый элемент
                             return data[0]
                         
+                        print(f"\n⚠️ No tender found in TenderGuru API response for tender_number {tender_number}", flush=True)
                         logging.warning(f"No tender found in TenderGuru API response for tender_number {tender_number}")
                         
                     except json.JSONDecodeError as e:
+                        print(f"❌ JSON decode error from TenderGuru API variant {i+1}: {e}", flush=True)
+                        print(f"Response text: {response_text}", flush=True)
                         logging.error(f"JSON decode error from TenderGuru API variant {i+1}: {e}")
                         logging.error(f"Response text: {response_text}")
                         continue
                     except Exception as e:
+                        print(f"❌ Error processing TenderGuru API response variant {i+1}: {e}", flush=True)
                         logging.error(f"Error processing TenderGuru API response variant {i+1}: {e}")
                         continue
                 else:
+                    print(f"❌ Failed to get tender from TenderGuru API variant {i+1}: {resp.status}", flush=True)
                     logging.error(f"Failed to get tender from TenderGuru API variant {i+1}: {resp.status}")
     
     logging.warning(f"All TenderGuru API variants failed for tender_number {tender_number}")
@@ -674,15 +737,6 @@ def log_api_response(api_name, endpoint, params, response_data, status_code=200)
     """
     Логирует полные ответы API в файл и консоль
     """
-    log_entry = {
-        "timestamp": logging.Formatter().formatTime(logging.LogRecord("", 0, "", 0, "", (), None)),
-        "api": api_name,
-        "endpoint": endpoint,
-        "params": params,
-        "status_code": status_code,
-        "response": response_data
-    }
-    
     # Логируем в файл
     api_logger.info(f"=== {api_name.upper()} API RESPONSE ===")
     api_logger.info(f"Endpoint: {endpoint}")
@@ -691,42 +745,111 @@ def log_api_response(api_name, endpoint, params, response_data, status_code=200)
     api_logger.info(f"Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
     api_logger.info("=" * 50)
     
-    # Логируем в консоль
-    print(f"\n{'='*60}")
-    print(f"🔍 {api_name.upper()} API RESPONSE")
-    print(f"{'='*60}")
-    print(f"📡 Endpoint: {endpoint}")
-    print(f"🔧 Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
-    print(f"📊 Status: {status_code}")
-    print(f"📄 Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
-    print(f"{'='*60}\n")
+    # Логируем в консоль с принудительным выводом
+    print(f"\n{'='*60}", flush=True)
+    print(f"🔍 {api_name.upper()} API RESPONSE", flush=True)
+    print(f"{'='*60}", flush=True)
+    print(f"📡 Endpoint: {endpoint}", flush=True)
+    print(f"🔧 Params: {json.dumps(params, ensure_ascii=False, indent=2)}", flush=True)
+    print(f"📊 Status: {status_code}", flush=True)
+    print(f"📄 Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}", flush=True)
+    print(f"{'='*60}\n", flush=True)
+    
+    # Также логируем через основной логгер
+    logging.info(f"=== {api_name.upper()} API RESPONSE ===")
+    logging.info(f"Endpoint: {endpoint}")
+    logging.info(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
+    logging.info(f"Status: {status_code}")
+    logging.info(f"Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
+    logging.info("=" * 50)
 
 def parse_tender_info(data):
     """
     Преобразует словарь тендера из TenderGuru API в структуру для UI-отображения.
     Извлекает МАКСИМАЛЬНО возможную информацию.
     """
+    print(f"\n🔍 Parsing TenderGuru data: {json.dumps(data, ensure_ascii=False, indent=2)}", flush=True)
+    logging.info(f"Parsing TenderGuru data: {json.dumps(data, ensure_ascii=False, indent=2)}")
+    
+    # Выводим все доступные ключи
+    print(f"\n📋 Available keys in TenderGuru data: {list(data.keys())}", flush=True)
+    logging.info(f"Available keys in TenderGuru data: {list(data.keys())}")
+    
     def safe_get(key, default="—"):
-        return data.get(key) or default
+        value = data.get(key)
+        if value is None or value == "":
+            return default
+        return str(value)
 
-    price_raw = safe_get('Price', '')
-    if price_raw and price_raw.isdigit():
-        price = f"{int(price_raw):,} ₽".replace(",", " ")
+    # Пытаемся найти цену в разных полях
+    price_raw = None
+    for price_key in ['Price', 'price', 'Amount', 'amount', 'Sum', 'sum']:
+        if price_key in data:
+            price_raw = data[price_key]
+            break
+    
+    if price_raw and str(price_raw).replace('.', '').replace(',', '').isdigit():
+        try:
+            price = f"{int(float(str(price_raw).replace(',', ''))):,} ₽".replace(",", " ")
+        except:
+            price = f"{price_raw} ₽"
     else:
         price = "Не указано"
 
+    # Пытаемся найти название в разных полях
+    name = None
+    for name_key in ['TenderName', 'Name', 'name', 'Title', 'title', 'Subject', 'subject']:
+        if name_key in data:
+            name = data[name_key]
+            break
+    
+    # Пытаемся найти регион в разных полях
+    region = None
+    for region_key in ['Region', 'region', 'RegionName', 'regionName', 'Location', 'location']:
+        if region_key in data:
+            region = data[region_key]
+            break
+    
+    # Пытаемся найти заказчика в разных полях
+    customer = None
+    for customer_key in ['Customer', 'customer', 'CustomerName', 'customerName', 'Client', 'client']:
+        if customer_key in data:
+            customer = data[customer_key]
+            break
+    
+    # Пытаемся найти ЭТП в разных полях
+    etp = None
+    for etp_key in ['Etp', 'etp', 'EtpName', 'etpName', 'Platform', 'platform']:
+        if etp_key in data:
+            etp = data[etp_key]
+            break
+    
+    # Пытаемся найти URL в разных полях
+    url = None
+    for url_key in ['TenderLinkInner', 'Url', 'url', 'Link', 'link', 'TenderLink', 'tenderLink']:
+        if url_key in data:
+            url = data[url_key]
+            break
+    
+    # Пытаемся найти ID в разных полях
+    tender_id = None
+    for id_key in ['ID', 'id', 'TenderID', 'tenderID', 'Number', 'number']:
+        if id_key in data:
+            tender_id = data[id_key]
+            break
+
     # Извлекаем ВСЮ доступную информацию
     tender_info = {
-        "id": safe_get('ID'),
-        "name": safe_get('TenderName'),
-        "region": safe_get('Region'),
+        "id": safe_get('ID') if tender_id is None else str(tender_id),
+        "name": safe_get('TenderName') if name is None else str(name),
+        "region": safe_get('Region') if region is None else str(region),
         "category": safe_get('Category'),
         "price": price,
         "deadline": safe_get('EndTime'),
         "published": safe_get('Date'),
-        "etp": safe_get('Etp'),
-        "url": safe_get('TenderLinkInner'),
-        "customer": safe_get('Customer'),
+        "etp": safe_get('Etp') if etp is None else str(etp),
+        "url": safe_get('TenderLinkInner') if url is None else str(url),
+        "customer": safe_get('Customer') if customer is None else str(customer),
         "tender_num_outer": safe_get('TenderNumOuter'),
         "fz": safe_get('Fz'),
         "api_tender_info": safe_get('ApiTenderInfo'),
@@ -736,7 +859,7 @@ def parse_tender_info(data):
         "raw_data": data  # Сохраняем сырые данные для полного анализа
     }
 
-    # Логируем извлеченную информацию
+    print(f"\n✅ Extracted TenderGuru info: {json.dumps(tender_info, ensure_ascii=False, indent=2)}", flush=True)
     logging.info(f"Extracted TenderGuru data: {json.dumps(tender_info, ensure_ascii=False, indent=2)}")
     
     return tender_info
@@ -767,10 +890,12 @@ class DamiaAPI:
                     try:
                         # Получаем текст ответа для логирования
                         response_text = await resp.text()
+                        print(f"\n🔍 Damia API Raw Response: {response_text}", flush=True)
                         logging.info(f"Damia API raw response: {response_text}")
                         
                         # Проверяем, что ответ не пустой
                         if not response_text.strip():
+                            print(f"⚠️ Empty response from Damia API for reg_number {reg_number}", flush=True)
                             logging.warning(f"Empty response from Damia API for reg_number {reg_number}")
                             return None
                         
