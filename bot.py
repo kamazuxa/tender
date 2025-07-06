@@ -1,5 +1,5 @@
 import logging
-from config import TELEGRAM_BOT_TOKEN, TENDER_GURU_API_KEY
+from config import TELEGRAM_BOT_TOKEN, TENDER_GURU_API_KEY, DAMIA_API_KEY
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 import re
@@ -8,13 +8,29 @@ import aiohttp
 import os
 import tempfile
 import shutil
+import json
 
+# Настраиваем подробное логирование
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
+# Создаем отдельный логгер для API
+api_logger = logging.getLogger('API_LOGGER')
+api_logger.setLevel(logging.INFO)
+
+# Создаем файловый обработчик для API логов
+if not os.path.exists('logs'):
+    os.makedirs('logs')
+file_handler = logging.FileHandler('logs/api_responses.log', encoding='utf-8')
+file_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+api_logger.addHandler(file_handler)
+
 TENDERGURU_API_URL = "https://www.tenderguru.ru/api2.3/export"
+DAMIA_API_URL = "https://api.damia.ru/zakupki"
 
 platforms_cache = None
 
@@ -59,10 +75,12 @@ async def get_platforms_from_tenderguru():
     return platforms
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Я TenderBot. Введите /help для справки.")
+    if update.message:
+        await update.message.reply_text("Привет! Я TenderBot. Введите /help для справки.")
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Доступные команды:\n/start — начать\n/help — справка")
+    if update.message:
+        await update.message.reply_text("Доступные команды:\n/start — начать\n/help — справка")
 
 async def extract_tender_info_from_url(url):
     """
@@ -182,19 +200,20 @@ class TenderGuruAPI:
         return None
 
 async def analyze_tender_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [[InlineKeyboardButton("Отправить ссылку на тендер", callback_data="wait_for_link")]]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(
-        "Отправь ссылку на тендер с любой площадки:\n"
-        "✅ zakupki.gov.ru\n"
-        "✅ sberbank-ast.ru\n"
-        "✅ b2b-center.ru\n"
-        "✅ roseltorg.ru\n"
-        "✅ torgi.gov.ru\n"
-        "✅ zakazrf.ru\n"
-        "✅ и др.",
-        reply_markup=reply_markup
-    )
+    if update.message:
+        keyboard = [[InlineKeyboardButton("Отправить ссылку на тендер", callback_data="wait_for_link")]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.message.reply_text(
+            "Отправь ссылку на тендер с любой площадки:\n"
+            "✅ zakupki.gov.ru\n"
+            "✅ sberbank-ast.ru\n"
+            "✅ b2b-center.ru\n"
+            "✅ roseltorg.ru\n"
+            "✅ torgi.gov.ru\n"
+            "✅ zakazrf.ru\n"
+            "✅ и др.",
+            reply_markup=reply_markup
+        )
 
 async def get_tender_documents(api_tender_info_url):
     docs = []
@@ -207,63 +226,183 @@ async def get_tender_documents(api_tender_info_url):
                         docs.extend(data[key])
     return docs
 
-async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    message = update.message
-    if message and message.text:
-        url = message.text.strip()
-        reg_number, platform = await extract_tender_info_from_url(url)
-        if not reg_number:
-            await message.reply_text(
-                "❗ Не удалось определить номер тендера из ссылки.\n"
-                "Проверьте корректность ссылки или попробуйте другую площадку."
-            )
-            return
-        if not platform:
-            await message.reply_text(
-                "❗ Не удалось определить площадку по ссылке.\n"
-                "Проверьте корректность ссылки или попробуйте другую площадку."
-            )
-            return
-        data = await TenderGuruAPI.get_tender_by_number(reg_number)
-        if data:
-            api_tender_info_url = None
-            # Пытаемся найти ссылку на подробный JSON
-            if hasattr(data, 'get'):
-                api_tender_info_url = data.get('ApiTenderInfo')
-            if not api_tender_info_url:
-                # Иногда это поле может быть в item
-                api_tender_info_url = None
-                # (оставляем None, если не найдено)
-            keyboard = [
-                [InlineKeyboardButton("🧠 Анализ документации", callback_data=f"analyze_docs_{reg_number}")],
-                [InlineKeyboardButton("📎 Документы", callback_data=f"show_docs_{reg_number}")],
-                [InlineKeyboardButton("📥 Скачать документацию", callback_data=f"download_docs_{reg_number}")],
-                [InlineKeyboardButton("📊 Похожие закупки", callback_data="similar_tenders")]
-            ]
-            reply_markup = InlineKeyboardMarkup(keyboard)
-            text = (
-                f"📄 Тендер №{data['reg_number']}\n\n"
-                f"🏛️ Заказчик: {data['customer_name']}\n"
-                f"📝 Предмет: {data['purchase_subject']}\n"
-                f"💰 НМЦК: {data['price']}\n"
-                f"📅 Дедлайн: {data['deadline']}\n"
-                f"📍 Место поставки: {data['location']}\n"
-                f"🌐 Площадка: {platform}"
-            )
-            # Сохраняем ссылку на подробный JSON в context.user_data
-            if api_tender_info_url:
-                context.user_data[f'api_tender_info_url_{reg_number}'] = api_tender_info_url
-            await message.reply_text(text, reply_markup=reply_markup)
-        else:
-            await message.reply_text(
-                "❗ Не удалось найти тендер по номеру.\n"
-                "Возможно, он отсутствует в базе TenderGuru или ссылка некорректна."
-            )
+def extract_tender_number(url):
+    """
+    Извлекает номер тендера из URL.
+    """
+    if not url:
+        return None
+    
+    # Парсим URL
+    parsed = urlparse(url)
+    domain = parsed.netloc.lower()
+    
+    # Извлекаем номер из query параметров
+    query_params = parse_qs(parsed.query)
+    for key in ["regNumber", "tenderid", "procedureId", "id", "lot", "purchase", "auction", "number"]:
+        if key in query_params:
+            return query_params[key][0]
+    
+    # Ищем номер в пути URL
+    path = parsed.path
+    number_patterns = [
+        r'/(\d{6,})',  # Любое число от 6 цифр
+        r'regNumber=(\d+)',
+        r'tenderid=(\d+)',
+        r'procedureId=(\d+)',
+        r'id=(\d+)'
+    ]
+    
+    for pattern in number_patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    
+    return None
+
+async def send_tender_card(update, context, tender_info, tender_number, source=None):
+    """
+    Отправляет карточку тендера с кнопками.
+    """
+    # Определяем источник данных
+    if source:
+        api_source = source
     else:
-        if message:
-            await message.reply_text(
-                "❗ Пожалуйста, отправьте ссылку на тендер текстом."
-            )
+        api_source = tender_info.get('source', 'unknown')
+    
+    # Формируем текст карточки
+    text = (
+        f"📄 **Тендер №{tender_info['id']}**\n\n"
+        f"📝 **Предмет:** {tender_info['name']}\n"
+        f"📍 **Регион:** {tender_info['region']}\n"
+        f"🏗️ **Категория:** {tender_info['category']}\n"
+        f"💰 **Начальная цена:** {tender_info['price']}\n"
+        f"📅 **Дедлайн подачи заявок:** {tender_info['deadline']}\n"
+        f"🗓️ **Дата публикации:** {tender_info['published']}\n"
+        f"📎 **Площадка:** {tender_info['etp']}\n"
+        f"🏢 **Заказчик:** {tender_info['customer']}\n"
+    )
+    
+    # Добавляем статус для Damia API
+    if api_source == "damia" and tender_info.get('status'):
+        text += f"📊 **Статус:** {tender_info['status']}\n"
+    
+    # Добавляем ссылку
+    if tender_info.get('url'):
+        text += f"🔗 [Открыть тендер]({tender_info['url']})\n"
+    
+    text += f"\n📊 **Источник:** {api_source.upper()}"
+    
+    # Создаем кнопки
+    keyboard = []
+    
+    # Кнопки для разных API
+    if api_source == "tenderguru":
+        keyboard.extend([
+            [InlineKeyboardButton("🔍 Damia API", callback_data=f"damia_{tender_number}")],
+            [InlineKeyboardButton("🔙 Назад к выбору", callback_data=f"back_to_tender_{tender_number}")]
+        ])
+    elif api_source == "damia":
+        keyboard.extend([
+            [InlineKeyboardButton("🔍 TenderGuru", callback_data=f"tenderguru_{tender_number}")],
+            [InlineKeyboardButton("🔙 Назад к выбору", callback_data=f"back_to_tender_{tender_number}")]
+        ])
+    else:
+        # Если источник не определен, показываем обе кнопки
+        keyboard.extend([
+            [InlineKeyboardButton("🔍 TenderGuru", callback_data=f"tenderguru_{tender_number}")],
+            [InlineKeyboardButton("🔍 Damia API", callback_data=f"damia_{tender_number}")]
+        ])
+    
+    # Добавляем кнопки для проверки поставщика (если есть ИНН)
+    if tender_info.get('customers') and len(tender_info['customers']) > 0:
+        customer_inn = tender_info['customers'][0].get('inn')
+        if customer_inn:
+            keyboard.append([InlineKeyboardButton("🔍 Проверить поставщика", callback_data=f"check_supplier_{tender_number}_{customer_inn}")])
+    
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    # Отправляем сообщение
+    if update.callback_query:
+        await update.callback_query.edit_message_text(
+            text, 
+            reply_markup=reply_markup, 
+            disable_web_page_preview=True, 
+            parse_mode='Markdown'
+        )
+    elif update.message:
+        await update.message.reply_text(
+            text, 
+            reply_markup=reply_markup, 
+            disable_web_page_preview=True, 
+            parse_mode='Markdown'
+        )
+
+async def download_documents(update, context, tender_id):
+    """
+    Скачивает документы тендера.
+    """
+    query = update.callback_query
+    await query.edit_message_text("⏳ Скачиваю документацию...")
+    
+    try:
+        # Пытаемся скачать документы
+        archive_path = await download_all_files(tender_id)
+        
+        if archive_path and os.path.exists(archive_path):
+            # Отправляем архив
+            with open(archive_path, 'rb') as f:
+                await context.bot.send_document(
+                    chat_id=query.message.chat_id,
+                    document=f,
+                    filename=f"tender_{tender_id}_docs.zip"
+                )
+            # Удаляем временный файл
+            os.remove(archive_path)
+            await query.edit_message_text("✅ Документация успешно скачана!")
+        else:
+            await query.edit_message_text("❌ Документация не найдена или не удалось скачать файлы.")
+    except Exception as e:
+        logging.error(f"Error downloading documents: {e}")
+        await query.edit_message_text("❌ Ошибка при скачивании документации.")
+
+async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обработчик для ожидания ссылки на тендер."""
+    if update.message and update.message.text:
+        link = update.message.text.strip()
+        logging.info(f"Received tender link: {link}")
+        
+        # Показываем сообщение о начале анализа
+        await update.message.reply_text("🔍 Анализирую тендер...")
+        
+        # Извлекаем номер тендера из ссылки
+        tender_number = extract_tender_number(link)
+        logging.info(f"Extracted tender number: {tender_number}")
+        
+        if not tender_number:
+            await update.message.reply_text("❌ Не удалось извлечь номер тендера из ссылки. Проверьте формат ссылки.")
+            return
+        
+        # Пробуем получить данные из TenderGuru
+        logging.info("Trying TenderGuru API first...")
+        tender_data = await get_tender_info(tender_number)
+        
+        if tender_data:
+            logging.info("TenderGuru API returned data, parsing...")
+            tender_info = parse_tender_info(tender_data)
+            await send_tender_card(update, context, tender_info, tender_number)
+        else:
+            logging.info("TenderGuru API returned no data, trying Damia API...")
+            # Если TenderGuru не дал данных, пробуем Damia API
+            damia_data = await DamiaAPI.get_tender_by_number(tender_number)
+            
+            if damia_data:
+                logging.info("Damia API returned data, parsing...")
+                tender_info = parse_damia_tender_info(damia_data)
+                await send_tender_card(update, context, tender_info, tender_number)
+            else:
+                logging.warning("Both APIs returned no data")
+                await update.message.reply_text("❌ Не удалось найти информацию о тендере в доступных источниках.")
 
 async def download_all_files(reg_number):
     """
@@ -319,51 +458,543 @@ async def download_all_files(reg_number):
     return None
 
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обработчик нажатий на кнопки."""
     query = update.callback_query
-    if query:
-        await query.answer()
-        data = getattr(query, 'data', None)
-        if data:
-            if data.startswith("analyze_docs_"):
-                await query.edit_message_text("🧠 Анализ документации (будет реализовано)")
-            elif data.startswith("show_docs_"):
-                reg_number = data.split('_')[-1]
-                api_tender_info_url = context.user_data.get(f'api_tender_info_url_{reg_number}')
-                if not api_tender_info_url:
-                    await query.edit_message_text("❗ Не удалось найти ссылку на подробную информацию о тендере.")
-                    return
-                docs = await get_tender_documents(api_tender_info_url)
-                buttons = []
-                for doc in docs:
-                    url = doc.get('url') or doc.get('Url')
-                    name = doc.get('name') or doc.get('Name') or url
-                    if url and name:
-                        buttons.append([InlineKeyboardButton(text=name, url=url)])
-                if buttons:
-                    reply_markup = InlineKeyboardMarkup(buttons)
-                    await query.edit_message_text("📎 Документы по тендеру:", reply_markup=reply_markup)
+    if query is None:
+        return
+    
+    await query.answer()
+    
+    data = query.data
+    if data is None:
+        return
+    
+    logging.info(f"Button pressed: {data}")
+    
+    if data.startswith("download_"):
+        # Обработка скачивания документов
+        tender_id = data.split("_")[1]
+        logging.info(f"Downloading documents for tender: {tender_id}")
+        await download_documents(update, context, tender_id)
+        
+    elif data.startswith("tenderguru_"):
+        # Анализ через TenderGuru API
+        tender_number = data.split("_", 1)[1]
+        logging.info(f"Analyzing tender {tender_number} via TenderGuru API")
+        
+        await query.edit_message_text("🔍 Анализирую через TenderGuru...")
+        
+        tender_data = await get_tender_info(tender_number)
+        if tender_data:
+            logging.info("TenderGuru API returned data")
+            tender_info = parse_tender_info(tender_data)
+            await send_tender_card(update, context, tender_info, tender_number, source="tenderguru")
+        else:
+            logging.warning("TenderGuru API returned no data")
+            await query.edit_message_text("❌ Не удалось получить данные через TenderGuru API")
+            
+    elif data.startswith("damia_"):
+        # Анализ через Damia API
+        tender_number = data.split("_", 1)[1]
+        logging.info(f"Analyzing tender {tender_number} via Damia API")
+        
+        await query.edit_message_text("🔍 Анализирую через Damia API...")
+        
+        damia_data = await DamiaAPI.get_tender_by_number(tender_number)
+        if damia_data:
+            logging.info("Damia API returned data")
+            tender_info = parse_damia_tender_info(damia_data)
+            await send_tender_card(update, context, tender_info, tender_number, source="damia")
+        else:
+            logging.warning("Damia API returned no data")
+            await query.edit_message_text("❌ Не удалось получить данные через Damia API")
+            
+    elif data.startswith("check_supplier_"):
+        # Проверка поставщика
+        parts = data.split("_")
+        if len(parts) >= 4:
+            tender_number = parts[2]
+            inn = parts[3]
+            logging.info(f"Checking supplier with INN: {inn}")
+            
+            await query.edit_message_text("🔍 Проверяю поставщика в реестрах...")
+            
+            # Проверяем в разных реестрах
+            rnp_result = await DamiaAPI.check_supplier_rnp(inn)
+            sro_result = await DamiaAPI.check_supplier_sro(inn)
+            eruz_result = await DamiaAPI.check_supplier_eruz(inn)
+            
+            # Формируем отчет
+            report = f"📋 **Результаты проверки ИНН {inn}:**\n\n"
+            
+            if rnp_result:
+                report += "🔴 **РНП (Реестр недобросовестных поставщиков):**\n"
+                report += f"Найдено записей: {len(rnp_result) if isinstance(rnp_result, list) else 1}\n\n"
+            else:
+                report += "✅ **РНП:** Записей не найдено\n\n"
+                
+            if sro_result:
+                report += "🟡 **СРО (Саморегулируемые организации):**\n"
+                report += f"Найдено записей: {len(sro_result) if isinstance(sro_result, list) else 1}\n\n"
+            else:
+                report += "✅ **СРО:** Записей не найдено\n\n"
+                
+            if eruz_result:
+                report += "🟡 **ЕРУЗ (Единый реестр участников закупок):**\n"
+                report += f"Найдено записей: {len(eruz_result) if isinstance(eruz_result, list) else 1}\n\n"
+            else:
+                report += "✅ **ЕРУЗ:** Записей не найдено\n\n"
+            
+            # Кнопка возврата
+            keyboard = [[InlineKeyboardButton("🔙 Назад к тендеру", callback_data=f"back_to_tender_{tender_number}")]]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
+            await query.edit_message_text(report, reply_markup=reply_markup, parse_mode='Markdown')
+        
+    elif data.startswith("back_to_tender_"):
+        # Возврат к карточке тендера
+        tender_number = data.split("_", 3)[3]
+        logging.info(f"Returning to tender card: {tender_number}")
+        
+        # Показываем кнопки выбора API
+        keyboard = [
+            [InlineKeyboardButton("🔍 TenderGuru", callback_data=f"tenderguru_{tender_number}")],
+            [InlineKeyboardButton("🔍 Damia API", callback_data=f"damia_{tender_number}")]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        await query.edit_message_text(
+            "🔍 Выберите источник для анализа тендера:",
+            reply_markup=reply_markup
+        )
+    elif data == "wait_for_link":
+        await query.edit_message_text("Отправьте ссылку на тендер сообщением.")
+
+async def get_tender_info(tender_number):
+    """
+    Получает информацию о тендере из TenderGuru API.
+    """
+    params = {
+        "key": TENDER_GURU_API_KEY,
+        "tender": tender_number
+    }
+    
+    logging.info(f"Requesting tender from TenderGuru API: {params}")
+    
+    async with aiohttp.ClientSession() as session:
+        async with session.get(TENDERGURU_API_URL, params=params) as resp:
+            logging.info(f"TenderGuru API response status: {resp.status}")
+            if resp.status == 200:
+                data = await resp.json(content_type=None)
+                
+                # Логируем полный ответ
+                log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
+                
+                if isinstance(data, dict) and tender_number in data:
+                    return data[tender_number]
+                elif isinstance(data, list) and len(data) > 0:
+                    # Если API вернул список, берем первый элемент
+                    return data[0]
                 else:
-                    await query.edit_message_text("Документация по тендеру не найдена.")
-            elif data.startswith("download_docs_"):
-                reg_number = data.split('_')[-1]
-                await query.edit_message_text("⏳ Скачиваем документацию...")
-                archive_path = await download_all_files(reg_number)
-                chat_id = query.message.chat_id if query.message else None
-                if archive_path and chat_id:
-                    try:
-                        await context.bot.send_document(chat_id=chat_id, document=open(archive_path, "rb"), filename=f"tender_{reg_number}_docs.zip")
-                        logging.info(f"Sent archive {archive_path} to chat {chat_id}")
-                    except Exception as e:
-                        logging.error(f"Error sending archive to chat {chat_id}: {e}")
-                    os.remove(archive_path)
+                    logging.warning(f"No tender found in TenderGuru API for tender_number {tender_number}")
+            else:
+                logging.error(f"Failed to get tender from TenderGuru API {tender_number}: {resp.status}")
+    return None
+
+def log_api_response(api_name, endpoint, params, response_data, status_code=200):
+    """
+    Логирует полные ответы API в файл и консоль
+    """
+    log_entry = {
+        "timestamp": logging.Formatter().formatTime(logging.LogRecord("", 0, "", 0, "", (), None)),
+        "api": api_name,
+        "endpoint": endpoint,
+        "params": params,
+        "status_code": status_code,
+        "response": response_data
+    }
+    
+    # Логируем в файл
+    api_logger.info(f"=== {api_name.upper()} API RESPONSE ===")
+    api_logger.info(f"Endpoint: {endpoint}")
+    api_logger.info(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
+    api_logger.info(f"Status: {status_code}")
+    api_logger.info(f"Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
+    api_logger.info("=" * 50)
+    
+    # Логируем в консоль
+    print(f"\n{'='*60}")
+    print(f"🔍 {api_name.upper()} API RESPONSE")
+    print(f"{'='*60}")
+    print(f"📡 Endpoint: {endpoint}")
+    print(f"🔧 Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
+    print(f"📊 Status: {status_code}")
+    print(f"📄 Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
+    print(f"{'='*60}\n")
+
+def parse_tender_info(data):
+    """
+    Преобразует словарь тендера из TenderGuru API в структуру для UI-отображения.
+    Извлекает МАКСИМАЛЬНО возможную информацию.
+    """
+    def safe_get(key, default="—"):
+        return data.get(key) or default
+
+    price_raw = safe_get('Price', '')
+    if price_raw and price_raw.isdigit():
+        price = f"{int(price_raw):,} ₽".replace(",", " ")
+    else:
+        price = "Не указано"
+
+    # Извлекаем ВСЮ доступную информацию
+    tender_info = {
+        "id": safe_get('ID'),
+        "name": safe_get('TenderName'),
+        "region": safe_get('Region'),
+        "category": safe_get('Category'),
+        "price": price,
+        "deadline": safe_get('EndTime'),
+        "published": safe_get('Date'),
+        "etp": safe_get('Etp'),
+        "url": safe_get('TenderLinkInner'),
+        "customer": safe_get('Customer'),
+        "tender_num_outer": safe_get('TenderNumOuter'),
+        "fz": safe_get('Fz'),
+        "api_tender_info": safe_get('ApiTenderInfo'),
+        "user_id": safe_get('User_id'),
+        "search_fragment": data.get('searchFragmentXML', {}),
+        "source": "tenderguru",
+        "raw_data": data  # Сохраняем сырые данные для полного анализа
+    }
+
+    # Логируем извлеченную информацию
+    logging.info(f"Extracted TenderGuru data: {json.dumps(tender_info, ensure_ascii=False, indent=2)}")
+    
+    return tender_info
+
+class DamiaAPI:
+    """
+    Класс для работы с API-Закупки (damia.ru)
+    """
+    @staticmethod
+    async def get_tender_by_number(reg_number):
+        """
+        Получает информацию о закупке по номеру извещения.
+        """
+        if not reg_number:
+            logging.error("No reg_number provided to DamiaAPI.get_tender_by_number")
+            return None
+        
+        params = {
+            "regn": reg_number,
+            "key": DAMIA_API_KEY
+        }
+        logging.info(f"Requesting tender from Damia API: {params}")
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{DAMIA_API_URL}/zakupka", params=params) as resp:
+                logging.info(f"Damia API response status: {resp.status}")
+                if resp.status == 200:
+                    data = await resp.json(content_type=None)
+                    
+                    # Логируем полный ответ
+                    log_api_response("Damia", f"{DAMIA_API_URL}/zakupka", params, data, resp.status)
+                    
+                    if reg_number in data:
+                        tender_data = data[reg_number]
+                        return tender_data
+                    else:
+                        logging.warning(f"No tender found in Damia API for reg_number {reg_number}")
                 else:
-                    if chat_id:
-                        await context.bot.send_message(chat_id=chat_id, text="Документация не найдена или не удалось скачать файлы.")
-                    logging.warning(f"Документация не найдена или не удалось скачать файлы для {reg_number}")
-            elif data == "similar_tenders":
-                await query.edit_message_text("📊 Похожие закупки (будет реализовано позже)")
-            elif data == "wait_for_link":
-                await query.edit_message_text("Отправьте ссылку на тендер сообщением.")
+                    logging.error(f"Failed to get tender from Damia API {reg_number}: {resp.status}")
+        return None
+
+    @staticmethod
+    async def search_tenders(query, from_date=None, to_date=None, region=None, min_price=None, max_price=None):
+        """
+        Поиск закупок по ключевым словам и параметрам.
+        """
+        params = {
+            "q": query,
+            "key": DAMIA_API_KEY
+        }
+        
+        if from_date:
+            params["from_date"] = from_date
+        if to_date:
+            params["to_date"] = to_date
+        if region:
+            params["region"] = region
+        if min_price:
+            params["min_price"] = min_price
+        if max_price:
+            params["max_price"] = max_price
+            
+        logging.info(f"Searching tenders in Damia API: {params}")
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{DAMIA_API_URL}/zsearch", params=params) as resp:
+                if resp.status == 200:
+                    data = await resp.json(content_type=None)
+                    log_api_response("Damia", f"{DAMIA_API_URL}/zsearch", params, data, resp.status)
+                    return data
+                else:
+                    logging.error(f"Failed to search tenders in Damia API: {resp.status}")
+        return None
+
+    @staticmethod
+    async def check_supplier_rnp(inn):
+        """
+        Проверяет наличие поставщика в реестре недобросовестных поставщиков.
+        """
+        params = {
+            "inn": inn,
+            "key": DAMIA_API_KEY
+        }
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{DAMIA_API_URL}/rnp", params=params) as resp:
+                if resp.status == 200:
+                    data = await resp.json(content_type=None)
+                    log_api_response("Damia", f"{DAMIA_API_URL}/rnp", params, data, resp.status)
+                    return data
+                else:
+                    logging.error(f"Failed to check RNP in Damia API: {resp.status}")
+        return None
+
+    @staticmethod
+    async def check_supplier_sro(req):
+        """
+        Проверяет наличие в реестре саморегулируемых организаций.
+        """
+        params = {
+            "req": req,
+            "key": DAMIA_API_KEY
+        }
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{DAMIA_API_URL}/sro", params=params) as resp:
+                if resp.status == 200:
+                    data = await resp.json(content_type=None)
+                    log_api_response("Damia", f"{DAMIA_API_URL}/sro", params, data, resp.status)
+                    return data
+                else:
+                    logging.error(f"Failed to check SRO in Damia API: {resp.status}")
+        return None
+
+    @staticmethod
+    async def check_supplier_eruz(req):
+        """
+        Проверяет наличие в едином реестре участников закупок.
+        """
+        params = {
+            "req": req,
+            "key": DAMIA_API_KEY
+        }
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{DAMIA_API_URL}/eruz", params=params) as resp:
+                if resp.status == 200:
+                    data = await resp.json(content_type=None)
+                    log_api_response("Damia", f"{DAMIA_API_URL}/eruz", params, data, resp.status)
+                    return data
+                else:
+                    logging.error(f"Failed to check ERUZ in Damia API: {resp.status}")
+        return None
+
+def parse_damia_tender_info(data):
+    """
+    Преобразует данные тендера из Damia API в унифицированный формат.
+    Извлекает МАКСИМАЛЬНО возможную информацию.
+    """
+    def safe_get(obj, key, default="—"):
+        if isinstance(obj, dict):
+            return obj.get(key) or default
+        return default
+
+    # Извлекаем основную информацию
+    region = safe_get(data, 'Регион')
+    fz = safe_get(data, 'ФЗ')
+    date_publ = safe_get(data, 'ДатаПубл')
+    date_okonch = safe_get(data, 'ДатаОконч')
+    date_nach = safe_get(data, 'ДатаНач')
+    time_nach = safe_get(data, 'ВремяНач')
+    time_okonch = safe_get(data, 'ВремяОконч')
+    date_rassm = safe_get(data, 'ДатаРассм')
+    date_aukts = safe_get(data, 'ДатаАукц')
+    time_aukts = safe_get(data, 'ВремяАукц')
+    
+    # Информация о заказчике (полная)
+    zakazchik = data.get('Заказчик', [])
+    customer_info = []
+    if isinstance(zakazchik, list):
+        for cust in zakazchik:
+            customer_info.append({
+                "ogrn": safe_get(cust, 'ОГРН'),
+                "inn": safe_get(cust, 'ИНН'),
+                "name_full": safe_get(cust, 'НаимПолн'),
+                "name_short": safe_get(cust, 'НаимСокр'),
+                "address": safe_get(cust, 'АдресПолн'),
+                "head_fio": safe_get(cust, 'РукФИО'),
+                "head_inn": safe_get(cust, 'РукИННФЛ')
+            })
+    elif isinstance(zakazchik, dict):
+        customer_info.append({
+            "ogrn": safe_get(zakazchik, 'ОГРН'),
+            "inn": safe_get(zakazchik, 'ИНН'),
+            "name_full": safe_get(zakazchik, 'НаимПолн'),
+            "name_short": safe_get(zakazchik, 'НаимСокр'),
+            "address": safe_get(zakazchik, 'АдресПолн'),
+            "head_fio": safe_get(zakazchik, 'РукФИО'),
+            "head_inn": safe_get(zakazchik, 'РукИННФЛ')
+        })
+    
+    # Размещающая организация
+    razm_org = data.get('РазмОрг', {})
+    razm_org_info = {
+        "ogrn": safe_get(razm_org, 'ОГРН'),
+        "inn": safe_get(razm_org, 'ИНН'),
+        "name_full": safe_get(razm_org, 'НаимПолн'),
+        "name_short": safe_get(razm_org, 'НаимСокр'),
+        "address": safe_get(razm_org, 'АдресПолн'),
+        "head_fio": safe_get(razm_org, 'РукФИО'),
+        "head_inn": safe_get(razm_org, 'РукИННФЛ')
+    }
+    
+    # Контакты
+    kontakty = data.get('Контакты', {})
+    contacts_info = {
+        "resp_person": safe_get(kontakty, 'ОтвЛицо'),
+        "phone": safe_get(kontakty, 'Телефон'),
+        "email": safe_get(kontakty, 'Email')
+    }
+    
+    # Информация о продукте (полная)
+    produkt = data.get('Продукт', {})
+    product_info = {
+        "okpd": safe_get(produkt, 'ОКПД'),
+        "name": safe_get(produkt, 'Название'),
+        "objects": produkt.get('ОбъектыЗак', [])
+    }
+    
+    # Начальная цена (полная)
+    nach_cena = data.get('НачЦена', {})
+    price_info = {
+        "amount": safe_get(nach_cena, 'Сумма'),
+        "currency_code": safe_get(nach_cena, 'ВалютаКод'),
+        "currency_name": safe_get(nach_cena, 'ВалютаНаим', 'Российский рубль')
+    }
+    
+    # Обеспечения
+    obesp_uchast = data.get('ОбеспУчаст', {})
+    obesp_isp = data.get('ОбеспИсп', {})
+    obesp_garant = data.get('ОбеспГарант', {})
+    
+    # ЭТП
+    etp = data.get('ЭТП', {})
+    etp_info = {
+        "code": safe_get(etp, 'Код'),
+        "name": safe_get(etp, 'Наименование'),
+        "url": safe_get(etp, 'Url')
+    }
+    
+    # Документы (полная информация)
+    documents = data.get('Документы', [])
+    docs_info = []
+    for doc in documents:
+        docs_info.append({
+            "name": safe_get(doc, 'Название'),
+            "date": safe_get(doc, 'ДатаРазм'),
+            "edition": safe_get(doc, 'Редакция'),
+            "files": doc.get('Файлы', [])
+        })
+    
+    # Протокол
+    protokol = data.get('Протокол', {})
+    protocol_info = {
+        "type": safe_get(protokol, 'Тип'),
+        "number": safe_get(protokol, 'Номер'),
+        "date": safe_get(protokol, 'Дата'),
+        "applications": protokol.get('Заявки', []),
+        "additional_info": safe_get(protokol, 'ДопИнфо'),
+        "url": safe_get(protokol, 'Url')
+    }
+    
+    # Контракты
+    kontrakty = data.get('Контракты', [])
+    
+    # Статус
+    status = data.get('Статус', {})
+    status_info = {
+        "status": safe_get(status, 'Статус'),
+        "reason": safe_get(status, 'Причина'),
+        "date": safe_get(status, 'Дата')
+    }
+    
+    # Условия
+    usloviya = data.get('Условия', {})
+    
+    # Форматируем цену для отображения
+    if price_info["amount"] and str(price_info["amount"]).replace('.', '').isdigit():
+        try:
+            price_display = f"{float(price_info['amount']):,.0f} ₽".replace(",", " ")
+        except:
+            price_display = f"{price_info['amount']} {price_info['currency_name']}"
+    else:
+        price_display = "Не указано"
+    
+    # Формируем полную карточку
+    tender_info = {
+        "id": data.get('РегНомер', '—'),
+        "name": product_info["name"],
+        "region": region,
+        "category": f"ФЗ-{fz}" if fz else "—",
+        "price": price_display,
+        "deadline": date_okonch,
+        "published": date_publ,
+        "etp": etp_info["name"],
+        "url": etp_info["url"],
+        "customer": customer_info[0]["name_full"] if customer_info else "Не указано",
+        "status": status_info["status"],
+        "source": "damia",
+        
+        # Дополнительная информация
+        "fz": fz,
+        "date_start": date_nach,
+        "time_start": time_nach,
+        "time_end": time_okonch,
+        "date_consideration": date_rassm,
+        "date_auction": date_aukts,
+        "time_auction": time_aukts,
+        "customers": customer_info,
+        "razm_org": razm_org_info,
+        "contacts": contacts_info,
+        "product": product_info,
+        "price_details": price_info,
+        "obesp_uchast": obesp_uchast,
+        "obesp_isp": obesp_isp,
+        "obesp_garant": obesp_garant,
+        "etp_details": etp_info,
+        "documents": docs_info,
+        "protocol": protocol_info,
+        "contracts": kontrakty,
+        "status_details": status_info,
+        "conditions": usloviya,
+        "smp_sono": data.get('СМПиСОНО', False),
+        "sposob_razm": safe_get(data, 'СпособРазм'),
+        "razm_rol": safe_get(data, 'РазмРоль'),
+        "mesto_postav": safe_get(data, 'МестоПостав'),
+        "srok_postav": safe_get(data, 'СрокПостав'),
+        "avans_procent": data.get('АвансПроцент', 0),
+        
+        # Сохраняем сырые данные
+        "raw_data": data
+    }
+
+    # Логируем извлеченную информацию
+    logging.info(f"Extracted Damia data: {json.dumps(tender_info, ensure_ascii=False, indent=2)}")
+    
+    return tender_info
 
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
