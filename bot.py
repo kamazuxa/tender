@@ -710,7 +710,13 @@ async def get_tender_info(tender_number):
                         elif isinstance(data, list) and len(data) > 0:
                             print(f"\n✅ TenderGuru API returned list with {len(data)} items", flush=True)
                             logging.info(f"TenderGuru API returned list with {len(data)} items")
-                            # Если API вернул список, берем первый элемент
+                            # Пропускаем элементы, где только ключ 'Total'
+                            for item in data:
+                                if isinstance(item, dict) and any(k in item for k in ['ID', 'TenderName', 'Name', 'id']):
+                                    print(f"\n✅ Found tender item in list: {item}", flush=True)
+                                    logging.info(f"Found tender item in list: {item}")
+                                    return item
+                            # Если не нашли — возвращаем первый элемент (для отладки)
                             return data[0]
                         
                         print(f"\n⚠️ No tender found in TenderGuru API response for tender_number {tender_number}", flush=True)
