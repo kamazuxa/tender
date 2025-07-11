@@ -1154,10 +1154,12 @@ def parse_damia_tender_info(data):
     usloviya = data.get('Условия', {})
     
     # Форматируем цену для отображения
-    if price_info["amount"] and str(price_info["amount"]).replace('.', '').isdigit():
+    amount_raw = str(price_info["amount"]).replace("\xa0", " ")
+    normalized = amount_raw.replace(" ", "").replace(",", ".")
+    if price_info["amount"] and normalized.replace(".", "", 1).isdigit():
         try:
-            price_display = f"{float(price_info['amount']):,.0f} ₽".replace(",", " ")
-        except:
+            price_display = f"{float(normalized):,.0f} ₽".replace(",", " ")
+        except Exception:
             price_display = f"{price_info['amount']} {price_info['currency_name']}"
     else:
         price_display = "Не указано"
