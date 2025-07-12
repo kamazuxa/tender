@@ -53,22 +53,58 @@ class TenderDocumentDownloader:
         """
         docs = []
         
+        # Обрабатываем случай, когда данные переданы как список
         if isinstance(tender_data, list) and len(tender_data) > 0:
             # Берем первый элемент (пропускаем Total)
             item = tender_data[0]
             if isinstance(item, dict):
-                # Проверяем поле docsXML
-                if 'docsXML' in item and isinstance(item['docsXML'], dict):
-                    docs_data = item['docsXML']
-                    if 'document' in docs_data and isinstance(docs_data['document'], list):
-                        for doc in docs_data['document']:
-                            if isinstance(doc, dict) and 'link' in doc and 'name' in doc:
-                                docs.append({
-                                    'url': doc['link'],
-                                    'name': doc['name'],
-                                    'size': doc.get('size', 'Неизвестно')
-                                })
-                                logging.info(f"Found document: {doc['name']} -> {doc['link']}")
+                docs.extend(self._extract_docs_from_item(item))
+        
+        # Обрабатываем случай, когда данные переданы как словарь
+        elif isinstance(tender_data, dict):
+            docs.extend(self._extract_docs_from_item(tender_data))
+        
+        return docs
+    
+    def _extract_docs_from_item(self, item: dict) -> List[Dict]:
+        """
+        Извлекает документы из одного элемента данных тендера
+        
+        Args:
+            item: Элемент данных тендера
+            
+        Returns:
+            List[Dict]: Список документов
+        """
+        docs = []
+        
+        # Проверяем поле docsXML
+        if 'docsXML' in item and isinstance(item['docsXML'], dict):
+            docs_data = item['docsXML']
+            if 'document' in docs_data and isinstance(docs_data['document'], list):
+                for doc in docs_data['document']:
+                    if isinstance(doc, dict) and 'link' in doc and 'name' in doc:
+                        docs.append({
+                            'url': doc['link'],
+                            'name': doc['name'],
+                            'size': doc.get('size', 'Неизвестно')
+                        })
+                        logging.info(f"Found document: {doc['name']} -> {doc['link']}")
+        
+        # Также проверяем другие возможные поля с документами
+        for key in ['files', 'attachments', 'docs', 'documents', 'download_links', 'documentation', 'Files', 'Documents']:
+            if key in item and isinstance(item[key], list):
+                for doc in item[key]:
+                    if isinstance(doc, dict):
+                        url = doc.get('url') or doc.get('link') or doc.get('Url') or doc.get('Link')
+                        name = doc.get('name') or doc.get('Name') or doc.get('filename') or doc.get('Filename')
+                        if url and name:
+                            docs.append({
+                                'url': url,
+                                'name': name,
+                                'size': doc.get('size') or doc.get('Size', 'Неизвестно')
+                            })
+                            logging.info(f"Found document in {key}: {name} -> {url}")
         
         return docs
     

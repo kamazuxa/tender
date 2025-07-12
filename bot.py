@@ -237,24 +237,33 @@ class TenderGuruAPI:
         return None
 
 async def analyze_tender_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message:
-        keyboard = [
-            [InlineKeyboardButton("🔍 TenderGuru", callback_data="wait_for_link_tenderguru")],
-            [InlineKeyboardButton("🔍 Damia API", callback_data="wait_for_link_damia")]
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text(
-            "Выберите источник для анализа тендеров:\n\n"
-            "📋 **Поддерживаемые площадки:**\n"
-            "✅ zakupki.gov.ru\n"
-            "✅ sberbank-ast.ru\n"
-            "✅ b2b-center.ru\n"
-            "✅ roseltorg.ru\n"
-            "✅ torgi.gov.ru\n"
-            "✅ zakazrf.ru\n"
-            "✅ и др.",
-            reply_markup=reply_markup
-        )
+    if update.message and update.message.text:
+        link = update.message.text.strip()
+        reg_number = extract_tender_number(link)
+        if not reg_number:
+            await update.message.reply_text("❌ Не удалось извлечь номер закупки из ссылки.")
+            return
+        # Определяем ФЗ
+        fz = None
+        if "fz223" in link or "223" in link:
+            fz = "fz223"
+        card, files = await fetch_tender_card_and_docs(reg_number, fz)
+        if not card:
+            await update.message.reply_text("❌ Не удалось получить информацию о закупке.")
+            return
+        # Формируем карточку
+        text = f"📄 <b>{card.get('TenderName', 'Без названия')}</b>\n"
+        text += f"💰 <b>Цена:</b> {card.get('Price', '—')}\n"
+        text += f"🏢 <b>Заказчик:</b> {card.get('Customer', '—')}\n"
+        text += f"🌍 <b>Регион:</b> {card.get('Region', '—')}\n"
+        text += f"🏛️ <b>Площадка:</b> {card.get('Etp', '—')}\n"
+        text += f"⏰ <b>Окончание приёма заявок:</b> {card.get('EndTime', '—')}\n"
+        # Кнопки для скачивания файлов
+        keyboard = []
+        for i, file in enumerate(files):
+            keyboard.append([InlineKeyboardButton(f"📥 Скачать {file['name']}", url=file['url'])])
+        reply_markup = InlineKeyboardMarkup(keyboard) if keyboard else None
+        await update.message.reply_text(text, reply_markup=reply_markup, parse_mode='HTML')
 
 async def get_tender_documents(api_tender_info_url):
     """
@@ -320,36 +329,18 @@ async def get_tender_documents(api_tender_info_url):
 
 def extract_tender_number(url):
     """
-    Извлекает номер тендера из URL.
+    Извлекает regNumber или id из ссылки на zakupki.gov.ru или TenderGuru
     """
     if not url:
         return None
-    
-    # Парсим URL
     parsed = urlparse(url)
-    domain = parsed.netloc.lower()
-    
-    # Извлекаем номер из query параметров
-    query_params = parse_qs(parsed.query)
-    for key in ["regNumber", "tenderid", "procedureId", "id", "lot", "purchase", "auction", "number"]:
-        if key in query_params:
-            return query_params[key][0]
-    
-    # Ищем номер в пути URL
-    path = parsed.path
-    number_patterns = [
-        r'/(\d{6,})',  # Любое число от 6 цифр
-        r'regNumber=(\d+)',
-        r'tenderid=(\d+)',
-        r'procedureId=(\d+)',
-        r'id=(\d+)'
-    ]
-    
-    for pattern in number_patterns:
-        match = re.search(pattern, url)
-        if match:
-            return match.group(1)
-    
+    qs = parse_qs(parsed.query)
+    for key in ["regNumber", "tend_num", "id", "purchaseNumber"]:
+        if key in qs:
+            return qs[key][0]
+    m = re.search(r'(\d{11,})', url)
+    if m:
+        return m.group(1)
     return None
 
 async def send_tender_card(update, context, tender_info, tender_number, source=None):
@@ -461,6 +452,43 @@ async def download_documents_via_api(update, context, tender_id, tender_data=Non
         if not tender_data:
             await query.edit_message_text("❌ Не удалось получить информацию о тендере.")
             return
+        
+        # Проверяем, есть ли ApiTenderInfo URL для получения документов
+        api_tender_info_url = None
+        if isinstance(tender_data, dict):
+            api_tender_info_url = tender_data.get('ApiTenderInfo') or tender_data.get('api_tender_info')
+        elif isinstance(tender_data, list) and len(tender_data) > 0:
+            api_tender_info_url = tender_data[0].get('ApiTenderInfo') or tender_data[0].get('api_tender_info')
+        
+        # Если есть URL для получения документов, делаем дополнительный запрос
+        if api_tender_info_url and api_tender_info_url != "—":
+            await query.edit_message_text("⏳ Загружаю документы тендера...")
+            
+            # Исправляем URL, добавляя API ключ
+            if 'api_code=' in api_tender_info_url:
+                # Заменяем пустой api_code на реальный ключ
+                api_tender_info_url = api_tender_info_url.replace('api_code=', f'api_code={TENDER_GURU_API_KEY}')
+            else:
+                # Добавляем api_code параметр
+                separator = '&' if '?' in api_tender_info_url else '?'
+                api_tender_info_url = f"{api_tender_info_url}{separator}api_code={TENDER_GURU_API_KEY}"
+            
+            logging.info(f"Requesting documents from: {api_tender_info_url}")
+            
+            # Делаем запрос к API для получения документов
+            async with aiohttp.ClientSession() as session:
+                async with session.get(api_tender_info_url) as resp:
+                    if resp.status == 200:
+                        documents_data = await resp.json(content_type=None)
+                        logging.info(f"Documents API response: {documents_data}")
+                        
+                        # Обновляем данные тендера с документами
+                        if isinstance(documents_data, list) and len(documents_data) > 0:
+                            tender_data = documents_data[0]
+                        elif isinstance(documents_data, dict):
+                            tender_data = documents_data
+                    else:
+                        logging.error(f"Failed to get documents: {resp.status}")
         
         await query.edit_message_text("⏳ Скачиваю документацию...")
         
@@ -1425,6 +1453,49 @@ def parse_damia_tender_info(data):
     logging.info(f"Extracted Damia data: {json.dumps(tender_info, ensure_ascii=False, indent=2)}")
     
     return tender_info
+
+async def fetch_tender_card_and_docs(reg_number, fz=None):
+    """
+    Получает карточку тендера и список файлов документации по номеру закупки (reg_number) или внутреннему id.
+    Возвращает (card, files), где card — словарь с основной инфой, files — список файлов (dict: name, url).
+    """
+    params = {"dtype": "json", "api_code": TENDER_GURU_API_KEY}
+    if reg_number.isdigit() and len(reg_number) > 10:
+        params["tend_num"] = reg_number
+    else:
+        params["id"] = reg_number
+    if fz == "fz223":
+        params["fz"] = "fz223"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(TENDERGURU_API_URL, params=params) as resp:
+            if resp.status != 200:
+                return None, []
+            data = await resp.json(content_type=None)
+            if isinstance(data, list):
+                card = data[0]
+            else:
+                card = data
+            # Сначала ищем DocLink1/2
+            files = []
+            for key in ["DocLink1", "DocLink2"]:
+                if card.get(key):
+                    files.append({"name": key, "url": card[key]})
+            # Если файлов нет — делаем второй запрос
+            if not files:
+                params2 = {"mode": "customerTenderDocs", "purchaseNumber": reg_number, "dtype": "json", "api_code": TENDER_GURU_API_KEY}
+                if fz == "fz223":
+                    params2["fz"] = "fz223"
+                async with session.get(TENDERGURU_API_URL, params=params2) as resp2:
+                    if resp2.status == 200:
+                        docs = await resp2.json(content_type=None)
+                        if isinstance(docs, list):
+                            for doc in docs:
+                                url = doc.get("View") or doc.get("DocPath")
+                                if url and not url.startswith("http"):
+                                    url = "https://www.tenderguru.ru" + url
+                                if url:
+                                    files.append({"name": doc.get("Filename", "Документ"), "url": url})
+            return card, files
 
 if __name__ == "__main__":
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
