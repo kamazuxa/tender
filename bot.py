@@ -23,11 +23,31 @@ api_logger.setLevel(logging.INFO)
 # Создаем файловый обработчик для API логов
 if not os.path.exists('logs'):
     os.makedirs('logs')
+
+# Основной лог-файл для всех API ответов
 file_handler = logging.FileHandler('logs/api_responses.log', encoding='utf-8')
 file_handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(formatter)
 api_logger.addHandler(file_handler)
+
+# Отдельный лог-файл для TenderGuru API
+tenderguru_handler = logging.FileHandler('logs/tenderguru_api.log', encoding='utf-8')
+tenderguru_handler.setLevel(logging.INFO)
+tenderguru_handler.setFormatter(formatter)
+api_logger.addHandler(tenderguru_handler)
+
+# Отдельный лог-файл для Damia API
+damia_handler = logging.FileHandler('logs/damia_api.log', encoding='utf-8')
+damia_handler.setLevel(logging.INFO)
+damia_handler.setFormatter(formatter)
+api_logger.addHandler(damia_handler)
+
+# Отдельный лог-файл для ошибок API
+error_handler = logging.FileHandler('logs/api_errors.log', encoding='utf-8')
+error_handler.setLevel(logging.ERROR)
+error_handler.setFormatter(formatter)
+api_logger.addHandler(error_handler)
 
 TENDERGURU_API_URL = "https://www.tenderguru.ru/api2.3/export"
 DAMIA_API_URL = "https://api.damia.ru/zakupki"
@@ -47,11 +67,15 @@ async def get_platforms_from_tenderguru():
     async with aiohttp.ClientSession() as session:
         for mode in ["eauc", "eauc_rgi"]:
             params = {"mode": mode, "dtype": "json", "api_code": TENDER_GURU_API_KEY}
+            # Логируем запрос к API
+            log_api_request("TenderGuru", TENDERGURU_API_URL, params)
             logging.info(f"Requesting platforms: {params}")
             async with session.get(TENDERGURU_API_URL, params=params) as resp:
                 logging.info(f"Response status: {resp.status}")
                 if resp.status == 200:
                     data = await resp.json(content_type=None)
+                    # Логируем полный ответ API
+                    log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
                     logging.info(f"Platforms API response: {data}")
                     if isinstance(data, list):
                         for item in data:
@@ -178,12 +202,16 @@ class TenderGuruAPI:
             "dtype": "json",
             "api_code": TENDER_GURU_API_KEY
         }
+        # Логируем запрос к API
+        log_api_request("TenderGuru", TENDERGURU_API_URL, params)
         logging.info(f"Requesting tender by number: {params}")
         async with aiohttp.ClientSession() as session:
             async with session.get(TENDERGURU_API_URL, params=params) as resp:
                 logging.info(f"Tender API response status: {resp.status}")
                 if resp.status == 200:
                     data = await resp.json(content_type=None)
+                    # Логируем полный ответ API
+                    log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
                     logging.info(f"Tender API response: {data}")
                     items = None
                     if isinstance(data, dict):
@@ -430,12 +458,16 @@ async def download_all_files(reg_number):
         "dtype": "json",
         "api_code": TENDER_GURU_API_KEY
     }
+    # Логируем запрос к API
+    log_api_request("TenderGuru", TENDERGURU_API_URL, params)
     logging.info(f"Requesting files for tender: {params}")
     async with aiohttp.ClientSession() as session:
         async with session.get(TENDERGURU_API_URL, params=params) as resp:
             logging.info(f"Files API response status: {resp.status}")
             if resp.status == 200:
                 data = await resp.json(content_type=None)
+                # Логируем полный ответ API
+                log_api_response("TenderGuru", TENDERGURU_API_URL, params, data, resp.status)
                 logging.info(f"Files API response: {data}")
                 items = data.get("Items")
                 if items and isinstance(items, list) and len(items) > 0:
@@ -655,6 +687,8 @@ async def get_tender_info(tender_number):
     ]
     
     for i, params in enumerate(params_variants):
+        # Логируем запрос к API
+        log_api_request("TenderGuru", TENDERGURU_API_URL, params)
         logging.info(f"Trying TenderGuru API variant {i+1}: {params}")
         
         async with aiohttp.ClientSession() as session:
@@ -739,12 +773,44 @@ async def get_tender_info(tender_number):
     logging.warning(f"All TenderGuru API variants failed for tender_number {tender_number}")
     return None
 
+def log_api_request(api_name, endpoint, params):
+    """
+    Логирует запросы к API в файл и консоль
+    """
+    timestamp = logging.Formatter().formatTime(logging.LogRecord('', 0, '', 0, '', (), None))
+    
+    # Логируем в файл
+    api_logger.info(f"=== {api_name.upper()} API REQUEST ===")
+    api_logger.info(f"Timestamp: {timestamp}")
+    api_logger.info(f"Endpoint: {endpoint}")
+    api_logger.info(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
+    api_logger.info("=" * 50)
+    
+    # Логируем в консоль с принудительным выводом
+    print(f"\n{'='*60}", flush=True)
+    print(f"🚀 {api_name.upper()} API REQUEST", flush=True)
+    print(f"{'='*60}", flush=True)
+    print(f"📅 Timestamp: {timestamp}", flush=True)
+    print(f"📡 Endpoint: {endpoint}", flush=True)
+    print(f"🔧 Params: {json.dumps(params, ensure_ascii=False, indent=2)}", flush=True)
+    print(f"{'='*60}\n", flush=True)
+    
+    # Также логируем через основной логгер
+    logging.info(f"=== {api_name.upper()} API REQUEST ===")
+    logging.info(f"Timestamp: {timestamp}")
+    logging.info(f"Endpoint: {endpoint}")
+    logging.info(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
+    logging.info("=" * 50)
+
 def log_api_response(api_name, endpoint, params, response_data, status_code=200):
     """
     Логирует полные ответы API в файл и консоль
     """
+    timestamp = logging.Formatter().formatTime(logging.LogRecord('', 0, '', 0, '', (), None))
+    
     # Логируем в файл
     api_logger.info(f"=== {api_name.upper()} API RESPONSE ===")
+    api_logger.info(f"Timestamp: {timestamp}")
     api_logger.info(f"Endpoint: {endpoint}")
     api_logger.info(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
     api_logger.info(f"Status: {status_code}")
@@ -755,6 +821,7 @@ def log_api_response(api_name, endpoint, params, response_data, status_code=200)
     print(f"\n{'='*60}", flush=True)
     print(f"🔍 {api_name.upper()} API RESPONSE", flush=True)
     print(f"{'='*60}", flush=True)
+    print(f"📅 Timestamp: {timestamp}", flush=True)
     print(f"📡 Endpoint: {endpoint}", flush=True)
     print(f"🔧 Params: {json.dumps(params, ensure_ascii=False, indent=2)}", flush=True)
     print(f"📊 Status: {status_code}", flush=True)
@@ -763,11 +830,19 @@ def log_api_response(api_name, endpoint, params, response_data, status_code=200)
     
     # Также логируем через основной логгер
     logging.info(f"=== {api_name.upper()} API RESPONSE ===")
+    logging.info(f"Timestamp: {timestamp}")
     logging.info(f"Endpoint: {endpoint}")
     logging.info(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
     logging.info(f"Status: {status_code}")
     logging.info(f"Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
     logging.info("=" * 50)
+    
+    # Если статус не 200, логируем ошибку отдельно
+    if status_code != 200:
+        api_logger.error(f"API ERROR - {api_name}: Status {status_code}")
+        api_logger.error(f"Endpoint: {endpoint}")
+        api_logger.error(f"Params: {json.dumps(params, ensure_ascii=False, indent=2)}")
+        api_logger.error(f"Response: {json.dumps(response_data, ensure_ascii=False, indent=2)}")
 
 def parse_tender_info(data):
     """
@@ -887,6 +962,8 @@ class DamiaAPI:
             "regn": reg_number,
             "key": DAMIA_API_KEY
         }
+        # Логируем запрос к API
+        log_api_request("Damia", f"{DAMIA_API_URL}/zakupka", params)
         logging.info(f"Requesting tender from Damia API: {params}")
         
         async with aiohttp.ClientSession() as session:
@@ -949,6 +1026,8 @@ class DamiaAPI:
         if max_price:
             params["max_price"] = max_price
             
+        # Логируем запрос к API
+        log_api_request("Damia", f"{DAMIA_API_URL}/zsearch", params)
         logging.info(f"Searching tenders in Damia API: {params}")
         
         async with aiohttp.ClientSession() as session:
@@ -971,6 +1050,9 @@ class DamiaAPI:
             "key": DAMIA_API_KEY
         }
         
+        # Логируем запрос к API
+        log_api_request("Damia", f"{DAMIA_API_URL}/rnp", params)
+        
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{DAMIA_API_URL}/rnp", params=params) as resp:
                 if resp.status == 200:
@@ -991,6 +1073,9 @@ class DamiaAPI:
             "key": DAMIA_API_KEY
         }
         
+        # Логируем запрос к API
+        log_api_request("Damia", f"{DAMIA_API_URL}/sro", params)
+        
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{DAMIA_API_URL}/sro", params=params) as resp:
                 if resp.status == 200:
@@ -1010,6 +1095,9 @@ class DamiaAPI:
             "req": req,
             "key": DAMIA_API_KEY
         }
+        
+        # Логируем запрос к API
+        log_api_request("Damia", f"{DAMIA_API_URL}/eruz", params)
         
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{DAMIA_API_URL}/eruz", params=params) as resp:

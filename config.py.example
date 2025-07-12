@@ -1,0 +1,11 @@
+# Конфигурация TenderBot
+# Скопируйте этот файл в config.py и заполните своими данными
+
+# Токен Telegram бота (получите у @BotFather)
+TELEGRAM_BOT_TOKEN = "your-telegram-bot-token-here"
+
+# API ключ TenderGuru (получите на https://www.tenderguru.ru/)
+TENDER_GURU_API_KEY = "your-tenderguru-api-key-here"
+
+# API ключ Damia (получите на https://api.damia.ru/)
+DAMIA_API_KEY = "your-damia-api-key-here" 
