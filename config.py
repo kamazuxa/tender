@@ -1,11 +1,10 @@
-# config.py
+# Конфигурация TenderBot
 
-# Получите токен у @BotFather в Telegram
-TELEGRAM_BOT_TOKEN = "your-telegram-bot-token-here"  # ЗАМЕНИТЕ НА РЕАЛЬНЫЙ ТОКЕН!
-TENDER_GURU_API_KEY = "your-tenderguru-api-key-here"
-EXPORTBASE_API_KEY = "your-exportbase-api-key-here"
-FSSP_API_KEY = "your-fssp-api-key-here"
-ARBITR_API_KEY = "your-arbitr-api-key-here"
-DAMIA_API_KEY = "67ac454f6a3fa85355aee5e41b6d154efc589aab"  # API-ключ для Damia API
+# Токен Telegram бота (получите у @BotFather)
+TELEGRAM_BOT_TOKEN = "your-telegram-bot-token-here"
 
-# Можно добавить другие настройки по мере необходимости
+# API ключ TenderGuru (получите на https://www.tenderguru.ru/)
+TENDER_GURU_API_KEY = "VTPM8lHUBOFw_GSb"
+
+# API ключ Damia (получите на https://api.damia.ru/)
+DAMIA_API_KEY = "your-damia-api-key-here"

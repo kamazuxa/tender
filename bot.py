@@ -9,6 +9,7 @@ import os
 import tempfile
 import shutil
 import json
+from downloader import download_tender_documents
 
 # Настраиваем подробное логирование
 logging.basicConfig(
@@ -278,7 +279,26 @@ async def get_tender_documents(api_tender_info_url):
                 log_api_response("TenderGuru", api_tender_info_url, {}, data, resp.status)
                 
                 docs = []
-                # Ищем документы в разных возможных ключах
+                
+                # Обрабатываем новый формат ответа API
+                if isinstance(data, list) and len(data) > 0:
+                    # Берем первый элемент (пропускаем Total)
+                    item = data[0]
+                    if isinstance(item, dict):
+                        # Проверяем поле docsXML
+                        if 'docsXML' in item and isinstance(item['docsXML'], dict):
+                            docs_data = item['docsXML']
+                            if 'document' in docs_data and isinstance(docs_data['document'], list):
+                                for doc in docs_data['document']:
+                                    if isinstance(doc, dict) and 'link' in doc and 'name' in doc:
+                                        docs.append({
+                                            'url': doc['link'],
+                                            'name': doc['name'],
+                                            'size': doc.get('size', 'Неизвестно')
+                                        })
+                                        logging.info(f"Found document: {doc['name']} -> {doc['link']}")
+                
+                # Также проверяем старые форматы для совместимости
                 for key in ['files', 'attachments', 'docs', 'documents', 'download_links', 'documentation', 'Files', 'Documents']:
                     if key in data and isinstance(data[key], list):
                         docs.extend(data[key])
@@ -368,8 +388,20 @@ async def send_tender_card(update, context, tender_info, tender_number, source=N
     # Создаем кнопки
     keyboard = []
     
-    # Кнопка для скачивания документов (если есть ApiTenderInfo URL)
+    # Кнопка для скачивания документов (если есть документы в docsXML или ApiTenderInfo URL)
+    has_documents = False
+    
+    # Проверяем наличие документов в docsXML
+    if tender_info.get('docs_xml') and isinstance(tender_info['docs_xml'], dict):
+        docs_data = tender_info['docs_xml']
+        if 'document' in docs_data and isinstance(docs_data['document'], list) and len(docs_data['document']) > 0:
+            has_documents = True
+    
+    # Проверяем наличие ApiTenderInfo URL
     if tender_info.get('api_tender_info') and tender_info['api_tender_info'] != "—":
+        has_documents = True
+    
+    if has_documents:
         keyboard.append([InlineKeyboardButton("📥 Скачать документы", callback_data=f"download_docs_{tender_number}")])
     
     # Кнопки для разных API
@@ -414,88 +446,60 @@ async def send_tender_card(update, context, tender_info, tender_number, source=N
             parse_mode='Markdown'
         )
 
-async def download_documents_via_api(update, context, tender_id):
+async def download_documents_via_api(update, context, tender_id, tender_data=None):
     """
-    Скачивает документы тендера через ApiTenderInfo URL.
+    Скачивает документы тендера используя модуль downloader.py
     """
     query = update.callback_query
     await query.edit_message_text("⏳ Получаю информацию о документах...")
     
     try:
-        # Сначала получаем данные тендера, чтобы найти ApiTenderInfo URL
-        tender_data = await get_tender_info(tender_id)
+        # Получаем данные тендера, если не переданы
+        if not tender_data:
+            tender_data = await get_tender_info(tender_id)
+        
         if not tender_data:
             await query.edit_message_text("❌ Не удалось получить информацию о тендере.")
             return
         
-        # Ищем ApiTenderInfo URL
-        api_tender_info_url = None
-        if isinstance(tender_data, dict):
-            api_tender_info_url = tender_data.get('ApiTenderInfo')
-        elif isinstance(tender_data, list) and len(tender_data) > 0:
-            for item in tender_data:
-                if isinstance(item, dict) and item.get('ApiTenderInfo'):
-                    api_tender_info_url = item.get('ApiTenderInfo')
-                    break
-        
-        if not api_tender_info_url:
-            await query.edit_message_text("❌ Не найден URL для получения документов.")
-            return
-        
         await query.edit_message_text("⏳ Скачиваю документацию...")
         
-        # Получаем документы через ApiTenderInfo URL
-        docs = await get_tender_documents(api_tender_info_url)
+        # Используем модуль downloader для скачивания документов
+        result = await download_tender_documents(tender_data, tender_id)
         
-        if not docs:
-            await query.edit_message_text("❌ Документы не найдены или недоступны.")
+        if not result['success']:
+            error_msg = "❌ Не удалось скачать документы.\n"
+            if result['errors']:
+                error_msg += "\n".join(result['errors'][:3])  # Показываем первые 3 ошибки
+            await query.edit_message_text(error_msg)
             return
         
-        # Скачиваем документы
-        temp_dir = tempfile.mkdtemp()
-        file_paths = []
-        
-        for i, doc in enumerate(docs):
-            url = doc.get("Url") or doc.get("url") or doc.get("link")
-            name = doc.get("Name") or doc.get("name") or f"document_{i+1}.pdf"
+        # Отправляем архив пользователю
+        if result['archive_path'] and os.path.exists(result['archive_path']):
+            with open(result['archive_path'], 'rb') as f:
+                await context.bot.send_document(
+                    chat_id=query.message.chat_id,
+                    document=f,
+                    filename=f"tender_{tender_id}_docs.zip"
+                )
             
-            if url:
-                file_path = os.path.join(temp_dir, name)
-                try:
-                    async with aiohttp.ClientSession() as session:
-                        async with session.get(url) as file_resp:
-                            logging.info(f"Downloading document: {url}, status: {file_resp.status}")
-                            if file_resp.status == 200:
-                                with open(file_path, "wb") as out_f:
-                                    out_f.write(await file_resp.read())
-                                file_paths.append(file_path)
-                            else:
-                                logging.error(f"Failed to download document: {url}, status: {file_resp.status}")
-                except Exception as e:
-                    logging.error(f"Exception while downloading document {url}: {e}")
-                    continue
-        
-        if not file_paths:
-            shutil.rmtree(temp_dir)
-            await query.edit_message_text("❌ Не удалось скачать ни одного документа.")
-            return
-        
-        # Создаем архив
-        archive_path = shutil.make_archive(temp_dir, 'zip', temp_dir)
-        shutil.rmtree(temp_dir)
-        
-        # Отправляем архив
-        with open(archive_path, 'rb') as f:
-            await context.bot.send_document(
-                chat_id=query.message.chat_id,
-                document=f,
-                filename=f"tender_{tender_id}_docs.zip"
-            )
-        
-        # Удаляем временный файл
-        os.remove(archive_path)
-        await query.edit_message_text(f"✅ Документация успешно скачана! ({len(file_paths)} файлов)")
-        
+            # Формируем сообщение об успехе
+            success_msg = f"✅ Документация успешно скачана!\n"
+            success_msg += f"📄 Скачано файлов: {result['downloaded_files']} из {result['total_files']}"
+            
+            if result['errors']:
+                success_msg += f"\n⚠️ Ошибки: {len(result['errors'])} файлов не удалось скачать"
+            
+            await query.edit_message_text(success_msg)
+            
+            # Удаляем временный архив
+            try:
+                os.remove(result['archive_path'])
+            except Exception as e:
+                logging.error(f"Error removing temporary archive: {e}")
+        else:
+            await query.edit_message_text("❌ Не удалось создать архив с документами.")
+            
     except Exception as e:
         logging.error(f"Error downloading documents via API: {e}")
         await query.edit_message_text("❌ Ошибка при скачивании документации.")
@@ -533,40 +537,33 @@ async def wait_for_link_handler(update: Update, context: ContextTypes.DEFAULT_TY
     if update.message and update.message.text:
         link = update.message.text.strip()
         logging.info(f"Received tender link: {link}")
-        
-        # Показываем сообщение о начале анализа
         await update.message.reply_text("🔍 Анализирую тендер...")
-        
-        # Извлекаем номер тендера из ссылки
         tender_number = extract_tender_number(link)
         logging.info(f"Extracted tender number: {tender_number}")
-        
         if not tender_number:
             await update.message.reply_text("❌ Не удалось извлечь номер тендера из ссылки. Проверьте формат ссылки.")
             return
-        
         try:
-            # Пробуем получить данные из TenderGuru
-            logging.info("Trying TenderGuru API first...")
-            tender_data = await get_tender_info(tender_number)
-            
+            # Кэшируем результат первого запроса
+            cache_key = f"tenderguru_{tender_number}"
+            tender_data = context.user_data.get(cache_key)
+            if not tender_data:
+                logging.info("Trying TenderGuru API first...")
+                tender_data = await get_tender_info(tender_number)
+                if tender_data:
+                    context.user_data[cache_key] = tender_data
             if tender_data:
                 logging.info("TenderGuru API returned data, parsing...")
                 tender_info = parse_tender_info(tender_data)
                 await send_tender_card(update, context, tender_info, tender_number)
             else:
                 logging.info("TenderGuru API returned no data, trying Damia API...")
-                # Если TenderGuru не дал данных, пробуем Damia API
                 damia_data = await DamiaAPI.get_tender_by_number(tender_number)
-                
                 if damia_data:
-                    logging.info("Damia API returned data, parsing...")
                     tender_info = parse_damia_tender_info(damia_data)
                     await send_tender_card(update, context, tender_info, tender_number)
                 else:
-                    logging.warning("Both APIs returned no data")
                     await update.message.reply_text("❌ Не удалось найти информацию о тендере в доступных источниках.")
-                    
         except Exception as e:
             logging.error(f"Error in wait_for_link_handler: {e}")
             await update.message.reply_text("❌ Произошла ошибка при анализе тендера. Попробуйте позже.")
@@ -633,43 +630,33 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     if query is None:
         return
-    
     await query.answer()
-    
     data = query.data
     if data is None:
         return
-    
     logging.info(f"Button pressed: {data}")
-    
     if data.startswith("download_docs_"):
-        # Обработка скачивания документов через ApiTenderInfo
         tender_id = data.split("_")[2]
-        logging.info(f"Downloading documents for tender: {tender_id}")
-        await download_documents_via_api(update, context, tender_id)
-        
-    elif data.startswith("download_"):
-        # Обработка скачивания документов (старый способ)
-        tender_id = data.split("_")[1]
-        logging.info(f"Downloading documents for tender: {tender_id}")
-        await download_documents(update, context, tender_id)
-        
+        cache_key = f"tenderguru_{tender_id}"
+        tender_data = context.user_data.get(cache_key)
+        if not tender_data:
+            tender_data = await get_tender_info(tender_id)
+            if tender_data:
+                context.user_data[cache_key] = tender_data
+        await download_documents_via_api(update, context, tender_id, tender_data)
     elif data.startswith("tenderguru_"):
-        # Анализ через TenderGuru API
         tender_number = data.split("_", 1)[1]
-        logging.info(f"Analyzing tender {tender_number} via TenderGuru API")
-        
-        await query.edit_message_text("🔍 Анализирую через TenderGuru...")
-        
-        tender_data = await get_tender_info(tender_number)
+        cache_key = f"tenderguru_{tender_number}"
+        tender_data = context.user_data.get(cache_key)
+        if not tender_data:
+            tender_data = await get_tender_info(tender_number)
+            if tender_data:
+                context.user_data[cache_key] = tender_data
         if tender_data:
-            logging.info("TenderGuru API returned data")
             tender_info = parse_tender_info(tender_data)
             await send_tender_card(update, context, tender_info, tender_number, source="tenderguru")
         else:
-            logging.warning("TenderGuru API returned no data")
             await query.edit_message_text("❌ Не удалось получить данные через TenderGuru API")
-            
     elif data.startswith("damia_"):
         # Анализ через Damia API
         tender_number = data.split("_", 1)[1]
@@ -1065,7 +1052,15 @@ def parse_tender_info(data):
         "user_id": safe_get('User_id'),
         "search_fragment": data.get('searchFragmentXML', {}),
         "source": "tenderguru",
-        "raw_data": data  # Сохраняем сырые данные для полного анализа
+        "raw_data": data,  # Сохраняем сырые данные для полного анализа
+        # Добавляем новые поля для документов и дополнительной информации
+        "docs_xml": data.get('docsXML', {}),
+        "api_protokol_info": safe_get('ApiProtokolInfo'),
+        "api_pred_info": safe_get('ApiPredInfo'),
+        "api_contract_info": safe_get('ApiContractInfo'),
+        "api_izm_info": safe_get('ApiIzmInfo'),
+        "api_char_link_tender": safe_get('ApiCharLinkTender'),
+        "api_char_link_tender_vcontract": safe_get('ApiCharLinkTenderVcontract')
     }
 
     print(f"\n✅ Extracted TenderGuru info: {json.dumps(tender_info, ensure_ascii=False, indent=2)}", flush=True)
