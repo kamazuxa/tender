@@ -3,21 +3,19 @@
 Модуль для скачивания документов тендера на сервер
 """
 
-import asyncio
-import aiohttp
+import requests
 import os
-import tempfile
-import shutil
-import json
-import logging
+import zipfile
 import re
+import logging
 from typing import List, Dict, Optional, Tuple
+from urllib.parse import urlparse, unquote
+from config import TENDERGURU_API_KEY
 
-# Настраиваем логирование
-logging.basicConfig(
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
+TENDERGURU_API_URL = "https://www.tenderguru.ru/api2.3/export"
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class TenderDocumentDownloader:
     """
@@ -25,296 +23,272 @@ class TenderDocumentDownloader:
     """
     
     def __init__(self):
-        self.session = None
-        self.temp_dir = None
-    
-    async def __aenter__(self):
-        """Асинхронный контекстный менеджер - вход"""
-        self.session = aiohttp.ClientSession()
-        self.temp_dir = tempfile.mkdtemp()
-        return self
-    
-    async def __aexit__(self, exc_type, exc_val, exc_tb):
-        """Асинхронный контекстный менеджер - выход"""
-        if self.session:
-            await self.session.close()
-        if self.temp_dir and os.path.exists(self.temp_dir):
-            shutil.rmtree(self.temp_dir)
-    
-    def extract_documents_from_tender_data(self, tender_data) -> List[Dict]:
+        self.download_dir = "download_files"
+        self.session = requests.Session()
+        # Устанавливаем User-Agent для избежания блокировки
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        })
+        
+        # Создаем папку для скачивания, если её нет
+        if not os.path.exists(self.download_dir):
+            os.makedirs(self.download_dir)
+
+    def get_tender_subdir(self, tender_number: str) -> str:
+        """Возвращает путь к подпапке для тендера"""
+        subdir = os.path.join(self.download_dir, tender_number)
+        if not os.path.exists(subdir):
+            os.makedirs(subdir)
+        return subdir
+
+    def get_tender_info(self, tender_number: str) -> Dict:
         """
-        Извлекает документы из данных тендера
+        Получает информацию о тендере через TenderGuru API
         
         Args:
-            tender_data: Данные тендера (список или словарь)
+            tender_number: Номер тендера
             
         Returns:
-            List[Dict]: Список документов с полями url, name, size
+            Dict: Информация о тендере
         """
-        docs = []
-        
-        # Обрабатываем случай, когда данные переданы как список
-        if isinstance(tender_data, list) and len(tender_data) > 0:
-            # Берем первый элемент (пропускаем Total)
-            item = tender_data[0]
-            if isinstance(item, dict):
-                docs.extend(self._extract_docs_from_item(item))
-        
-        # Обрабатываем случай, когда данные переданы как словарь
-        elif isinstance(tender_data, dict):
-            docs.extend(self._extract_docs_from_item(tender_data))
-        
-        return docs
-    
-    def _extract_docs_from_item(self, item: dict) -> List[Dict]:
-        """
-        Извлекает документы из одного элемента данных тендера
-        
-        Args:
-            item: Элемент данных тендера
-            
-        Returns:
-            List[Dict]: Список документов
-        """
-        docs = []
-        
-        # Проверяем поле docsXML
-        if 'docsXML' in item and isinstance(item['docsXML'], dict):
-            docs_data = item['docsXML']
-            if 'document' in docs_data and isinstance(docs_data['document'], list):
-                for doc in docs_data['document']:
-                    if isinstance(doc, dict) and 'link' in doc and 'name' in doc:
-                        docs.append({
-                            'url': doc['link'],
-                            'name': doc['name'],
-                            'size': doc.get('size', 'Неизвестно')
-                        })
-                        logging.info(f"Found document: {doc['name']} -> {doc['link']}")
-        
-        # Также проверяем другие возможные поля с документами
-        for key in ['files', 'attachments', 'docs', 'documents', 'download_links', 'documentation', 'Files', 'Documents']:
-            if key in item and isinstance(item[key], list):
-                for doc in item[key]:
-                    if isinstance(doc, dict):
-                        url = doc.get('url') or doc.get('link') or doc.get('Url') or doc.get('Link')
-                        name = doc.get('name') or doc.get('Name') or doc.get('filename') or doc.get('Filename')
-                        if url and name:
-                            docs.append({
-                                'url': url,
-                                'name': name,
-                                'size': doc.get('size') or doc.get('Size', 'Неизвестно')
-                            })
-                            logging.info(f"Found document in {key}: {name} -> {url}")
-        
-        return docs
-    
-    def clean_filename(self, filename: str) -> str:
-        """
-        Очищает имя файла от HTML тегов и недопустимых символов
-        
-        Args:
-            filename: Исходное имя файла
-            
-        Returns:
-            str: Очищенное имя файла
-        """
-        # Удаляем HTML теги
-        clean_name = re.sub(r'<[^>]+>', '', filename)
-        # Заменяем недопустимые символы на подчеркивание
-        clean_name = re.sub(r'[<>:"/\\|?*]', '_', clean_name)
-        # Убираем лишние пробелы
-        clean_name = clean_name.strip()
-        # Если имя пустое, возвращаем дефолтное
-        if not clean_name:
-            clean_name = "document.pdf"
-        return clean_name
-    
-    async def download_document(self, doc: Dict) -> Optional[str]:
-        """
-        Скачивает один документ
-        
-        Args:
-            doc: Словарь с информацией о документе (url, name, size)
-            
-        Returns:
-            Optional[str]: Путь к скачанному файлу или None при ошибке
-        """
-        url = doc.get('url') or doc.get('link')
-        name = doc.get('name', 'document.pdf')
-        
-        if not url:
-            logging.error("No URL provided for document")
-            return None
-        
-        # Очищаем имя файла
-        clean_name = self.clean_filename(name)
-        file_path = os.path.join(self.temp_dir, clean_name)
-        
         try:
-            logging.info(f"Downloading document: {url}")
-            async with self.session.get(url) as resp:
-                if resp.status == 200:
-                    content = await resp.read()
-                    with open(file_path, "wb") as f:
-                        f.write(content)
-                    logging.info(f"Successfully downloaded: {clean_name} ({len(content)} bytes)")
-                    return file_path
-                else:
-                    logging.error(f"Failed to download document: {url}, status: {resp.status}")
-                    return None
+            # Первый запрос - поиск тендера
+            params = {
+                "kwords": tender_number,
+                "api_code": TENDERGURU_API_KEY,
+                "dtype": "json"
+            }
+            
+            response = self.session.get(TENDERGURU_API_URL, params=params)
+            if response.status_code != 200:
+                logger.error(f"Ошибка первого запроса к TenderGuru API: {response.status_code}")
+                return None
+            
+            data = response.json()
+            if not data or len(data) < 2:  # Первый элемент - Total, второй - данные тендера
+                logger.error("Тендер не найден")
+                return None
+            
+            tender_info = data[1]  # Берем данные тендера
+            
+            # Второй запрос - детальная информация
+            tender_id = tender_info.get('ID')
+            if not tender_id:
+                logger.error("ID тендера не найден")
+                return tender_info
+            
+            detail_params = {
+                "id": tender_id,
+                "api_code": TENDERGURU_API_KEY,
+                "dtype": "json"
+            }
+            
+            detail_response = self.session.get(TENDERGURU_API_URL, params=detail_params)
+            if detail_response.status_code == 200:
+                detail_data = detail_response.json()
+                if detail_data and len(detail_data) > 0:
+                    # Объединяем информацию
+                    tender_info.update(detail_data[0])
+            
+            return tender_info
+            
         except Exception as e:
-            logging.error(f"Exception while downloading document {url}: {e}")
+            logger.error(f"Ошибка при получении информации о тендере: {e}")
             return None
     
-    async def download_all_documents(self, tender_data) -> Tuple[List[str], List[str]]:
+    def extract_document_links(self, info_html: str) -> List[Dict]:
         """
-        Скачивает все документы тендера
+        Извлекает ссылки на документы из HTML
         
         Args:
-            tender_data: Данные тендера
+            info_html: HTML с информацией о тендере
             
         Returns:
-            Tuple[List[str], List[str]]: (список путей к успешно скачанным файлам, список ошибок)
+            List[Dict]: Список документов с ссылками и названиями
         """
-        docs = self.extract_documents_from_tender_data(tender_data)
+        documents = []
         
-        if not docs:
-            return [], ["Документы не найдены в данных тендера"]
+        # Декодируем HTML entities
+        import html
+        decoded_html = html.unescape(info_html)
         
-        logging.info(f"Found {len(docs)} documents to download")
+        # Удаляем CDATA обертку если есть
+        if '![CDATA[' in decoded_html:
+            decoded_html = decoded_html.replace('![CDATA[', '').replace(']]', '')
         
-        # Скачиваем документы параллельно
-        download_tasks = [self.download_document(doc) for doc in docs]
-        results = await asyncio.gather(*download_tasks, return_exceptions=True)
+        # Ищем ссылки на документы в формате zakupki.gov.ru
+        pattern = r'href="(https://zakupki\.gov\.ru/44fz/filestore/public/1\.0/download/priz/file\.html\?uid=[^"]+)"[^>]*>([^<]+)</a>'
+        matches = re.findall(pattern, decoded_html)
         
-        successful_downloads = []
-        errors = []
+        for url, name in matches:
+            # Очищаем название от лишних символов
+            clean_name = re.sub(r'[<>:"/\\|?*]', '_', name.strip())
+            if clean_name:
+                documents.append({
+                    'url': url,
+                    'name': clean_name,
+                    'filename': self._generate_filename(clean_name, url)
+                })
         
-        for i, result in enumerate(results):
-            if isinstance(result, Exception):
-                errors.append(f"Ошибка скачивания документа {i+1}: {result}")
-            elif result is not None:
-                successful_downloads.append(result)
-            else:
-                errors.append(f"Не удалось скачать документ {i+1}")
-        
-        return successful_downloads, errors
+        return documents
     
-    def create_archive(self, file_paths: List[str], tender_id: str) -> Optional[str]:
+    def _generate_filename(self, name: str, url: str) -> str:
         """
-        Создает ZIP архив из скачанных файлов
+        Генерирует имя файла на основе названия и URL
         
         Args:
-            file_paths: Список путей к файлам
-            tender_id: ID тендера для имени архива
+            name: Название документа
+            url: URL документа
             
         Returns:
-            Optional[str]: Путь к созданному архиву или None при ошибке
+            str: Имя файла
+        """
+        # Пытаемся извлечь расширение из URL
+        parsed_url = urlparse(url)
+        path = parsed_url.path
+        
+        # Определяем расширение по названию или URL
+        if '.docx' in name.lower() or '.docx' in path.lower():
+            ext = '.docx'
+        elif '.doc' in name.lower() or '.doc' in path.lower():
+            ext = '.doc'
+        elif '.pdf' in name.lower() or '.pdf' in path.lower():
+            ext = '.pdf'
+        elif '.xlsx' in name.lower() or '.xlsx' in path.lower():
+            ext = '.xlsx'
+        elif '.xls' in name.lower() or '.xls' in path.lower():
+            ext = '.xls'
+        elif '.rtf' in name.lower() or '.rtf' in path.lower():
+            ext = '.rtf'
+        else:
+            ext = '.pdf'  # По умолчанию
+        
+        # Очищаем название и добавляем расширение
+        clean_name = re.sub(r'[<>:"/\\|?*]', '_', name.strip())
+        return f"{clean_name}{ext}"
+    
+    def download_document(self, doc: Dict, subdir: str) -> Optional[str]:
+        """
+        Скачивает один документ в подпапку тендера
+        """
+        try:
+            url = doc['url']
+            filename = doc['filename']
+            file_path = os.path.join(subdir, filename)
+            if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+                logger.info(f"Документ уже скачан (кеш): {file_path}")
+                return file_path
+            logger.info(f"Скачиваю документ: {filename}")
+            response = self.session.get(url, stream=True)
+            if response.status_code == 200:
+                with open(file_path, 'wb') as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        f.write(chunk)
+                logger.info(f"Документ скачан: {file_path}")
+                return file_path
+            else:
+                logger.error(f"Ошибка скачивания {filename}: {response.status_code}")
+                return None
+        except Exception as e:
+            logger.error(f"Ошибка при скачивании документа {doc.get('name', 'unknown')}: {e}")
+            return None
+    
+    def create_zip_archive(self, file_paths: List[str], tender_number: str, subdir: str) -> Optional[str]:
+        """
+        Создает ZIP архив из скачанных файлов в подпапке тендера
         """
         if not file_paths:
             return None
-        
+        archive_name = f"tender_{tender_number}_documents.zip"
+        archive_path = os.path.join(subdir, archive_name)
+        if os.path.exists(archive_path):
+            logger.info(f"Архив уже существует (кеш): {archive_path}")
+            return archive_path
         try:
-            # Создаем архив в той же временной директории
-            archive_path = shutil.make_archive(
-                os.path.join(self.temp_dir, f"tender_{tender_id}_docs"), 
-                'zip', 
-                self.temp_dir
-            )
-            logging.info(f"Created archive: {archive_path}")
+            with zipfile.ZipFile(archive_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                for file_path in file_paths:
+                    if os.path.exists(file_path):
+                        zipf.write(file_path, os.path.basename(file_path))
+            logger.info(f"Создан архив: {archive_path}")
             return archive_path
         except Exception as e:
-            logging.error(f"Error creating archive: {e}")
+            logger.error(f"Ошибка при создании архива: {e}")
             return None
-    
-    async def download_tender_documents(self, tender_data, tender_id: str) -> Dict:
+
+    def download_all_documents(self, tender_number: str) -> Tuple[List[str], List[str], Dict, str]:
         """
-        Основной метод для скачивания документов тендера
-        
-        Args:
-            tender_data: Данные тендера
-            tender_id: ID тендера
-            
-        Returns:
-            Dict: Результат операции с полями:
-                - success: bool - успешность операции
-                - archive_path: Optional[str] - путь к архиву
-                - file_paths: List[str] - пути к отдельным файлам
-                - errors: List[str] - список ошибок
-                - total_files: int - общее количество файлов
-                - downloaded_files: int - количество скачанных файлов
+        Скачивает все документы тендера в подпапку, возвращает путь к подпапке
         """
         try:
-            # Скачиваем все документы
-            file_paths, errors = await self.download_all_documents(tender_data)
-            
-            if not file_paths:
+            tender_info = self.get_tender_info(tender_number)
+            if not tender_info:
+                return [], ["Не удалось получить информацию о тендере"], {}, ""
+            info_html = tender_info.get('Info', '')
+            documents = self.extract_document_links(info_html)
+            subdir = self.get_tender_subdir(tender_number)
+            if not documents:
+                return [], ["Документы не найдены"], tender_info, subdir
+            logger.info(f"Найдено документов: {len(documents)}")
+            downloaded_files = []
+            errors = []
+            for doc in documents:
+                file_path = self.download_document(doc, subdir)
+                if file_path:
+                    downloaded_files.append(file_path)
+                else:
+                    errors.append(f"Не удалось скачать: {doc['name']}")
+            return downloaded_files, errors, tender_info, subdir
+        except Exception as e:
+            logger.error(f"Ошибка при скачивании документов: {e}")
+            return [], [f"Общая ошибка: {str(e)}"], {}, ""
+
+    def download_tender_documents(self, tender_number: str) -> Dict:
+        """
+        Основная функция для скачивания документов тендера с кешированием
+        """
+        try:
+            downloaded_files, errors, tender_info, subdir = self.download_all_documents(tender_number)
+            if not downloaded_files:
                 return {
                     'success': False,
-                    'archive_path': None,
-                    'file_paths': [],
-                    'errors': errors,
-                    'total_files': 0,
-                    'downloaded_files': 0
+                    'error': 'Документы не найдены или не удалось скачать',
+                    'tender_info': tender_info,
+                    'errors': errors
                 }
-            
-            # Создаем архив
-            archive_path = self.create_archive(file_paths, tender_id)
-            
+            archive_path = self.create_zip_archive(downloaded_files, tender_number, subdir)
             return {
                 'success': True,
                 'archive_path': archive_path,
-                'file_paths': file_paths,
+                'file_paths': downloaded_files,
+                'tender_info': tender_info,
                 'errors': errors,
-                'total_files': len(self.extract_documents_from_tender_data(tender_data)),
-                'downloaded_files': len(file_paths)
+                'total_files': len(downloaded_files)
             }
-            
         except Exception as e:
-            logging.error(f"Error in download_tender_documents: {e}")
+            logger.error(f"Ошибка в download_tender_documents: {e}")
             return {
                 'success': False,
-                'archive_path': None,
-                'file_paths': [],
-                'errors': [f"Общая ошибка: {e}"],
-                'total_files': 0,
-                'downloaded_files': 0
+                'error': str(e),
+                'tender_info': {},
+                'errors': [str(e)]
             }
 
 # Функция для удобного использования
-async def download_tender_documents(tender_data, tender_id: str) -> Dict:
+def download_tender_documents(tender_number: str) -> Dict:
     """
     Удобная функция для скачивания документов тендера
     
     Args:
-        tender_data: Данные тендера
-        tender_id: ID тендера
+        tender_number: Номер тендера
         
     Returns:
         Dict: Результат операции
     """
-    async with TenderDocumentDownloader() as downloader:
-        return await downloader.download_tender_documents(tender_data, tender_id)
+    downloader = TenderDocumentDownloader()
+    return downloader.download_tender_documents(tender_number)
 
-# Пример использования
 if __name__ == "__main__":
-    async def test_downloader():
-        """Тестовая функция"""
-        # Пример данных тендера (замените на реальные)
-        test_tender_data = [
-            {
-                "docsXML": {
-                    "document": [
-                        {
-                            "link": "http://example.com/test.pdf",
-                            "name": "test.pdf"
-                        }
-                    ]
-                }
-            }
-        ]
-        
-        result = await download_tender_documents(test_tender_data, "test_123")
-        print(f"Result: {json.dumps(result, indent=2, ensure_ascii=False)}")
-    
-    asyncio.run(test_downloader()) 
+    # Тестовая функция
+    print("Тест скачивания документов тендера 0372200186425000005")
+    result = download_tender_documents("0372200186425000005")
+    print(f"Результат: {result}") 

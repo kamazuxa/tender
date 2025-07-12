@@ -57,7 +57,6 @@ temp/
 tmp/
 
 # API data files
-tenderguru_api_zip/
 *.zip
 *.xml
 *.html
